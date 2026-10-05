@@ -1,7 +1,0 @@
-{
-  "risk": {"type": "score", "instructions": "How risky does this supplier invoice look, given `known_supplier`?",
-           "criteria": ["Looks normal", "One small oddity", "Several warning signs", "Strong signs of fraud"]},
-  "bank_change_pressure": {"type": "noul", "instructions": "Does it combine changed bank details with pressure to pay fast?"},
-  "action": {"type": "choice", "instructions": "What should we do with it?",
-             "criteria": {"pay": "Pay as normal", "hold_and_phone": "Hold; phone supplier on a number we already have", "reject": "Reject"}}
-}

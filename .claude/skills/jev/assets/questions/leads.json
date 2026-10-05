@@ -1,0 +1,33 @@
+{
+  "lead_strength": {
+    "type": "score",
+    "instructions": "How strong a sales lead is the email in `email` for the business described in `context`?",
+    "criteria": [
+      "Not a lead at all: spam, vendor pitch, newsletter, job seeker, support request or existing client",
+      "Cold: vague interest, a tiny budget or a poor fit",
+      "Warm: a real need that fits, but no stated budget or timeline yet",
+      "Hot: a clear need that fits, plus at least two of: a stated budget, a stated timeline, a decision maker writing"
+    ]
+  },
+  "email_kind": {
+    "type": "choice",
+    "instructions": "What kind of email is `email`?",
+    "criteria": {
+      "new_lead": "Someone who is not yet a client asking about the services in `context`",
+      "existing_client": "A current client writing about their ongoing work with us",
+      "vendor_pitch": "Someone trying to sell us a product or service",
+      "spam": "Unwanted bulk, phishing or scam email",
+      "job_seeker": "Someone asking for a job or sending a CV",
+      "newsletter": "A mass-mailed newsletter, announcement or automated notification",
+      "support": "A request for help with something already bought or delivered"
+    }
+  },
+  "needs_personal_reply": {
+    "type": "noul",
+    "instructions": "Does the email in `email` need a personal reply from a person on our team?",
+    "criteria": {
+      "true": "A real person asks a question or makes a request that needs a human answer",
+      "false": "Automated, bulk or purely informational; no personal reply is needed"
+    }
+  }
+}

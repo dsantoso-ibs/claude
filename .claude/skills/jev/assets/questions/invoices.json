@@ -1,0 +1,29 @@
+{
+  "risk": {
+    "type": "score",
+    "instructions": "How risky does the supplier invoice in `invoice` look, given what we know about this supplier in `supplier_known` and the checks our code already ran in `code_checks`?",
+    "criteria": [
+      "Looks normal: consistent with the supplier record, no warning signs",
+      "One small oddity that probably has an innocent explanation",
+      "Several warning signs together",
+      "Strong signs of fraud (for example changed bank details plus pressure to pay fast)"
+    ]
+  },
+  "bank_change_with_pressure": {
+    "type": "noul",
+    "instructions": "Does the invoice in `invoice` combine changed bank details (see `code_checks`) with pressure to pay quickly?",
+    "criteria": {
+      "true": "Bank details differ from the supplier record AND the text urges fast, urgent or immediate payment",
+      "false": "Bank details match the record, or there is no pressure to pay fast"
+    }
+  },
+  "action": {
+    "type": "choice",
+    "instructions": "What should we do with the invoice in `invoice` before anyone pays it?",
+    "criteria": {
+      "pay_as_normal": "Nothing unusual; process through the normal payment run",
+      "hold_and_call_supplier": "Something is off; hold it and phone the supplier on a number we already know (not one from the invoice)",
+      "reject": "Clearly fraudulent or not something we ordered"
+    }
+  }
+}

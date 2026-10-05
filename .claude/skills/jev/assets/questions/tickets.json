@@ -1,0 +1,31 @@
+{
+  "urgency": {
+    "type": "choice",
+    "instructions": "How soon does the support ticket in `ticket` need a first answer?",
+    "criteria": {
+      "today": "The customer is blocked, losing money, reports an outage or data problem, or sets a deadline within a day or two",
+      "this_week": "A real problem or question that is not blocking work right now",
+      "no_rush": "A general question, suggestion or thanks with no time pressure"
+    }
+  },
+  "team": {
+    "type": "choice",
+    "instructions": "Which team should take the support ticket in `ticket`?",
+    "criteria": {
+      "technical": "Bugs, outages, errors, integrations, performance",
+      "billing": "Charges, refunds, invoices, payment methods",
+      "sales": "Upgrades, pricing, new licences, contract changes",
+      "success": "Onboarding, training, how-to questions, adoption"
+    }
+  },
+  "churn_risk": {
+    "type": "score",
+    "instructions": "How likely is the customer who wrote `ticket` to leave? Use `account` (plan, tenure) as extra context if present.",
+    "criteria": [
+      "No sign of leaving",
+      "Mild frustration, but still committed",
+      "Openly looking at other options or mentioning competitors",
+      "Has set a deadline to leave or has said they are cancelling"
+    ]
+  }
+}
