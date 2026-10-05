@@ -1,0 +1,11 @@
+{
+  "model": "gemini-3.1-flash-lite-image",
+  "provider": "Google AI Studio (Interactions API)",
+  "prompt": "Website hero image, wide 16:9 composition. Abstract premium isometric still life of building materials: stacked concrete blocks, steel beams, timber planks and glass panels, arranged on a clean white to light gray (#F9FAFB) surface, soft shadows. A few thin royal blue (#1D4ED8) and cyan (#00A3E0) glowing connector lines link the materials like a network, suggesting a connected sales pipeline. Bright, airy, minimal, corporate B2B software style. Empty space on the left third for headline text. No text, no letters, no logos, no people.",
+  "refs": [],
+  "params": {
+    "aspect": "16:9",
+    "size": "1K"
+  },
+  "created": "2026-10-05T14:14:33Z"
+}

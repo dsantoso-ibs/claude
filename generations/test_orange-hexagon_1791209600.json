@@ -1,0 +1,11 @@
+{
+  "model": "gemini-3.1-flash-lite-image",
+  "provider": "Google AI Studio (Interactions API)",
+  "prompt": "A simple orange hexagon logo on a plain cream background, flat design",
+  "refs": [],
+  "params": {
+    "aspect": "1:1",
+    "size": "1K"
+  },
+  "created": "2026-10-05T14:13:20Z"
+}

@@ -1,0 +1,11 @@
+{
+  "model": "gemini-3.1-flash-lite-image",
+  "provider": "Google AI Studio (Interactions API)",
+  "prompt": "Website hero image, wide 16:9 composition. A modern architectural scene of a building under construction at golden-blue dusk, steel frame and glass facade, tower crane, clean and premium. Color palette strictly deep navy (#0F172A), royal blue (#1D4ED8) and bright cyan (#00A3E0) accents with white highlights. Subtle thin glowing cyan line-art data connections floating over the building suggesting connected project workflow. Empty calm negative space on the left third for headline text. Photorealistic with a slight clean illustrative finish. No text, no letters, no logos, no people.",
+  "refs": [],
+  "params": {
+    "aspect": "16:9",
+    "size": "1K"
+  },
+  "created": "2026-10-05T14:14:25Z"
+}
