@@ -34,11 +34,9 @@ sources:
       - contractor_phone
       - contractor_address1
       - contractor_address2
-    # Only BP carries valuation; floor is lower than the filter so thresholds can be tuned without re-fetching.
-    ingest_min_valuation_usd: 100000
-    # Also ingest commercial new/shell/addition permits whatever their valuation: ~46% of such projects report $0/$1, which
-    # hid real projects from site-plan linking and from the open pipeline.
-    ingest_extra_where: "(permittype='BP' AND permit_class like 'C-%' AND work_class in ('New','Shell','Addition','Addition and Remodel'))"
+    # No valuation floor anywhere: fetch scope is by class only (same classes the filter accepts); every work class is
+    # fetched so exclusion reasons stay countable. Valuation only feeds the size_band field.
+    ingest_where: "permittype='BP' AND (permit_class like 'C-%' OR permit_class like 'R- 104%' OR permit_class like 'R- 105%' OR permit_class like 'R- 106%' OR permit_class like 'R- 213%' OR permit_class like 'R- 214%')"
   site_plans:          # phase 2 (M7): Austin Site Plan Cases
     domain: data.austintexas.gov
     dataset_id: mavg-96ck
@@ -57,7 +55,7 @@ sources:
     date_field: applied_date
     id_field: permit_number
     backfill_months: 60
-    ingest_min_valuation_usd: 100000
+    ingest_where: "(sub_type like 'C-%' OR sub_type like 'R- 104%' OR sub_type like 'R- 105%' OR sub_type like 'R- 106%' OR sub_type like 'R- 213%' OR sub_type like 'R- 214%')"
     delta_overlap_days: 14
     drop_fields: [applicant_full_name, applicant_address, applicant_phone, owner_full_name, owner_address,
                   owner_phone, other_full_name, other_address, other_phone, appraisal_id]
@@ -77,8 +75,6 @@ socrata:
   timeout_seconds: 30
 
 filters:
-  min_valuation_usd: 250000
-  unreported_valuation_max_usd: 1000   # <= this is a placeholder (0/1), reported separately from genuinely small projects
   include_permit_types: [BP]                       # trade permits (EP/PP/MP/DS) are excluded
   include_work_classes: [New, Shell, Addition, Addition and Remodel, Remodel]
   remodel_work_classes: [Remodel, Addition, Addition and Remodel]   # these additionally need a commercial class
@@ -135,7 +131,6 @@ site_plan_filters:
   open_pipeline_max_age_months: 24
 
 plan_review_filters:
-  min_valuation_usd: 250000
   extra_exclude_statuses: [Expired, New Application Required]   # not live applications
 
 linking:
@@ -148,3 +143,9 @@ linking:
   site_plan_permit_work_classes: [New, Shell, Addition, Addition and Remodel]   # interior-remodel-only permits are not what a site plan produces
 
 phase2_manual_sample: {size: 30, seed: 21, strata: {multifamily: 10, commercial: 10, other: 10}}
+
+size_band:   # descriptive field only; never used to include/exclude
+  unknown_max_usd: 1000        # a reported valuation <= this is a placeholder ($0/$1) and counts as unknown
+  band_250k: 250000
+  band_5m: 5000000
+  # best available valuation: own project valuation, else linked Plan Review application, else (site plans) the linked permit project

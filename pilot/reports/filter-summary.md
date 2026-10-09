@@ -1,67 +1,63 @@
 # Filter summary: austin
-Generated 2026-10-09 10:31 UTC. 5497 projects (raw permits grouped by project key).
+Generated 2026-10-09 10:43 UTC. 14203 projects (raw permits grouped by project key).
 
-**Passed: 687** | Excluded: 4810
+**Passed: 11352** | Excluded: 2851
 
 | outcome / reason | projects |
 |---|---|
-| below_valuation | 2028 |
-| single_family_or_duplex | 1564 |
-| valuation_unreported | 889 |
-| passed | 687 |
-| not_commercial_or_multifamily | 139 |
-| structures_only | 92 |
-| status_excluded | 45 |
-| work_class_not_construction | 35 |
-| solar_or_ev_trade | 10 |
-| excluded_class_keyword | 8 |
+| passed | 11352 |
+| work_class_not_construction | 1283 |
+| structures_only | 1064 |
+| solar_or_ev_trade | 316 |
+| status_excluded | 185 |
+| single_family_or_duplex | 3 |
 
 ## Hand-check sample: 20 passed
 
 | project | valuation | work class | use class | reason | address |
 |---|---|---|---|---|---|
-| 12663131 | 5,152,146 | New | C- 321 Pkg Garage Bldg & Open Deck |  | 755 SPRINGDALE RD |
-| 12625589 | 29,835,540 | New | C- 105 Five or More Family Bldgs |  | 5724 E HOWARD LN |
-| 13057252 | 2,200,000 | New | C- 327 Stores & Customer Services |  | 1900 E HOWARD LN |
-| 12320071 | 374,500 | Shell | C- 327 Stores & Customer Services |  | 13001 HARRIS RIDGE BLVD |
-| 12990295 | 66,500,000 | New|Shell | C- 105 Five or More Family Bldgs|C- 321 Pkg Garage Bldg & Op |  | 2323 S LAMAR BLVD |
-| 13136803 | 52,100,000 | New | C- 105 Five or More Family Bldgs|C- 328 Commercial Other Non |  | 16601 E BRAKER LN |
-| 13603253 | 1,000,000 | Addition and Remodel | C- 437 Addn, Alter, Convn-NonRes |  | 78 RAINEY ST |
-| 13079707 | 47,000,000 | New | C- 320 Industrial Bldgs |  | 11801 DECKER LAKE RD |
-| 13686271 | 3,000,000 | New | C- 318 Amusement, Social & Rec Bldgs |  | 1205 SHELDON CV |
-| 12620966 | 700,000 | New|Remodel|Shell | C- 327 Stores & Customer Services|C-1001 Commercial Finish O |  | 14125 THE LAKES BLVD |
-| 12553679 | 58,600,500 | New | C- 105 Five or More Family Bldgs|C- 321 Pkg Garage Bldg & Op |  | 2300 ALDRICH ST |
-| 13005029 | 1,000,000 | New | C- 105 Five or More Family Bldgs|C- 321 Pkg Garage Bldg & Op |  | 4401 JESSIE HEIGHTS DR |
-| 12609790 | 16,800,000 | New | C- 324 Office, Bank & Professional Bldgs |  | 9010 N LAKE CREEK PKWY |
-| 13539107 | 79,500,000 | New|Shell | C- 105 Five or More Family Bldgs|C- 321 Pkg Garage Bldg & Op |  | 512 SABINE ST |
-| 13513914 | 50,000,000 | New | C- 321 Pkg Garage Bldg & Open Deck |  | 4812 GONZALES ST |
-| 13099820 | 1,800,000 | New | C- 328 Commercial Other Nonresident Bldg|C- 329 Com Structur |  | 820 E ANDERSON LN SVRD WB |
-| 13122281 | 2,000,000 | New | C- 328 Commercial Other Nonresident Bldg |  | 9600 S IH 35 SVRD SB |
-| 13194275 | 54,500,000 | New|Shell | C- 105 Five or More Family Bldgs|C- 321 Pkg Garage Bldg & Op |  | 7618 BURNET RD |
-| 13368961 | 12,331,974 | New | C- 105 Five or More Family Bldgs|C- 328 Commercial Other Non |  | 7009 ED BLUESTEIN BLVD SVRD NB |
-| 13150876 | 48,000,000 | New | C- 105 Five or More Family Bldgs|C- 321 Pkg Garage Bldg & Op |  | 2631 KRAMER LN |
+| 13218031 | 0 | Remodel | C-1000 Commercial Remodel |  | 5800 COUGAR DR |
+| 12896612 | 0 | Remodel | C-1000 Commercial Remodel |  | 1901 E 51ST ST |
+| 13320960 | 0 | Remodel | C-1000 Commercial Remodel |  | 12400 AMHERST DR |
+| 13693845 | 0 | Remodel | C-1000 Commercial Remodel |  | 8527 N CAPITAL OF TEXAS HWY NB |
+| 13487952 | 48,000 | New | C- 326 Schools & Other Educational Bldgs |  | 8650 N MOPAC EXPY SVRD SB |
+| 12209066 | 0 | New|Remodel | C- 321 Pkg Garage Bldg & Open Deck|C-1000 Commercial Remodel |  | 600 HARTHAN ST |
+| 13513011 | 0 | Remodel | C-1000 Commercial Remodel |  | 811 W SLAUGHTER LN |
+| 12771029 | 0 | Remodel | C-1000 Commercial Remodel |  | 4911 HARMON AVE |
+| 13284572 | 0 | Remodel | C-1000 Commercial Remodel |  | 12574 RESEARCH BLVD SVRD SB |
+| 13585319 | 0 | Remodel | C-1000 Commercial Remodel |  | 760 AIRPORT BLVD |
+| 13068076 | 1 | Addition | C- 437 Addn, Alter, Convn-NonRes |  | 2249 S LAMAR BLVD |
+| 13484573 | 0 | Remodel | C-1000 Commercial Remodel |  | 11415 1/2 ZIMMERMAN LN |
+| 13028964 | 0 | Remodel | C-1000 Commercial Remodel |  | 6330 E US 290 HWY SVRD WB |
+| 13619072 | 650,000 | Remodel|Shell | C- 324 Office, Bank & Professional Bldgs|C-1001 Commercial F |  | 8433 BURNET RD |
+| 12746308 | 0 | Remodel | C-1000 Commercial Remodel |  | 800 INTERCHANGE BLVD |
+| 13378435 | 0 | Remodel | C-1000 Commercial Remodel |  | 10710 RESEARCH BLVD SVRD SB |
+| 13355220 | 0 | Remodel | C-1000 Commercial Remodel |  | 11501 ALTERRA PKWY |
+| 11832266 | 0 | Remodel | C-1000 Commercial Remodel |  | 6000 SHEPHERD MOUNTAIN CV |
+| 13071114 | 0 | Remodel | C-1000 Commercial Remodel |  | 1321 RUTHERFORD LN |
+| 12765337 | 0 | Remodel | C-1000 Commercial Remodel |  | 1601 S MOPAC EXPY SVRD NB |
 
-## Hand-check sample: 20 excluded (valuation >= threshold, i.e. excluded by a rule other than value)
+## Hand-check sample: 20 excluded
 
 | project | valuation | work class | use class | reason | address |
 |---|---|---|---|---|---|
-| 13049078 | 301,050 | New | R- 101 Single Family Houses | single_family_or_duplex | 4705 COBALT LN |
-| 12867968 | 347,490 | New | R- 101 Single Family Houses | single_family_or_duplex | 7206 LOWERY XING |
-| 12427877 | 800,000 | New | R- 101 Single Family Houses | single_family_or_duplex | 4604 AVE D |
-| 12866352 | 254,990 | New | R- 101 Single Family Houses | single_family_or_duplex | 6407 RAFFERTY LN |
-| 12752932 | 300,000 | Addition and Remodel | R- 434 Addition & Alterations | not_commercial_or_multifamily | 5709 WILDER RIDGE |
-| 12871191 | 596,990 | New | R- 101 Single Family Houses | single_family_or_duplex | 8112 DONNIE JUNCTION WAY |
-| 13625899 | 500,000 | New | C- 329 Com Structures Other Than Bldg | structures_only | 1705 S QUINLAN PARK RD |
-| 12861931 | 293,100 | New | R- 101 Single Family Houses | single_family_or_duplex | 4514 SEA SALT DR |
-| 13096673 | 293,200 | New | R- 101 Single Family Houses | single_family_or_duplex | 4912 SEADRIFT DR |
-| 2025-090095 BP | 300,000 | New | R- 437 Residential Boat Dock | excluded_class_keyword | 2204 LAURANNE LN |
-| 12895904 | 800,000 | Addition and Remodel | R- 434 Addition & Alterations | not_commercial_or_multifamily | 1314 ALTA VISTA AVE |
-| 13219702 | 300,000 | New | R- 101 Single Family Houses|R- 102 Secondary Apartment | single_family_or_duplex | 1705 CHESTNUT AVE |
-| 13338018 | 299,390 | New | R- 101 Single Family Houses | single_family_or_duplex | 12624 ORCHARD GROVE LN |
-| 12835792 | 354,800 | New | R- 101 Single Family Houses | single_family_or_duplex | 8216 TALFERD TRL |
-| 13083312 | 980,000 | New | C- 329 Com Structures Other Than Bldg | solar_or_ev_trade | 2001 W HOWARD LN |
-| 13196413 | 500,000 | Addition and Remodel | R- 434 Addition & Alterations | not_commercial_or_multifamily | 2612 FISET DR |
-| 13556548 | 1,000,000 | New | C- 329 Com Structures Other Than Bldg | structures_only | 2401 E SLAUGHTER LN |
-| 13308646 | 300,370 | New | R- 101 Single Family Houses | single_family_or_duplex | 12509 OXFORD VINEYARD LN |
-| 12924899 | 254,990 | New | R- 101 Single Family Houses | status_excluded | 11009 SENTINEL DR |
-| 12717848 | 582,282 | New | R- 101 Single Family Houses | single_family_or_duplex | 6902 ADELINE WAY |
+| 2022-079546 BP | 0 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 6300 BRIDGE POINT PKWY |
+| 13384621 | 0 | Remodel | C-1000 Commercial Remodel | solar_or_ev_trade | 3301 PINNACLE RD |
+| 13646328 | 100,000 | New | C- 329 Com Structures Other Than Bldg | structures_only | 1720 LAWRENCE ST |
+| 2022-144827 BP | 0 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 215 S LAMAR BLVD NB |
+| 2021-155099 BP | 31,500 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 2112 RIO GRANDE ST |
+| 12997338 | 1 | New | C- 329 Com Structures Other Than Bldg | structures_only | 6400 E RIVERSIDE DR |
+| 2024-091660 BP | 0 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 7301 METRO CENTER DR |
+| 2024-068144 BP | 0 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 4001 ADELPHI LN |
+| 2023-025371 BP | 0 | New | C- 329 Com Structures Other Than Bldg | structures_only | 305 W 6TH ST |
+| 13107715 | 98,850 | New | C- 329 Com Structures Other Than Bldg | structures_only | 4510 TERRY O LN |
+| 2022-182663 BP | 0 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 98 SAN JACINTO BLVD |
+| 2023-034913 BP | 0 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 701 BRAZOS ST |
+| 13266025 | 0 | Remodel | C-1000 Commercial Remodel | solar_or_ev_trade | 1221 ALGARITA AVE |
+| 13250542 | 110,000 | New | C- 329 Com Structures Other Than Bldg | structures_only | 811 BARTON SPRINGS RD |
+| 12990816 | 1 | Demolition | C- 649 Demolition All Other Bldgs Com | work_class_not_construction | 9600 S IH 35 SVRD SB |
+| 12848689 | 121,042 | New | C- 329 Com Structures Other Than Bldg | structures_only | 2213 CASCADES AVE |
+| 2022-106898 BP | 0 | Interior Demo Non-Structural | C-1000 Commercial Remodel | work_class_not_construction | 3201 BEE CAVES RD |
+| 12449980 | 25,000 | New | C- 329 Com Structures Other Than Bldg | structures_only | 333 PEDIGREE DR |
+| 13738043 | 1 | Demolition | C- 649 Demolition All Other Bldgs Com | work_class_not_construction | 2720 GOODWIN AVE |
+| 13345747 | 0 | Demolition | C- 649 Demolition All Other Bldgs Com | work_class_not_construction | 2201 AIRPORT BLVD |

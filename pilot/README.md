@@ -26,3 +26,5 @@ python -m src.phase2 sheets                              # M7.5 label sheet + ha
 python -m src.phase2 import-labels reports/manual-labels-site-plans.csv
 ```
 Analysis: `reports/phase2-analysis.md`.
+
+Valuation is **not** a filter any more; it only feeds `size_band` (see `reports/threshold-removal-impact.md`).

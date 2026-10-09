@@ -51,10 +51,23 @@ CREATE TABLE IF NOT EXISTS runs(
 """
 
 
+SIZE_COLS = {"candidates": "valuation", "site_plan_candidates": "exclude_reason", "plan_review_candidates": "exclude_reason"}
+
+
+def _migrate(con: sqlite3.Connection) -> None:
+    """Add the size_band columns to databases created before they existed."""
+    for table in SIZE_COLS:
+        have = {r[1] for r in con.execute(f"PRAGMA table_info({table})")}
+        for col, typ in (("size_band", "TEXT"), ("size_usd", "REAL"), ("size_source", "TEXT")):
+            if col not in have:
+                con.execute(f"ALTER TABLE {table} ADD COLUMN {col} {typ}")
+
+
 def connect(path: Path | str) -> sqlite3.Connection:
     if str(path) != ":memory:":
         Path(path).parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(path)
     con.row_factory = sqlite3.Row
     con.executescript(DDL)
+    _migrate(con)
     return con

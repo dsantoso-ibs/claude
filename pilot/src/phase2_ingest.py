@@ -43,8 +43,8 @@ def ingest(con, client, source: str, cfg: dict, *, months: int | None = None) ->
         days = int((months or scfg["backfill_months"]) * 30.5); mode = "backfill" if months is None else "manual"
     since = (now - timedelta(days=days)).strftime("%Y-%m-%dT00:00:00")
     where = f"{scfg['date_field']} >= '{since}'"
-    if scfg.get("ingest_min_valuation_usd"):
-        where += f" AND total_job_valuation >= {scfg['ingest_min_valuation_usd']}"
+    if scfg.get("ingest_where"):
+        where += f" AND ({scfg['ingest_where']})"
     run_id = con.execute("INSERT INTO runs(started_at, source, rows_fetched, rows_new, notes) VALUES(?,?,0,0,?)",
                          (now.isoformat(), source, f"started {mode}")).lastrowid
     fetched = new = 0

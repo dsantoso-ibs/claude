@@ -25,9 +25,10 @@ def test_passes_multifamily_new():
     assert evaluate(cand(), FC) == (True, None)
 
 
-def test_valuation_threshold():
-    assert evaluate(cand(valuation=249_999), FC) == (False, "below_valuation")
-    assert evaluate(cand(valuation=250_000), FC)[0]
+def test_valuation_does_not_affect_filter():
+    for v in (0, 1, 40_000, 249_999, 250_000, 80_000_000):
+        assert evaluate(cand(valuation=v), FC) == (True, None)
+    assert evaluate(cand(valuation=5_000_000, use_class="R- 101 Single Family Houses"), FC)[1] == "single_family_or_duplex"
 
 
 def test_trade_only_excluded():
@@ -165,7 +166,39 @@ def test_site_plan_filter_rules():
     assert evaluate_site_plan({**base, "submitted_date": None}, fc)[1] == "no_submission_date"
 
 
-def test_unreported_valuation_is_its_own_reason():
-    assert evaluate(cand(valuation=1), FC) == (False, "valuation_unreported")
-    assert evaluate(cand(valuation=0), FC) == (False, "valuation_unreported")
-    assert evaluate(cand(valuation=40_000), FC) == (False, "below_valuation")
+def test_size_bands():
+    from src.sizeband import band
+    sc = cfgmod.load()["size_band"]
+    assert [band(v, sc) for v in (None, 0, 1, 1000)] == ["unknown"] * 4
+    assert band(1001, sc) == "under_250k" and band(249_999, sc) == "under_250k"
+    assert band(250_000, sc) == "250k_to_5m" and band(5_000_000, sc) == "250k_to_5m"
+    assert band(5_000_001, sc) == "over_5m"
+
+
+def test_size_band_best_available_valuation():
+    from src.sizeband import assign
+    cfg = cfgmod.load()
+    con = connect(":memory:")
+    con.execute("INSERT INTO candidates(source,source_id,valuation,first_seen_at) VALUES('austin','P1',1,'t'),('austin','P2',300000,'t')")
+    con.execute("INSERT INTO plan_review_candidates(permit_number,valuation,passed) VALUES('PR1',9000000,1),('PR2',1,1)")
+    con.execute("INSERT INTO plan_review_permit_links VALUES(1,'P1',1.0,'address_exact'),(2,'P2',1.0,'address_exact')")
+    con.execute("INSERT INTO site_plan_candidates(folderrsn,passed) VALUES('S1',1),('S2',1)")
+    con.execute("INSERT INTO site_plan_permit_links VALUES(1,'P1',1.0,'address_exact')")
+    out = assign(con, cfg)
+    row = lambda t, k, v: con.execute(f"SELECT size_band, size_source FROM {t} WHERE {k}=?", (v,)).fetchone()[:]
+    assert row("candidates", "source_id", "P1") == ("over_5m", "linked_plan_review")     # $1 placeholder -> PR valuation
+    assert row("candidates", "source_id", "P2") == ("250k_to_5m", "own")
+    assert row("plan_review_candidates", "permit_number", "PR2") == ("250k_to_5m", "linked_permit")
+    assert row("site_plan_candidates", "folderrsn", "S1")[0] == "over_5m"               # via linked permit project
+    assert row("site_plan_candidates", "folderrsn", "S2")[0] == "unknown"
+    assert out["site_plans"]["unknown"] == 1
+
+
+def test_plan_review_link_requires_same_work_class():
+    from src.phase2 import link_cases
+    lc = cfgmod.load()["linking"]
+    pr = dict(id=1, address_norm="1 MAIN ST", lat=None, lon=None, applied_date="2024-01-01", name="x", work_class="New")
+    permits = [dict(source_id="remodel", address_norm="1 MAIN ST", lat=None, lon=None, issued_date="2024-02-01", description="", contractor_name=None, work_class="Remodel"),
+               dict(source_id="new", address_norm="1 MAIN ST", lat=None, lon=None, issued_date="2024-09-01", description="", contractor_name=None, work_class="New|Shell")]
+    same = lambda c, p: c["work_class"] in set(p["work_class"].split("|"))
+    assert [g[1] for g in link_cases([pr], permits, "applied_date", lc, compat=same)] == ["new"]

@@ -1,3 +1,5 @@
+> **Superseded in part (2026-10-09):** the valuation threshold was removed afterwards. Passed counts, linking and Plan Review lead-time figures below describe the earlier >= $250k version; see `reports/threshold-removal-impact.md` for current numbers.
+
 # Phase 2 analysis: Austin Site Plan Cases + Plan Review Cases (M7.0 to M7.5)
 As of 2026-10-09. All numbers come from `reports/phase2-2026-10-09.md`, `reports/open-pipeline-validation.md` and ad-hoc queries noted below. Region: City of Austin permitting jurisdiction only.
 

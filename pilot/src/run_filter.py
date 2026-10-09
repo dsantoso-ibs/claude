@@ -28,7 +28,7 @@ def main(source: str = "austin") -> None:
             w.writerow([r[c] for c in cols])
     rnd = random.Random(7)
     passed = [r for r in rows if r["passed"]]
-    excl = [r for r in rows if not r["passed"] and r["valuation"] >= cfg["filters"]["min_valuation_usd"]]
+    excl = [r for r in rows if not r["passed"]]
     def table(rs):
         return "\n".join(f"| {r['source_id']} | {r['valuation']:,.0f} | {r['work_class']} | {r['use_class'][:60]} | {r['exclude_reason'] or ''} | {r['address_norm']} |" for r in rs)
     hdr = "| project | valuation | work class | use class | reason | address |\n|---|---|---|---|---|---|"
@@ -36,7 +36,7 @@ def main(source: str = "austin") -> None:
           f"**Passed: {counts.get('passed', 0)}** | Excluded: {len(rows) - counts.get('passed', 0)}", "",
           "| outcome / reason | projects |\n|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(counts.items(), key=lambda kv: -kv[1])] + [
           "", "## Hand-check sample: 20 passed", "", hdr, table(rnd.sample(passed, min(20, len(passed)))),
-          "", "## Hand-check sample: 20 excluded (valuation >= threshold, i.e. excluded by a rule other than value)", "", hdr,
+          "", "## Hand-check sample: 20 excluded", "", hdr,
           table(rnd.sample(excl, min(20, len(excl)))), ""]
     (out / "filter-summary.md").write_text("\n".join(md))
     print(counts)

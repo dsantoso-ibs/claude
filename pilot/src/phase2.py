@@ -107,7 +107,7 @@ def build_plan_reviews(con, cfg: dict) -> dict[str, int]:
         cand = dict(valuation=_f(r.get("total_job_valuation")) or 0, permit_type="BP", work_class=r.get("work_class") or "",
                     use_class=r.get("sub_type") or "", status=r.get("status_current") or "",
                     description=f"{r.get('project_name') or ''} {r.get('folder_description') or ''}")
-        passed, reason = evaluate(cand, {**fc, "min_valuation_usd": pc["min_valuation_usd"]})
+        passed, reason = evaluate(cand, fc)
         if passed and any(cand["status"].startswith(x) for x in pc["extra_exclude_statuses"]):
             passed, reason = False, "status_not_live"
         con.execute("INSERT INTO plan_review_candidates(permit_number, project_name, address_norm, lat, lon, valuation, work_class, use_class, status,"
@@ -131,7 +131,7 @@ def _cells(lat, lon, step=0.002):
     return [(ci + a, cj + b) for a in (-1, 0, 1) for b in (-1, 0, 1)]
 
 
-def link_cases(cases: list[dict], permits: list[dict], date_field: str, lcfg: dict, *, slack_days: int = 0) -> list[tuple]:
+def link_cases(cases: list[dict], permits: list[dict], date_field: str, lcfg: dict, *, compat=None) -> list[tuple]:
     """Returns (case_id, project_key, score, method). A pair needs permit issued >= case date; blocking by geo cell and street token."""
     by_cell, by_street = defaultdict(list), defaultdict(list)
     for p in permits:
@@ -153,6 +153,8 @@ def link_cases(cases: list[dict], permits: list[dict], date_field: str, lcfg: di
                 cand[p["source_id"]] = p
         for p in cand.values():
             if not p["issued_date"] or not c[date_field] or p["issued_date"] < c[date_field]:
+                continue
+            if compat and not compat(c, p):
                 continue
             s, m = score_pair({"address_norm": c["address_norm"], "lat": c["lat"], "lon": c["lon"], "description": c.get("name") or ""},
                               {"address_norm": p["address_norm"], "lat": p["lat"], "lon": p["lon"], "name": p.get("description") or ""},
@@ -179,7 +181,9 @@ def link_all(con, cfg: dict) -> dict[str, int]:
     pr = [dict(r, name=r["project_name"], org=r["owner_entity"] or r["applicant_org"])
           for r in con.execute("SELECT * FROM plan_review_candidates WHERE passed=1")]
     con.execute("DELETE FROM plan_review_permit_links")
-    plinks = link_cases(pr, permits, "applied_date", lcfg)
+    # an application links only to a permit with the same work class (a New application is not satisfied by a tenant remodel permit)
+    same_work = lambda c, p: (c.get("work_class") or "") in set((p.get("work_class") or "").split("|"))
+    plinks = link_cases(pr, permits, "applied_date", lcfg, compat=same_work)
     con.executemany("INSERT OR REPLACE INTO plan_review_permit_links VALUES(?,?,?,?)", plinks)
     con.commit()
     return {"site_plan_links": len(links), "plan_review_links": len(plinks)}
@@ -258,6 +262,8 @@ def main(argv: list[str]) -> None:
         print("site plans:", build_site_plans(con, cfg)); print("plan review:", build_plan_reviews(con, cfg))
     elif cmd == "link":
         print(link_all(con, cfg))
+        from src.sizeband import assign
+        print(assign(con, cfg))
     elif cmd == "sheets":
         print(make_sheets(con, cfg))
     elif cmd == "import-labels":

@@ -28,11 +28,10 @@ def ingest(con, client, source: str, scfg: dict, cfg: dict, *, days: int | None 
     else:
         mode = "manual"
     since = (now - timedelta(days=days)).strftime("%Y-%m-%dT00:00:00")
-    df, vf = scfg["date_field"], scfg["field_map"]["valuation"]
-    val = f"{vf} >= {scfg['ingest_min_valuation_usd']}"
-    if scfg.get("ingest_extra_where"):
-        val = f"({val} OR {scfg['ingest_extra_where']})"
-    where = f"{df} >= '{since}' AND {val}"
+    df = scfg["date_field"]
+    where = f"{df} >= '{since}'"
+    if scfg.get("ingest_where"):
+        where += f" AND ({scfg['ingest_where']})"
     run_id = con.execute("INSERT INTO runs(started_at, source, rows_fetched, rows_new, notes) VALUES(?,?,0,0,?)",
                          (now.isoformat(), source, f"started {mode} since {since[:10]}")).lastrowid
     fetched = new = 0

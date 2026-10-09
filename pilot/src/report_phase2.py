@@ -65,6 +65,22 @@ def pr_open_pipeline(con, cfg: dict) -> list[dict]:
             if r["id"] not in linked]
 
 
+BANDS = ("unknown", "under_250k", "250k_to_5m", "over_5m")
+
+
+def band_counts(rows: list[dict]) -> dict[str, int]:
+    c = Counter((r.get("size_band") or "unknown") for r in rows)
+    return {b: c.get(b, 0) for b in BANDS}
+
+
+def band_table(sets: list[tuple[str, list[dict]]]) -> list[str]:
+    out = ["| set | total | unknown | under_250k | 250k_to_5m | over_5m |", "|---|---|---|---|---|---|"]
+    for name, rows in sets:
+        b = band_counts(rows)
+        out.append(f"| {name} | {len(rows)} | " + " | ".join(str(b[k]) for k in BANDS) + " |")
+    return out
+
+
 def _fmt_q(xs):
     a, b, c = quart(xs)
     return f"p25 {a:.0f} d | **median {b:.0f} d** | p75 {c:.0f} d | max {max(xs)} d; {sum(x > 1095 for x in xs)} over 3 years (n={len(xs)})"
@@ -124,6 +140,9 @@ def main() -> None:
             xs = [v for cid, v in leads.items() if test(byid[cid])]
             if len(xs) >= 5:
                 L.append(f"- {grp}: {_fmt_q(xs)}")
+        bl = [f"{b}: median {quart(xs)[1]:.0f} d (n={len(xs)})" for b in BANDS
+              for xs in [[v for cid, v in leads.items() if (byid[cid].get("size_band") or "unknown") == b]] if len(xs) >= 5]
+        L += ["- By size band: " + "; ".join(bl)]
         L += ["", "By submission year (shows right-censoring: recent years only contain the fast cases):", "", "| submitted | linked | median lead (days) |\n|---|---|---|"]
         for y in sorted({byid[cid]["submitted_date"][:4] for cid in leads}):
             xs = [v for cid, v in leads.items() if byid[cid]["submitted_date"][:4] == y]
@@ -154,6 +173,8 @@ def main() -> None:
         n = len(rows) or 1
         either = sum(1 for c in rows if c["owner_entity"] or c["applicant_org"])
         L.append(f"| {name} | {len(rows)} | {cov(rows, 'owner_entity') / n:.0%} | {cov(rows, 'applicant_org') / n:.0%} | {either / n:.0%} | {sum(c['owner_is_individual'] for c in rows)} |")
+    L += ["", "### 5b. Size band (best available valuation, via linked permit project; descriptive only)", ""] + band_table(
+        [("passed", passed), ("passed, last 12 months", [c for c in passed if _d(c["submitted_date"]) >= s365]), ("open pipeline", pipe)])
     # ---- M7.5 labels
     lab = Counter(r["label"] for r in con.execute("SELECT label FROM site_plan_labels"))
     novel, inb = lab.get("novel", 0), lab.get("in_baseline", 0)
@@ -176,17 +197,22 @@ def main() -> None:
         w.writerow(pc); [w.writerow([c[k] if c[k] is not None else "" for k in pc]) for c in ppipe]
     p28 = sum(_d(c["applied_date"]) >= s28 for c in pr if c["applied_date"]); p365 = sum(_d(c["applied_date"]) >= s365 for c in pr if c["applied_date"])
     L += ["", "## B. Plan Review Cases (building-permit applications with valuation)", "",
-          f"Loaded {len(pr_all):,} applications at or above $100k valuation (applied since {min(c['applied_date'] for c in pr_all if c['applied_date'])}). "
-          f"**Passed {len(pr):,}** (>= $250k, construction work class, commercial/multi-family use). Exclusions: " + ", ".join(f"{k} {v}" for k, v in Counter(c['exclude_reason'] for c in pr_all if not c['passed']).most_common()) + ".", "",
+          f"Loaded {len(pr_all):,} commercial/multi-family-class applications (applied since {min(c['applied_date'] for c in pr_all if c['applied_date'])}). "
+          f"**Passed {len(pr):,}** (construction work class, commercial/multi-family use, live status; no valuation rule). Exclusions: " + ", ".join(f"{k} {v}" for k, v in Counter(c['exclude_reason'] for c in pr_all if not c['passed']).most_common()) + ".", "",
           f"- Passed per week: last 28 days {p28} ({p28 / 4:.1f}/wk); last 12 months {p365} ({p365 / 52:.1f}/wk).",
           f"- Linked to a qualifying issued permit project: {len(prl)} of {len(pr)} ({len(prl) / len(pr):.0%}).",
           f"- Lead time, permit project issued minus Plan Review applied: " + (_fmt_q(plead) if plead else "no links") + (" **PROVISIONAL**" if len(plead) < lc["min_cases_for_non_provisional"] else ""),
+          "- By size band (lead time, linked only): " + "; ".join(
+              f"{b}: median {quart(xs)[1]:.0f} d (n={len(xs)})" for b in BANDS
+              for xs in [[(_d(bb["issued_date"]) - _d(pby[i]["applied_date"])).days for i, bb in prl.items() if i in pby and pby[i]["applied_date"]
+                          and (pby[i].get("size_band") or "unknown") == b]] if len(xs) >= 5),
           f"- Plan Review's own applied to issued (all passed that have an issue date): {_fmt_q(own) if own else 'n/a'}.",
           f"- **Open pipeline: {len(ppipe)} applications** not yet issued and with no permit link (`reports/open-pipeline-plan-review.csv`); total declared valuation ${sum(c['valuation'] for c in ppipe) / 1e6:,.0f}M; "
           f"owner entity named on {sum(1 for c in ppipe if c['owner_entity'])} ({(sum(1 for c in ppipe if c['owner_entity']) / len(ppipe) if ppipe else 0):.0%}), applicant org on {sum(1 for c in ppipe if c['applicant_org'])}.",
           "", "Largest 10 open applications:", "", "| permit | project | valuation | work | use class | status | applied | owner | applicant |\n|---|---|---|---|---|---|---|---|---|"]
     for c in sorted(ppipe, key=lambda c: -c["valuation"])[:10]:
         L.append(f"| {c['permit_number']} | {c['project_name']} | {c['valuation']:,.0f} | {c['work_class']} | {c['use_class'][:30]} | {c['status']} | {c['applied_date']} | {c['owner_entity'] or ''} | {c['applicant_org'] or ''} |")
+    L += ["", "Size bands, Plan Review:", ""] + band_table([("passed", pr), ("passed, last 12 months", [c for c in pr if c["applied_date"] and _d(c["applied_date"]) >= s365]), ("open pipeline", ppipe)])
     out = cfgmod.ROOT / "reports" / f"phase2-{today}.md"
     out.write_text("\n".join(L) + "\n")
     print(out)
