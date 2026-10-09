@@ -120,3 +120,20 @@ def test_flag_reaches_the_candidate_and_text_is_scrubbed_in_it():
     got = {r["source_id"]: (r["name_removed"], r["description"]) for r in con.execute("SELECT source_id, name_removed, description FROM candidates")}
     assert got["9"][0] == 1 and "[NAME]" in got["9"][1]
     assert got["10"][0] == 0
+
+
+@pytest.mark.parametrize("text", [
+    "1901 N. Lamar", "E. Cesar Chavez", "W. Martin Luther King Jr. Boulevard & Nueces Street", "1723 E. Oltorf", "4811 S. Congress Concept SP",
+    "AISD - Burnet MS Modernization- EXPIRED", "RRISD Grisham Ms Artificial Turf Field", "West Travis Co PUA Circle Dr Intermediate Pump Station & Ground Storage Tank",
+    "The Norwood House Project: House", "Ryder N. Austin", "1111 N. Weston Boat Dock",
+])
+def test_street_directions_school_and_drive_abbreviations_and_house_projects_are_not_names(text):
+    sc = Scrubber(streets=["cesar chavez", "martin luther king"])
+    assert sc.scrub(text, ner=False) == (text, 0)
+    assert sc.scrub(text) == (text, 0)
+
+
+def test_initial_surname_still_removed_for_a_non_directional_initial_and_after_a_cue():
+    sc = Scrubber()
+    assert sc.scrub("Remodel per J. Rodriguez comments")[0] == "Remodel per [NAME] comments"
+    assert "Whitaker" not in sc.scrub("Contact: W. Whitaker for access")[0]

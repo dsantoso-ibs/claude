@@ -23,14 +23,14 @@ CONTACT_TOKEN = "[CONTACT]"
 
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
 PHONE = re.compile(r"(?<!\d)(?:(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}|[2-9]\d{2}[2-9]\d{6})(?!\d)")
-TITLE = re.compile(r"\b(?:Mr|Mrs|Ms|Miss|Mx|Dr|MR|MRS|MS|DR)\.?\s+([A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+){0,2})")
+TITLE = re.compile(r"\b(?:(?:Mr|Mrs|Miss|Mx|MR|MRS)\.?|(?:Ms|Dr|MS|DR)\.)\s+([A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+){0,2})")
 STOP = {"at", "the", "to", "for", "of", "in", "on", "with", "from", "by", "per", "is", "will", "wants", "requests", "requested", "has", "have", "who", "that",
         "new", "existing", "add", "remodel", "install", "replace", "interior", "exterior", "tenant", "office", "suite", "unit", "building", "floor", "request"}
 # "Contact: John Smith", "ATTN John Smith", "c/o J. Smith", "Owner: ...", "Homeowner - ..."; stops at digits, punctuation or a lowercase word
 CUE = re.compile(r"\b(?:attn|attention|contact(?: person| name)?|c/o|care of|owner(?: rep(?:resentative)?)?|homeowner|home owner|name|applicant(?: name)?|representative|"
                  r"submitted by|requested by|signed by|prepared by)\s*[:\-]\s*"
                  r"((?:[A-Z][A-Za-z'’.-]*|[A-Z]\.)(?:\s+(?:[A-Z][A-Za-z'’.-]*|[A-Z]\.|&|and)){0,3})", re.I)
-RESIDENCE = re.compile(r"\b([A-Z][a-z'’-]+(?:\s+(?:&|and)\s+[A-Z][a-z'’-]+)?)\s+((?i:residence|family residence|res\.|family home|family|home|house))\b")
+RESIDENCE = re.compile(r"\b([A-Z][a-z'’-]+(?:\s+(?:&|and)\s+[A-Z][a-z'’-]+)?)\s+((?i:residence|family residence|res\.|family home|family))\b")
 VERB_CUE = re.compile(r"\b(contact|call|ask for|speak with|spoke with|meeting with|meet with|conversation with|coordinate with|coordination with|per|by|with)\s+"
                       r"((?:[A-Z][A-Za-z'’-]+|[A-Z]\.)(?:\s+(?:[A-Z][A-Za-z'’-]+|[A-Z]\.)){0,2})")
 INITIAL_SURNAME = re.compile(r"\b([A-Z]\.\s+[A-Z][A-Za-z'’-]{2,})")
@@ -58,7 +58,10 @@ BASE_COMMON = {"roof", "roofing", "replacement", "transfer", "switch", "fire", "
                "floor", "wall", "walls", "ceiling", "door", "window", "windows", "building", "suite", "unit", "storage", "office", "parking", "garage", "sign",
                "signage", "sprinkler", "alarm", "riser", "trap", "grease", "bike", "gallery", "lecture", "residential", "commercial", "demising", "compliant",
                "breakers", "breaker", "occupant", "load", "areas", "finishes", "guestrooms", "maintenance", "provided", "review", "complete", "select", "sheet", "rock",
-               "recover", "shingle", "simple", "covered", "existing", "new", "addition", "construction", "improvement", "improvements"}
+               "recover", "shingle", "simple", "covered", "existing", "new", "addition", "construction", "improvement", "improvements",
+               # local place names that are also given names or surnames
+               "austin", "texas", "travis", "williamson", "hays", "round", "rock", "cedar", "pflugerville", "manor", "lakeway", "leander", "georgetown",
+               "kyle", "buda", "dallas", "houston", "san", "antonio", "bastrop", "elgin", "cave", "dripping", "springs"}
 
 
 @lru_cache(maxsize=1)
@@ -147,6 +150,8 @@ class Scrubber:
                         or PHONE.match(text[end:].lstrip(" ,-:at")) or EMAIL.match(text[end:].lstrip(" ,-:at")):
                     out.append((m.start(2), end, NAME_TOKEN))
         for m in INITIAL_SURNAME.finditer(text):
+            if m.group(1)[0] in "NSEW" and not re.search(r"(?i)\b(contact|attn|owner|applicant|per|by)\W+$", text[max(0, m.start(1) - 14):m.start(1)]):
+                continue                                          # N. Lamar, E. Cesar Chavez: street directions, not initials
             low = m.group(1).split()[-1].casefold()
             if low not in self.common and low not in STOP and low.upper() not in PLACE_NEXT and low not in {w for b in self.bigrams for w in b if False}:
                 nxt = re.match(r"\s*([A-Za-z]+)", text[m.end():])
@@ -213,15 +218,17 @@ class Scrubber:
                     continue
                 if re.search(r"(?i)\b(llc|inc|corp|ltd|lp|llp|company|holdings|construction|builders|properties|partners|group|capital)\b", raw):
                     continue
-                if self._protected(words) or self._is_brand(raw) or self._followed_by_business(text, ent.end_char) or self._street_like(raw):
+                core = [w for w in words if w.strip(".").upper() not in {"N", "S", "E", "W", "NE", "NW", "SE", "SW"}]      # drop street directions (E. Cesar Chavez)
+                if not core or self._protected(core) or self._is_brand(" ".join(core)) or self._followed_by_business(text, ent.end_char) or self._street_like(" ".join(core)):
                     continue
+                words = core
                 low = [w.casefold().strip(".") for w in words]
                 if " ".join(low) in BRANDS or any(w in self.common for w in low):
                     continue                                    # project wording / brand, not a person
                 if len(words) < 2:                           # single token: only with support from a rule layer (title/cue/residence)
                     if not any(s <= ent.start_char and ent.end_char <= e for s, e, _ in rs):
                         continue
-                elif self.require_gazetteer and not (any(w in self.first for w in low) or any(w in self.last for w in low[1:]) or re.search(r"\b[A-Z]\.", raw)):
+                elif self.require_gazetteer and not (any(w in self.first for w in low) or any(w in self.last for w in low[1:]) or re.search(r"\b[A-DF-MO-RT-VX-Z]\.", raw)):
                     continue
                 spans.append((ent.start_char, ent.end_char, NAME_TOKEN))
             out.append(spans)
