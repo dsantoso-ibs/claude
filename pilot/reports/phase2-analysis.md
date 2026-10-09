@@ -28,7 +28,7 @@ Size hints: not usable for current cases (units last filled 2022, building sq ft
 
 ## 4. M7.3: linking
 - Method: normalized address plus geo within 100 m; permit must be issued on or after the case date; site plans link only to new/shell/addition permits (an interior remodel is not what a site plan produces). Owner/applicant vs contractor name is a supporting signal only (+0.10, 4 cases used it).
-- Site plans: **206 of 1,033 passed cases linked (20%)** at score >= 0.85, plus **187 in the review bucket** (0.60 to 0.85, mostly geo-only). Among approved/closed cases 25% linked. All 206 links are exact-address (202) or exact-address plus name (4).
+- Site plans: **206 of 1,033 passed cases linked (20%)** at score >= 0.85, plus **187 in the review bucket** (0.60 to 0.85, not yet inspected). Among approved/closed cases 25% linked. All 206 links are exact-address (202) or exact-address plus name (4).
 - By submission year (linked): 2021 33%, 2022 27%, 2023 26%, 2024 21%, 2025 15%, 2026 1%. The decline is mostly time, not quality: recent cohorts have not had time to reach a permit.
 - Plan Review: **395 of 498 (79%)** linked.
 - Two linking defects were found and fixed during this work: a fuzzy address match (`301 W 14TH ST` vs `301 W 5TH ST`) and remodel permits being used as link targets.
