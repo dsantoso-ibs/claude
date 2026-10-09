@@ -42,6 +42,10 @@ PLACE_NEXT = STREET | {"PARK", "CENTER", "CENTRE", "BUILDING", "BLDG", "TOWER", 
                        "BAR", "PIZZA", "SALON", "STUDIO", "GYM", "FITNESS", "SQUARE", "VILLAGE", "STATION", "PLAZA", "OFFICE", "OFFICES", "LOFTS", "FLATS",
                        "SHOPPES", "SHOPPING", "MALL", "CAMPUS", "LAKE", "CREEK", "RIVER", "FIELD", "FIELDS", "RANCH", "RESORT", "GARDENS", "HEIGHTS", "HILLS",
                        "ESTATES", "COMMONS", "TERRACE", "TRACE", "RIDGE", "POINT", "LANDING", "PRESERVE", "TRAILS", "SPRINGS", "WOODS", "VISTA", "BRANCH"}
+BUSINESS_NEXT = {"FOUNDATION", "REPAIR", "REPAIRS", "SERVICES", "SERVICE", "PLUMBING", "ELECTRIC", "ELECTRICAL", "ROOFING", "CONSTRUCTION", "MECHANICAL", "CONTRACTORS",
+                 "CONTRACTING", "ENGINEERING", "FENCE", "FENCING", "HVAC", "DESIGN", "ARCHITECTS", "ARCHITECTURE", "BUILDERS", "HOMES", "PAINTING", "LANDSCAPING", "SOLAR",
+                 "ENERGY", "WATER", "UTILITY", "DISTRICT", "FIBER", "CEMENT", "SIDING", "PLANK", "SHINGLES", "TILE", "FLOORING", "COMPANY", "ASSOCIATES", "SUPPLY", "INDUSTRIES",
+                 "LUMBER", "STEEL", "CONCRETE", "WINDOWS", "DOORS", "CABINETS", "COUNTERTOPS", "POOLS", "TRUST", "CONGREGATION", "MINISTRIES", "PUA", "ISD"}
 GENERIC_BEFORE_RESIDENCE = {"single", "family", "existing", "new", "commercial", "residential", "multi", "two", "duplex", "guest", "main", "primary", "accessory",
                             "style", "the", "a", "an", "of", "for", "to", "assisted", "living", "senior", "student", "independent", "luxury", "model", "show",
                             "caretaker", "custodian", "principal", "rental", "private", "detached", "attached", "historic", "old", "former", "proposed"}
@@ -86,12 +90,13 @@ def _is_mostly_upper(text: str) -> bool:
 
 
 class Scrubber:
-    def __init__(self, protected_orgs: Iterable[str] = (), debug: bool = False, *, common_words: Iterable[str] = (), require_gazetteer: bool = True):
+    def __init__(self, protected_orgs: Iterable[str] = (), debug: bool = False, *, common_words: Iterable[str] = (), require_gazetteer: bool = True, streets: Iterable[str] = ()):
         self.removed_log: list[str] | None = [] if debug else None      # review aid only: never write this to disk or reports
         self.common = {w.casefold() for w in common_words} | BASE_COMMON      # words people's names never are (they appear lowercase in the corpus)
         self.require_gazetteer = require_gazetteer
         self.first, self.last = _gazetteer()
-        self.single_orgs = {o.casefold() for o in protected_orgs if o and len(o.split()) == 1}      # e.g. "Kimley-Horn": never a person
+        self.single_orgs = {o.casefold() for o in protected_orgs if o and len(o.split()) == 1}
+        self.streets = {s.casefold() for s in streets if s}      # e.g. "Kimley-Horn": never a person
         # word bigrams and single words (>=5 letters) that occur in known business names; a PERSON span made of these is a business, not a person
         protected_orgs = list(protected_orgs)
         self.bigrams: set[tuple[str, str]] = set()
@@ -126,15 +131,15 @@ class Scrubber:
                 out.append((off + tail[-1].start(), off + tail[0].end(), NAME_TOKEN))
         for m in TITLE.finditer(text):
             end = self._person_prefix_end(m.group(1), m.start(1))
-            if end:
+            if end and not self._followed_by_business(text, end) and not self._is_brand(text[m.start(1):end]):
                 out.append((m.start(1), end, NAME_TOKEN))
         for m in CUE.finditer(text):
             end = self._person_prefix_end(m.group(1), m.start(1))
-            if end:
+            if end and not self._followed_by_business(text, end) and not self._is_brand(text[m.start(1):end]):
                 out.append((m.start(1), end, NAME_TOKEN))
         for m in VERB_CUE.finditer(text):                         # "Contact Elena for keys", "per Gary Pennington": the name must pass the same guards
             end = self._person_prefix_end(m.group(2), m.start(2))
-            if end:
+            if end and not self._followed_by_business(text, end) and not self._is_brand(text[m.start(2):end]) and not self._street_like(text[m.start(2):end]):
                 words = [w.casefold().strip(".,;:()") for w in text[m.start(2):end].split()]
                 strong = m.group(1).casefold() in {"contact", "call", "ask for", "speak with", "spoke with", "meeting with", "meet with", "conversation with", "coordinate with", "coordination with"}
                 # after a weak verb (per/by/with) capitalization alone is not enough: a name-list hit, an initial, or a contact right after
@@ -145,7 +150,7 @@ class Scrubber:
             low = m.group(1).split()[-1].casefold()
             if low not in self.common and low not in STOP and low.upper() not in PLACE_NEXT and low not in {w for b in self.bigrams for w in b if False}:
                 nxt = re.match(r"\s*([A-Za-z]+)", text[m.end():])
-                if not (nxt and nxt.group(1).upper() in PLACE_NEXT) and " ".join(m.group(1).split()).casefold() not in BRANDS:
+                if not (nxt and nxt.group(1).upper() in (PLACE_NEXT | BUSINESS_NEXT)) and " ".join(m.group(1).split()).casefold() not in BRANDS:
                     out.append((m.start(1), m.end(1), NAME_TOKEN))
         for m in RESIDENCE.finditer(text):
             first = m.group(1).split()[0].casefold()
@@ -168,9 +173,23 @@ class Scrubber:
             end = start + tok.end()
         return end
 
+    @staticmethod
+    def _followed_by_business(text: str, end: int) -> bool:
+        m = re.match(r"[\s,.:;-]*([A-Za-z]+)", text[end:])
+        return bool(m) and m.group(1).upper() in (BUSINESS_NEXT | PLACE_NEXT)
+
+    @staticmethod
+    def _is_brand(span: str) -> bool:
+        low = " ".join(re.findall(r"[a-z0-9&]+", span.casefold()))
+        return any(low == b or low.startswith(b + " ") or low.endswith(" " + b) for b in BRANDS)
+
     def _protected(self, tokens: list[str]) -> bool:
         low = [re.sub(r"[^a-z0-9&'’-]", "", t.casefold()) for t in tokens]
         return len(low) >= 2 and all(pair in self.bigrams for pair in zip(low, low[1:]))
+
+    def _street_like(self, span: str) -> bool:
+        """A span that is a street name seen in the address data (e.g. a street named after a person) is a place, not a person."""
+        return " ".join(re.findall(r"[a-z0-9&'’-]+", span.casefold())) in self.streets
 
     def _spans_ner(self, texts: list[str], rule_spans: list[list[tuple[int, int, str]]]) -> list[list[tuple[int, int, str]]]:
         views = [t.title() if _is_mostly_upper(t) else t for t in texts]
@@ -194,7 +213,7 @@ class Scrubber:
                     continue
                 if re.search(r"(?i)\b(llc|inc|corp|ltd|lp|llp|company|holdings|construction|builders|properties|partners|group|capital)\b", raw):
                     continue
-                if self._protected(words):
+                if self._protected(words) or self._is_brand(raw) or self._followed_by_business(text, ent.end_char) or self._street_like(raw):
                     continue
                 low = [w.casefold().strip(".") for w in words]
                 if " ".join(low) in BRANDS or any(w in self.common for w in low):
@@ -209,15 +228,17 @@ class Scrubber:
         return out
 
     # ---------------------------------------------------------------- api
-    def scrub_many(self, texts: list[str | None]) -> list[tuple[str | None, int]]:
+    def scrub_many(self, texts: list[str | None], ner: bool = True) -> list[tuple[str | None, int]]:
+        """ner=False for short title-like fields (project / case names): NER is unreliable on titles, and a person's name there almost always appears as
+        '<Surname> Residence' or next to a contact cue, which the rule layers handle."""
         todo = [(i, t) for i, t in enumerate(texts) if t and t.strip()]
         res: list[tuple[str | None, int]] = [(t, 0) for t in texts]
         if not todo:
             return res
         plain = [t for _, t in todo]
         rules = [self._spans_rules(t) for t in plain]
-        ner = self._spans_ner(plain, rules)
-        for (i, text), rs, ns in zip(todo, rules, ner):
+        ner_spans = self._spans_ner(plain, rules) if ner else [[] for _ in plain]
+        for (i, text), rs, ns in zip(todo, rules, ner_spans):
             spans = sorted(rs + ns, key=lambda s: (s[0], -(s[1] - s[0])))
             merged: list[tuple[int, int, str]] = []
             for s, e, tok in spans:                          # merge overlapping spans; a CONTACT span wins over NAME on overlap
@@ -238,5 +259,5 @@ class Scrubber:
             res[i] = (clean, len(merged))
         return res
 
-    def scrub(self, text: str | None) -> tuple[str | None, int]:
-        return self.scrub_many([text])[0]
+    def scrub(self, text: str | None, ner: bool = True) -> tuple[str | None, int]:
+        return self.scrub_many([text], ner=ner)[0]
