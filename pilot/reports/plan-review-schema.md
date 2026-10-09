@@ -9,7 +9,7 @@
 - Early stage: `applied_date` to `issued_date` gives a lead-time measure **without needing site plans at all**, for the same projects already in `candidates`.
 
 ## Suggested decision for Donny
-Treat Plan Review Cases as a candidate M7 source alongside Site Plan Cases: Site Plan = earliest (before design is final, owner named, no money field), Plan Review = later but has valuation and units and likely 3 to 8 weeks of lead on the issued permit. Measure both lead times.
+Treat Plan Review Cases as a candidate M7 source alongside Site Plan Cases: Site Plan = earliest (owner named, no money field); Plan Review = has valuation and an application date before issue. **Measured (ad-hoc, 268 Plan Review records with valuation >= $250k and `issued_date` in the last 12 months): `applied_date` to `issued_date` has p25 = 130 days, median = 446 days, p75 = 991 days.** Caveats: this is the Plan Review record's own issue date, not the later building permit's; some applications are long-running or resubmitted, which inflates the upper quartiles; the true lead over the issued `BP` permit in `candidates` is not yet measured and needs the address/geo link. Measure both lead times in M7.
 
 ---
 
