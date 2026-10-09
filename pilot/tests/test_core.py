@@ -202,3 +202,82 @@ def test_plan_review_link_requires_same_work_class():
                dict(source_id="new", address_norm="1 MAIN ST", lat=None, lon=None, issued_date="2024-09-01", description="", contractor_name=None, work_class="New|Shell")]
     same = lambda c, p: c["work_class"] in set(p["work_class"].split("|"))
     assert [g[1] for g in link_cases([pr], permits, "applied_date", lc, compat=same)] == ["new"]
+
+
+def test_project_type_mapping_and_precedence():
+    from src.project_type import type_from_works
+    w = cfgmod.load()["project_type"]["work_class_map"]
+    assert type_from_works("New", w) == "new_build" and type_from_works("Shell", w) == "shell"
+    assert type_from_works("Addition", w) == "addition" and type_from_works("Addition and Remodel", w) == "addition"
+    assert type_from_works("Remodel", w) == "remodel"
+    assert type_from_works("New|Shell", w) == "new_build" and type_from_works("Remodel|Addition", w) == "addition"
+    assert type_from_works("Demolition", w) == "other"
+
+
+def test_default_set_excludes_remodel_and_keeps_rows():
+    from src.project_type import assign
+    cfg = cfgmod.load(); con = connect(":memory:")
+    for i, wc in enumerate(["New", "Remodel", "Addition and Remodel"], 1):
+        con.execute("INSERT INTO candidates(source,source_id,work_class,first_seen_at) VALUES('austin',?,?,'t')", (f"P{i}", wc))
+        con.execute("INSERT INTO filter_results VALUES(?,1,NULL)", (i,))
+    assign(con, cfg)
+    got = {r["source_id"]: (r["project_type"], r["in_default"]) for r in con.execute("SELECT * FROM candidates")}
+    assert got == {"P1": ("new_build", 1), "P2": ("remodel", 0), "P3": ("addition", 1)}
+    assert con.execute("SELECT COUNT(*) FROM candidates").fetchone()[0] == 3        # nothing deleted
+
+
+def test_site_plan_type_from_link_then_hints():
+    from src.project_type import assign
+    cfg = cfgmod.load(); con = connect(":memory:")
+    con.execute("INSERT INTO candidates(source,source_id,work_class,issued_date,first_seen_at) VALUES('austin','P1','Remodel','2025-01-01','t')")
+    con.execute("INSERT INTO filter_results VALUES(1,1,NULL)")
+    con.execute("INSERT INTO site_plan_candidates(folderrsn,case_name,work,passed) VALUES('A','x','Consolidated',1),('B','Tenant Improvement Suite','Consolidated',1),('C','y','Consolidated',1)")
+    con.execute("INSERT INTO site_plan_permit_links VALUES(1,'P1',1.0,'address_exact')")
+    assign(con, cfg)
+    got = {r["folderrsn"]: (r["project_type"], r["type_source"], r["in_default"]) for r in con.execute("SELECT * FROM site_plan_candidates")}
+    assert got["A"] == ("remodel", "linked_permit", 0)
+    assert got["B"] == ("remodel", "name_or_work_hint", 0)
+    assert got["C"] == ("unknown", "none", 1)         # unlinked, no hint: stays in the default set, counted separately
+
+
+def test_label_sample_is_stratified_and_never_remodel():
+    import random
+    from src.label_sheets import stratified
+    pool = [dict(id=i, size_band=b, project_type="new_build") for i, b in enumerate(["unknown"] * 50 + ["under_250k"] * 5 + ["250k_to_5m"] * 1 + ["over_5m"] * 0)]
+    got = stratified(pool, 10, cfgmod.load()["label_sample"]["band_quota"], random.Random(1))
+    assert len(got) == 10 and len({r["id"] for r in got}) == 10
+    bands = [r["size_band"] for r in got]
+    assert bands.count("250k_to_5m") == 1 and bands.count("under_250k") >= 2   # known sizes preferred when quota can't be met
+
+
+def test_enrichment_hard_cap_and_privacy():
+    from src.enrich import run, EnrichmentResult
+    cfg = cfgmod.load(); cfg["enrichment"].update(enabled=True, daily_cost_cap_usd=0.05, stages=["plan_review_open"])
+    con = connect(":memory:")
+    for i in range(1, 6):
+        con.execute("INSERT INTO plan_review_candidates(permit_number,project_name,address_norm,work_class,project_type,in_default,passed,applied_date,size_band)"
+                    " VALUES(?,?,?,?,?,1,1,'2099-01-01','unknown')", (f"PR{i}", f"p{i}", f"{i} A ST", "New", "new_build"))
+    class Paid:
+        name = "paid"
+        def est_cost(self, t): return 0.02
+        def enrich(self, t): return EnrichmentResult(cost_usd=0.02, owner="Acme Holdings LLC", developer="John Smith")
+    out = run(con, cfg, dry_run=False, enricher=Paid())
+    assert out["enriched"] == 2 and out["spent_today_usd"] == 0.04 and out["stopped_by_cap"] == 3     # 3rd call would hit 0.06 > 0.05
+    row = con.execute("SELECT found_owner, found_developer, result_json FROM enrichments").fetchone()
+    assert row[0] == 1 and row[1] == 0 and "John Smith" not in row[2]                                  # individual dropped, never stored
+    assert out["dropped_individual_names"] == 2
+    again = run(con, cfg, dry_run=False, enricher=Paid())                                              # same day: cap already nearly spent
+    assert again["enriched"] == 0
+
+
+def test_enrichment_refuses_stub_and_dry_run_writes_nothing():
+    import pytest
+    from src.enrich import run
+    cfg = cfgmod.load(); con = connect(":memory:")
+    assert run(con, cfg, dry_run=True)["mode"] == "dry-run"
+    with pytest.raises(PermissionError):
+        run(con, cfg, dry_run=False)                       # enabled is false
+    cfg["enrichment"]["enabled"] = True
+    with pytest.raises(PermissionError):
+        run(con, cfg, dry_run=False)                       # stub refused
+    assert con.execute("SELECT COUNT(*) FROM enrichments").fetchone()[0] == 0

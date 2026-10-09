@@ -28,3 +28,6 @@ python -m src.phase2 import-labels reports/manual-labels-site-plans.csv
 Analysis: `reports/phase2-analysis.md`.
 
 Valuation is **not** a filter any more; it only feeds `size_band` (see `reports/threshold-removal-impact.md`).
+
+Default set = new_build, shell, addition (`project_type`); remodels are reported separately (`reports/project-type-impact.md`).
+Label sheets (30 projects, default set only): `python -m src.phase2 sheets`. Enrichment dry run: `python -m src.enrich` (a real run needs a configured provider, `enrichment.enabled: true` and a confirmed cap).

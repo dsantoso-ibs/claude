@@ -51,16 +51,21 @@ CREATE TABLE IF NOT EXISTS runs(
 """
 
 
-SIZE_COLS = {"candidates": "valuation", "site_plan_candidates": "exclude_reason", "plan_review_candidates": "exclude_reason"}
+NEW_COLS = {"candidates": ["size_band TEXT", "size_usd REAL", "size_source TEXT", "project_type TEXT", "in_default INTEGER"],
+            "site_plan_candidates": ["size_band TEXT", "size_usd REAL", "size_source TEXT", "project_type TEXT", "type_source TEXT", "in_default INTEGER"],
+            "enrichments": ["stage TEXT"],
+            "plan_review_candidates": ["size_band TEXT", "size_usd REAL", "size_source TEXT", "project_type TEXT", "in_default INTEGER"]}
 
 
 def _migrate(con: sqlite3.Connection) -> None:
-    """Add the size_band columns to databases created before they existed."""
-    for table in SIZE_COLS:
+    """Add columns introduced after a database was first created."""
+    for table, cols in NEW_COLS.items():
         have = {r[1] for r in con.execute(f"PRAGMA table_info({table})")}
-        for col, typ in (("size_band", "TEXT"), ("size_usd", "REAL"), ("size_source", "TEXT")):
-            if col not in have:
-                con.execute(f"ALTER TABLE {table} ADD COLUMN {col} {typ}")
+        for decl in cols:
+            if decl.split()[0] not in have:
+                con.execute(f"ALTER TABLE {table} ADD COLUMN {decl}")
+    con.execute("CREATE TABLE IF NOT EXISTS pipeline_labels(stage TEXT NOT NULL, ref_id INTEGER NOT NULL, label TEXT NOT NULL, method TEXT NOT NULL,"
+                " note TEXT, labelled_at TEXT, PRIMARY KEY(stage, ref_id))")
 
 
 def connect(path: Path | str) -> sqlite3.Connection:

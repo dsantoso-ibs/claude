@@ -69,7 +69,7 @@ def match(con, source: str, bcfg: dict) -> dict[str, int]:
         return {"error": "no baseline loaded; use the manual sample workflow"}
     now = datetime.now(timezone.utc).isoformat()
     cands = con.execute("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id "
-                        "WHERE c.source=? AND f.passed=1 AND c.issued_date>=date('now','-365 day')", (source,)).fetchall()
+                        "WHERE c.source=? AND f.passed=1 AND c.in_default=1 AND c.issued_date>=date('now','-365 day')", (source,)).fetchall()
     for c in cands:
         c = dict(c)
         con.execute("DELETE FROM matches WHERE candidate_id=?", (c["id"],))
@@ -135,8 +135,8 @@ def main(argv: list[str]) -> None:
     elif cmd == "match":
         print(match(con, rest[0] if rest else "austin", cfg["baseline"]))
     elif cmd == "sample":
-        out = cfgmod.ROOT / "reports" / f"manual-labels-{rest[0] if rest else 'austin'}.csv"
-        print(export_sample(con, rest[0] if rest else "austin", cfg["baseline"], out), "rows ->", out)
+        from src.label_sheets import make_sheets
+        print(make_sheets(con, cfg))
     elif cmd == "import-labels":
         print(import_labels(con, rest[0]))
 

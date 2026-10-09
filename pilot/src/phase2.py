@@ -192,30 +192,14 @@ def link_all(con, cfg: dict) -> dict[str, int]:
 # ---------------------------------------------------------------- sheets
 def make_sheets(con, cfg: dict) -> dict[str, int]:
     out = cfgmod.ROOT / "reports"
-    rnd = random.Random(cfg["phase2_manual_sample"]["seed"])
+    rnd = random.Random(cfg["label_sample"]["seed"])
     lc = cfg["linking"]
-    from src.report_phase2 import open_pipeline, linked_best
-    # M7.5: 30 stratified open-pipeline cases
-    pipe = open_pipeline(con, cfg)
-    strata = {"multifamily": [c for c in pipe if c["use_class"] == "multifamily" or c["multifamily_hint"]],
-              "commercial": [c for c in pipe if c["use_class"] == "commercial" and not c["multifamily_hint"]],
-              "other": [c for c in pipe if c["use_class"] in ("industrial", "public_civic", "housing_unclear") and not c["multifamily_hint"]]}
-    picked, used = [], set()
-    for k, n in cfg["phase2_manual_sample"]["strata"].items():
-        pool = [c for c in strata[k] if c["id"] not in used]
-        take = rnd.sample(pool, min(n, len(pool)))
-        for c in take:
-            used.add(c["id"]); picked.append((k, c))
-    with open(out / "manual-labels-site-plans.csv", "w", newline="") as fh:
-        w = csv.writer(fh)
-        w.writerow(["case_id", "stratum", "case_number", "case_name", "address", "proposed_use", "owner_entity", "applicant_org", "status",
-                    "submitted", "in_baseline (y/n/unsure)", "found_in (ibau/barbour/mps/baucore)", "note"])
-        for k, c in picked:
-            w.writerow([c["id"], k, c["case_number"], c["case_name"], c["address_norm"], c["proposed_use"], c["owner_entity"] or "",
-                        c["applicant_org"] or "", c["status"], c["submitted_date"], "", "", ""])
+    from src.report_phase2 import linked_best
+    from src.label_sheets import make_sheets as label_sheets
+    labels = label_sheets(con, cfg)
     # hand-check sheets: 20 passed + 20 excluded, 20 linked pairs + 10 unlinked
     cases = [dict(r) for r in con.execute("SELECT * FROM site_plan_candidates")]
-    passed = [c for c in cases if c["passed"]]; excl = [c for c in cases if not c["passed"]]
+    passed = [c for c in cases if c["in_default"]]; excl = [c for c in cases if not c["passed"]]
     with open(out / "handcheck-site-plans.csv", "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["set", "case_number", "case_name", "proposed_use", "use_class", "work", "status", "submitted", "exclude_reason", "agree (y/n)", "note"])
         for name, pool in (("passed", passed), ("excluded", excl)):
@@ -236,20 +220,21 @@ def make_sheets(con, cfg: dict) -> dict[str, int]:
         unl = [c for c in passed if c["id"] not in linked_ids]
         for c in rnd.sample(unl, min(10, len(unl))):
             w.writerow(["unlinked", c["case_number"], c["case_name"], c["address_norm"], c["submitted_date"], "", "", "", "", "", "", "", ""])
-    return {"manual_sample": len(picked), "pipeline_size": len(pipe)}
+    return labels
 
 
 def import_site_plan_labels(con, path: str) -> dict[str, int]:
+    """Open-pipeline sheet (stages site_plan_open / plan_review_open) -> pipeline_labels."""
     m = {"y": "in_baseline", "n": "novel", "unsure": "review"}
     counts = {"in_baseline": 0, "novel": 0, "review": 0, "skipped": 0}
     now = datetime.now(timezone.utc).isoformat()
     with open(path, newline="", encoding="utf-8-sig") as fh:
         for row in csv.DictReader(fh):
             a = (row["in_baseline (y/n/unsure)"] or "").strip().lower()
-            if a not in m:
+            if a not in m or row.get("stage") not in ("site_plan_open", "plan_review_open"):
                 counts["skipped"] += 1; continue
-            con.execute("INSERT INTO site_plan_labels VALUES(?,?,?,?,?) ON CONFLICT(case_id) DO UPDATE SET label=excluded.label, note=excluded.note, labelled_at=excluded.labelled_at",
-                        (int(row["case_id"]), m[a], "manual", row.get("found_in (ibau/barbour/mps/baucore)") or row.get("note"), now))
+            con.execute("INSERT INTO pipeline_labels VALUES(?,?,?,?,?,?) ON CONFLICT(stage, ref_id) DO UPDATE SET label=excluded.label, note=excluded.note, labelled_at=excluded.labelled_at",
+                        (row["stage"], int(row["ref_id"]), m[a], "manual", row.get("found_in (ibau/barbour/mps/baucore)") or row.get("note"), now))
             counts[m[a]] += 1
     con.commit()
     return counts
@@ -264,6 +249,8 @@ def main(argv: list[str]) -> None:
         print(link_all(con, cfg))
         from src.sizeband import assign
         print(assign(con, cfg))
+        from src.project_type import assign as assign_types
+        print(assign_types(con, cfg))
     elif cmd == "sheets":
         print(make_sheets(con, cfg))
     elif cmd == "import-labels":

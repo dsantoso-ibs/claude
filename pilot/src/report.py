@@ -40,7 +40,9 @@ def main(source: str = "austin") -> None:
     q = lambda s, *a: con.execute(s, a).fetchall()
     today = date.today()
     win = (today - timedelta(days=cfg["ingest"]["phase1_window_days"])).isoformat()
-    passed = q("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1 AND c.issued_date>=?", source, win)
+    passed = q("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1 AND c.in_default=1 AND c.issued_date>=?", source, win)
+    remodel = q("SELECT c.size_band b FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1 AND c.in_default=0 "
+                "AND c.project_type='remodel' AND c.issued_date>=?", source, win)
     all_n = q("SELECT COUNT(*) n FROM candidates WHERE source=? AND issued_date>=?", source, win)[0]["n"]
     span = (today - date.fromisoformat(min(r["issued_date"] for r in passed))).days or 1
     last28 = [r for r in passed if r["issued_date"] >= (today - timedelta(days=28)).isoformat()]
@@ -55,14 +57,16 @@ def main(source: str = "austin") -> None:
     reasons = q("SELECT COALESCE(f.exclude_reason,'passed') r, COUNT(*) n FROM filter_results f JOIN candidates c ON c.id=f.candidate_id WHERE c.issued_date>=? GROUP BY r ORDER BY n DESC", win)
     lo, hi = wilson(novel, novel + inb)
     bands = {r["size_band"] or "unknown": r["n"] for r in q("SELECT c.size_band, COUNT(*) n FROM candidates c JOIN filter_results f ON f.candidate_id=c.id "
-                                                         "WHERE c.source=? AND f.passed=1 AND c.issued_date>=? GROUP BY 1", source, win)}
+                                                         "WHERE c.source=? AND f.passed=1 AND c.in_default=1 AND c.issued_date>=? GROUP BY 1", source, win)}
     band_line = ", ".join(f"{b} {bands.get(b, 0)}" for b in ("unknown", "under_250k", "250k_to_5m", "over_5m"))
     L = [f"# Pilot report: {source}, {today}", "", f"Region: **{cfg['region']['name']}** ({', '.join(cfg['region']['counties'])}). "
          "Austin permit data covers City of Austin jurisdiction only; county/metro share is not separately measured.", "",
          f"## Verdict: {v}", "", why, "", "## Metrics", "",
-         f"1. **Qualifying projects:** {len(passed)} passed of {all_n} projects ({span} days of data); "
+         f"1. **Qualifying projects (default set):** {len(passed)} passed of {all_n} projects ({span} days of data); "
          f"{len(passed) / span * 7:.1f}/week overall, {len(last28) / 4:.1f}/week over the last 28 days ({len(last28)} projects).",
-         f"   Size bands (best available valuation; no valuation filter): {band_line}.",
+         f"   Default set = new_build, shell, addition. Size bands (best available valuation; no valuation filter): {band_line}.",
+         f"   **Remodels, reported separately and not in the headline:** {len(remodel)} projects (size band: " + ", ".join(
+             f"{b} {sum(1 for r in remodel if (r['b'] or 'unknown') == b)}" for b in ("unknown", "under_250k", "250k_to_5m", "over_5m")) + ").",
          f"2. **Novel share:** " + (f"{novel / (novel + inb):.0%} = {novel} novel / ({novel} novel + {inb} in baseline), 95% CI {lo:.0%}-{hi:.0%}; "
                                     f"{review} in `review` shown separately. Label sources: {methods}." if novel + inb else "not measurable (no labels)."),
          f"3. **Contact yield:** " + (f"{cy:.0%} of {enr['n']} enriched projects had owner/developer/architect." if cy is not None else

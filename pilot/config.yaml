@@ -99,8 +99,12 @@ region:   # billing region = metro/county (confirmed). Austin permit dataset cov
   counties: [Travis, Williamson, Hays]
 
 enrichment:
-  enabled: false              # deferred: no providers wired; contact yield is unmeasured until enabled
-  daily_cost_cap_usd: 25.0
+  enabled: false              # a real (paid) run needs enabled: true AND a configured provider adapter; dry-run always works
+  daily_cost_cap_usd: 25.0    # HARD cap per UTC day, checked before every call. PROPOSED value, not confirmed by Donny.
+  stages: [site_plan_open, plan_review_open]    # default open pipeline only (new_build/shell/addition); never remodels
+  provider: none              # none | serpapi (adapter not implemented) | google_enrichment | selfi (interfaces not provided)
+  serpapi_usd_per_call: 0.01  # pricing.json (api-pricing skill), June 2026
+  est_queries_per_project: 3  # ASSUMPTION for the dry-run estimate only
 
 decision:
   min_novel_share: 0.30
@@ -142,10 +146,22 @@ linking:
   min_cases_for_non_provisional: 30
   site_plan_permit_work_classes: [New, Shell, Addition, Addition and Remodel]   # interior-remodel-only permits are not what a site plan produces
 
-phase2_manual_sample: {size: 30, seed: 21, strata: {multifamily: 10, commercial: 10, other: 10}}
+label_sample:    # both manual label sheets together: 30 projects, default set only, stratified by stage then size_band
+  seed: 21
+  per_stage: {site_plan_open: 10, plan_review_open: 10, permit_issued: 10}
+  band_quota: {unknown: 3, under_250k: 2, 250k_to_5m: 3, over_5m: 2}   # per stage; shortfalls are filled from the other bands, known sizes first
 
 size_band:   # descriptive field only; never used to include/exclude
   unknown_max_usd: 1000        # a reported valuation <= this is a placeholder ($0/$1) and counts as unknown
   band_250k: 250000
   band_5m: 5000000
   # best available valuation: own project valuation, else linked Plan Review application, else (site plans) the linked permit project
+
+project_type:
+  # permit/Plan Review work_class -> project_type. Project-level precedence when a project has several: new_build > shell > addition > remodel.
+  work_class_map: {New: new_build, Shell: shell, Addition: addition, "Addition and Remodel": addition, Remodel: remodel}
+  default_types: [new_build, shell, addition]     # the default set for pipeline, reports and open-pipeline CSVs
+  # Site plans have no building work class. Order: linked permit project -> linked Plan Review at same address -> name/work hints -> unknown.
+  site_plan_remodel_name_regex: '(?i)(remodel|renovation|tenant improvement|interior|finish.?out|change of use|conversion)'
+  site_plan_remodel_work: [Change of Use]
+  site_plan_unknown_in_default: true   # a site plan needs site work, so an unlinked case of unknown type stays in the default set (counted separately)
