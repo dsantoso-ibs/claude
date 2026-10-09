@@ -39,8 +39,9 @@ def main(source: str = "austin") -> None:
     cfg = cfgmod.load(); con = connect(cfgmod.DB_PATH)
     q = lambda s, *a: con.execute(s, a).fetchall()
     today = date.today()
-    passed = q("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1", source)
-    all_n = q("SELECT COUNT(*) n FROM candidates WHERE source=?", source)[0]["n"]
+    win = (today - timedelta(days=cfg["ingest"]["phase1_window_days"])).isoformat()
+    passed = q("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1 AND c.issued_date>=?", source, win)
+    all_n = q("SELECT COUNT(*) n FROM candidates WHERE source=? AND issued_date>=?", source, win)[0]["n"]
     span = (today - date.fromisoformat(min(r["issued_date"] for r in passed))).days or 1
     last28 = [r for r in passed if r["issued_date"] >= (today - timedelta(days=28)).isoformat()]
     labels = {r["label"]: r["n"] for r in q("SELECT l.label, COUNT(*) n FROM candidate_labels l JOIN candidates c ON c.id=l.candidate_id "
@@ -51,7 +52,7 @@ def main(source: str = "austin") -> None:
     cy = (enr["f"] or 0) / enr["n"] if enr["n"] else None
     gc = sum(1 for r in passed if r["contractor_name"])
     v, why = verdict(novel, inb, cy, cfg["decision"])
-    reasons = q("SELECT COALESCE(exclude_reason,'passed') r, COUNT(*) n FROM filter_results GROUP BY r ORDER BY n DESC")
+    reasons = q("SELECT COALESCE(f.exclude_reason,'passed') r, COUNT(*) n FROM filter_results f JOIN candidates c ON c.id=f.candidate_id WHERE c.issued_date>=? GROUP BY r ORDER BY n DESC", win)
     lo, hi = wilson(novel, novel + inb)
     L = [f"# Pilot report: {source}, {today}", "", f"Region: **{cfg['region']['name']}** ({', '.join(cfg['region']['counties'])}). "
          "Austin permit data covers City of Austin jurisdiction only; county/metro share is not separately measured.", "",

@@ -36,20 +36,38 @@ sources:
       - contractor_address2
     # Only BP carries valuation; floor is lower than the filter so thresholds can be tuned without re-fetching.
     ingest_min_valuation_usd: 100000
-  site_plans:          # phase 2 (M7): Austin Site Plan Cases; field_map filled after M7.0 review
+    # Also ingest commercial new/shell/addition permits whatever their valuation: ~46% of such projects report $0/$1, which
+    # hid real projects from site-plan linking and from the open pipeline.
+    ingest_extra_where: "(permittype='BP' AND permit_class like 'C-%' AND work_class in ('New','Shell','Addition','Addition and Remodel'))"
+  site_plans:          # phase 2 (M7): Austin Site Plan Cases
     domain: data.austintexas.gov
     dataset_id: mavg-96ck
     report_name: site-plan
-  plan_review:         # phase 2: schema discovery only, no ingest
+    date_field: application_start_date
+    id_field: folderrsn
+    # Site plans lead to permits 1-3 years later, so backfill further than 24 months (spec said "24 if available").
+    backfill_months: 60
+    delta_overlap_days: 14
+    drop_fields: [applicant_fullname, applicant_address, applicant_addrcity, applicant_phone1,
+                  owner_fullname, owner_address, owner_addrcity, owner_phone1, case_manager]
+  plan_review:         # phase 2: Austin Plan Review Cases (building-permit applications; has valuation)
     domain: data.austintexas.gov
     dataset_id: n8ck-xkda
     report_name: plan-review
+    date_field: applied_date
+    id_field: permit_number
+    backfill_months: 60
+    ingest_min_valuation_usd: 100000
+    delta_overlap_days: 14
+    drop_fields: [applicant_full_name, applicant_address, applicant_phone, owner_full_name, owner_address,
+                  owner_phone, other_full_name, other_address, other_phone, appraisal_id]
   los_angeles:        # phase 2 (M6)
     domain: data.lacity.org
     dataset_id: pi9x-tg5x
 
 ingest:
   backfill_days: 365
+  phase1_window_days: 365   # phase 1 metrics/sample use permits issued in this window even though phase 2 loads older permits
   delta_overlap_days: 7       # re-fetch window on delta runs to catch status updates
 
 socrata:
@@ -60,6 +78,7 @@ socrata:
 
 filters:
   min_valuation_usd: 250000
+  unreported_valuation_max_usd: 1000   # <= this is a placeholder (0/1), reported separately from genuinely small projects
   include_permit_types: [BP]                       # trade permits (EP/PP/MP/DS) are excluded
   include_work_classes: [New, Shell, Addition, Addition and Remodel, Remodel]
   remodel_work_classes: [Remodel, Addition, Addition and Remodel]   # these additionally need a commercial class
@@ -90,3 +109,42 @@ enrichment:
 decision:
   min_novel_share: 0.30
   min_contact_yield: 0.50
+
+site_plan_filters:
+  # Ordered: first matching regex wins. Older records hold free text (372 distinct values), recent ones clean categories.
+  use_rules:
+    - ['(?i)boat dock|\bROW\b|right.of.way|utility line|streets? and drainage|horizontal infra|telecom|cell tower|^park$|\bRV park|^parking$|driveway|lift station|^trail|roadway|easement|^utility|local utility|airport|open space|^vacant|undeveloped|agricultur', excluded_infrastructure]
+    - ['(?i)sing\w*\s*family|duplex|two.?family|\bSFR\b|secondary apartment', single_family]
+    - ['(?i)multi.?\s?family|^MF$|apartment|condominium|condo\b|townhom|congregate', multifamily]
+    - ['(?i)^housing$|^residential$|residential\b.*(subdivision|development)', housing_unclear]
+    - ['(?i)industrial|^IND$|warehouse|manufactur|distribution|flex', industrial]
+    - ['(?i)public/civic|^public|school|institution|hospital|church|religi|civic|educational|governmental|university|fire station', public_civic]
+    - ['(?i)commercial|mixed.?-?use|service station|cocktail|lounge|auto repair|amenity|office|retail|restaurant|medical|hotel|motel|recreation|storage|bank|gas station|automotive|daycare|day care|club|theat|grocery|shopping|entertainment|car wash|fitness|bar\b|lodging|senior|assisted', commercial]
+  include_classes: [multifamily, housing_unclear, commercial, industrial, public_civic]
+  exclude_work: [Extension, Utility Line, ETJ Released, Telecommunications Tower, Alcoholic Beverage Waiver,
+                 Late Hours Permit, Boat Docks/Shoreline Modification, Street/Drainage, Major Drainage/Regional Detention,
+                 Drainage and Channel Improvements, Transportation, Retaining Wall, Deletion, Fill,
+                 Withdraw and Resubmit, Conditional Use Permit-No Site Work, Bed and Breakfast, Bed and Breakfast Waiver,
+                 Replacement(+ signs), Restrictive Covenant Amendment, Austin Clean Water Program]
+  exclude_statuses: [Expired, Withdrawn, Denied, VOID, Aborted, Cancelled, Inactive, Intake Rejected, CC Rejected]
+  # "Housing" cannot separate single-family from multi-family: keep all, flag likely multi-family by case name.
+  exclude_name_regex: '(?i)\bdemo(lition)?\b'     # demolition-only site plans (e.g. "Domain 4 Demo")
+  multifamily_name_regex: '(?i)(apartment|multi-?\s?family|multifamily|residences|lofts?|flats|townhome|condo|senior|affordable|living)'
+  open_statuses: [In Review, Pending, Intake, Awaiting Update, Waiting on, Scheduled for Hearing, CC Pending, CC Approved,
+                  Approved, Tolling, Formal Intake, Internet Pending, Application Incomplete, Suspended]
+  open_pipeline_max_age_months: 24
+
+plan_review_filters:
+  min_valuation_usd: 250000
+  extra_exclude_statuses: [Expired, New Application Required]   # not live applications
+
+linking:
+  geo_radius_m: 100
+  link_score: 0.85
+  review_score: 0.60
+  supporting_name_bonus: 0.10     # owner/applicant vs contractor fuzzy match; only boosts a pair already >= review_score
+  supporting_name_ratio: 85
+  min_cases_for_non_provisional: 30
+  site_plan_permit_work_classes: [New, Shell, Addition, Addition and Remodel]   # interior-remodel-only permits are not what a site plan produces
+
+phase2_manual_sample: {size: 30, seed: 21, strata: {multifamily: 10, commercial: 10, other: 10}}

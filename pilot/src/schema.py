@@ -25,6 +25,22 @@ CREATE TABLE IF NOT EXISTS matches(
 CREATE TABLE IF NOT EXISTS candidate_labels(   -- in_baseline | novel | review; manual overrides auto
   candidate_id INTEGER PRIMARY KEY REFERENCES candidates(id), label TEXT NOT NULL, method TEXT NOT NULL,
   score REAL, note TEXT, labelled_at TEXT);
+CREATE TABLE IF NOT EXISTS raw_site_plans(source TEXT NOT NULL, source_id TEXT NOT NULL, fetched_at TEXT NOT NULL, payload_json TEXT NOT NULL, PRIMARY KEY(source, source_id));
+CREATE TABLE IF NOT EXISTS raw_plan_reviews(source TEXT NOT NULL, source_id TEXT NOT NULL, fetched_at TEXT NOT NULL, payload_json TEXT NOT NULL, PRIMARY KEY(source, source_id));
+CREATE TABLE IF NOT EXISTS site_plan_candidates(
+  id INTEGER PRIMARY KEY AUTOINCREMENT, folderrsn TEXT NOT NULL UNIQUE, case_number TEXT, case_name TEXT, address_norm TEXT,
+  lat REAL, lon REAL, proposed_use TEXT, use_class TEXT, work TEXT, status TEXT, submitted_date TEXT, approval_date TEXT,
+  applicant_org TEXT, owner_entity TEXT, owner_is_individual INTEGER, size_hint TEXT, multifamily_hint INTEGER, first_seen_at TEXT,
+  passed INTEGER, exclude_reason TEXT);
+CREATE TABLE IF NOT EXISTS site_plan_permit_links(
+  case_id INTEGER NOT NULL, project_key TEXT NOT NULL, score REAL, method TEXT, PRIMARY KEY(case_id, project_key));
+CREATE TABLE IF NOT EXISTS plan_review_candidates(
+  id INTEGER PRIMARY KEY AUTOINCREMENT, permit_number TEXT NOT NULL UNIQUE, project_name TEXT, address_norm TEXT, lat REAL, lon REAL,
+  valuation REAL, work_class TEXT, use_class TEXT, status TEXT, applied_date TEXT, issued_date TEXT, owner_entity TEXT,
+  owner_is_individual INTEGER, applicant_org TEXT, units REAL, passed INTEGER, exclude_reason TEXT);
+CREATE TABLE IF NOT EXISTS plan_review_permit_links(
+  pr_id INTEGER NOT NULL, project_key TEXT NOT NULL, score REAL, method TEXT, PRIMARY KEY(pr_id, project_key));
+CREATE TABLE IF NOT EXISTS site_plan_labels(case_id INTEGER PRIMARY KEY, label TEXT NOT NULL, method TEXT NOT NULL, note TEXT, labelled_at TEXT);
 CREATE TABLE IF NOT EXISTS enrichments(
   id INTEGER PRIMARY KEY AUTOINCREMENT, candidate_id INTEGER NOT NULL, provider TEXT NOT NULL,
   requested_at TEXT NOT NULL, cost_usd REAL, result_json TEXT, found_owner INTEGER, found_developer INTEGER,

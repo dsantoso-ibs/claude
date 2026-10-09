@@ -22,6 +22,8 @@ def class_allowed(cls: str, fc: dict) -> str | None:
 def evaluate(cand: dict, fc: dict) -> tuple[bool, str | None]:
     """cand fields use '|'-joined sets for permit_type/work_class/use_class/status (project-level)."""
     if (cand["valuation"] or 0) < fc["min_valuation_usd"]:
+        if (cand["valuation"] or 0) <= fc.get("unreported_valuation_max_usd", -1):
+            return False, "valuation_unreported"
         return False, "below_valuation"
     types = set(cand["permit_type"].split("|"))
     if not types & set(fc["include_permit_types"]):

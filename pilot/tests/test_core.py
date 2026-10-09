@@ -116,3 +116,56 @@ def test_manual_label_roundtrip_and_report_counts(tmp_path):
     assert import_labels(con, str(f))["novel"] == 1
     assert con.execute("SELECT label, method FROM candidate_labels").fetchone()[:] == ("novel", "manual")
     assert "error" in match(con, "austin", cfgmod.load()["baseline"])   # no baseline loaded -> no silent overwrite
+
+
+def test_fuzzy_address_needs_same_street():
+    from src.baseline import score_pair
+    a = dict(address_norm="301 W 14TH ST", lat=None, lon=None, description="")
+    assert score_pair(a, dict(address_norm="301 W 5TH ST", lat=None, lon=None, name=""))[0] < 0.85
+    assert score_pair(a, dict(address_norm="301 W 14TH ST", lat=None, lon=None, name=""))[0] == 1.0
+
+
+def test_link_requires_permit_after_case_and_blocks_by_address():
+    from src.phase2 import link_cases
+    lc = cfgmod.load()["linking"]
+    case = dict(id=1, address_norm="1 MAIN ST", lat=None, lon=None, submitted_date="2024-01-01", name="x")
+    permits = [dict(source_id="p1", address_norm="1 MAIN ST", lat=None, lon=None, issued_date="2025-01-01", description="", contractor_name=None),
+               dict(source_id="p2", address_norm="1 MAIN ST", lat=None, lon=None, issued_date="2023-01-01", description="", contractor_name=None)]
+    got = link_cases([case], permits, "submitted_date", lc)
+    assert [g[1] for g in got] == ["p1"]            # earlier permit is not this case's permit
+
+
+def test_use_classification():
+    from src.phase2 import classify_use
+    rules = cfgmod.load()["site_plan_filters"]["use_rules"]
+    assert classify_use("Commercial Multi Family", rules) == "multifamily"
+    assert classify_use("Boat Dock", rules) == "excluded_infrastructure"
+    assert classify_use("Single Family", rules) == "single_family"
+    assert classify_use("Warehouse", rules) == "industrial"
+    assert classify_use("Unk", rules) == "unknown_use" and classify_use(None, rules) == "unknown_use"
+    assert classify_use("Housing", rules) == "housing_unclear"
+
+
+def test_entity_check():
+    from src.entities import clean_entity
+    assert clean_entity("Century Land Holdings II, LLC") == ("Century Land Holdings II, LLC", False)
+    assert clean_entity("John Smith") == (None, True)
+    assert clean_entity(None) == (None, False)
+
+
+def test_site_plan_filter_rules():
+    from src.phase2 import evaluate_site_plan
+    fc = cfgmod.load()["site_plan_filters"]
+    base = dict(submitted_date="2025-01-01", status="Approved and Released", work="Consolidated", use_class="commercial", case_name="Foo Center")
+    assert evaluate_site_plan(base, fc) == (True, None)
+    assert evaluate_site_plan({**base, "case_name": "Domain 4 Demo"}, fc)[1] == "demolition_only"
+    assert evaluate_site_plan({**base, "status": "Expired"}, fc)[1] == "status_excluded"
+    assert evaluate_site_plan({**base, "work": "Extension"}, fc)[1] == "work_not_building_project"
+    assert evaluate_site_plan({**base, "use_class": "unknown_use"}, fc)[1] == "unknown_use"
+    assert evaluate_site_plan({**base, "submitted_date": None}, fc)[1] == "no_submission_date"
+
+
+def test_unreported_valuation_is_its_own_reason():
+    assert evaluate(cand(valuation=1), FC) == (False, "valuation_unreported")
+    assert evaluate(cand(valuation=0), FC) == (False, "valuation_unreported")
+    assert evaluate(cand(valuation=40_000), FC) == (False, "below_valuation")

@@ -34,9 +34,10 @@ def score_pair(c: dict, b: dict, radius_m: float = 100) -> tuple[float, str]:
         if c["address_norm"] == b["address_norm"]:
             return 1.0, "address_exact"
         r = fuzz.ratio(c["address_norm"], b["address_norm"]) / 100
-        # same street number is required for a fuzzy address to count as strong
-        same_num = c["address_norm"].split()[:1] == b["address_norm"].split()[:1]
-        best, method = (r if same_num else r * 0.7), "address_fuzzy"
+        # strong only if street number AND street name match (differing only in the trailing suffix token); else discounted.
+        ca, ba = c["address_norm"].split(), b["address_norm"].split()
+        same_street = len(ca) >= 2 and len(ba) >= 2 and ca[:-1] == ba[:-1]
+        best, method = (r if same_street else min(r, 0.7) * 0.8), "address_fuzzy"
     if None not in (c["lat"], c["lon"], b["lat"], b["lon"]) and haversine_m(c["lat"], c["lon"], b["lat"], b["lon"]) <= radius_m:
         name = fuzz.token_set_ratio(c.get("description") or "", b.get("name") or "") / 100
         g = 0.6 + 0.4 * name   # within radius = review-level; name similarity pushes toward in_baseline
@@ -68,7 +69,7 @@ def match(con, source: str, bcfg: dict) -> dict[str, int]:
         return {"error": "no baseline loaded; use the manual sample workflow"}
     now = datetime.now(timezone.utc).isoformat()
     cands = con.execute("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id "
-                        "WHERE c.source=? AND f.passed=1", (source,)).fetchall()
+                        "WHERE c.source=? AND f.passed=1 AND c.issued_date>=date('now','-365 day')", (source,)).fetchall()
     for c in cands:
         c = dict(c)
         con.execute("DELETE FROM matches WHERE candidate_id=?", (c["id"],))
@@ -94,7 +95,7 @@ def match(con, source: str, bcfg: dict) -> dict[str, int]:
 
 def export_sample(con, source: str, bcfg: dict, out) -> int:
     rows = con.execute("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id "
-                       "WHERE c.source=? AND f.passed=1 ORDER BY c.source_id", (source,)).fetchall()
+                       "WHERE c.source=? AND f.passed=1 AND c.issued_date>=date('now','-365 day') ORDER BY c.source_id", (source,)).fetchall()
     sample = random.Random(bcfg["manual_sample_seed"]).sample(rows, min(bcfg["manual_sample_size"], len(rows)))
     with open(out, "w", newline="") as fh:
         w = csv.writer(fh)

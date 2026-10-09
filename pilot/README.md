@@ -12,3 +12,17 @@ python -m src.baseline match austin    # auto labels (manual labels are never ov
 python -m src.report austin            # M5 report + verdict
 ```
 Enrichment (M4) is deferred (`enrichment.enabled: false`). Candidates are project-level (grouped by masterpermitnum).
+
+## Phase 2 (site plans / plan review) - spec: ../docs/phase2-site-plan-lead-time.md
+```
+python -m src.discover_generic site_plans|plan_review   # M7.0 schema reports
+python -m src.phase2_ingest                              # M7.1 idempotent ingest (60-month backfill, then delta)
+python -m src.ingest austin --days 1830                  # permits over the same window (needed for linking)
+python -m src.run_filter austin
+python -m src.phase2 build && python -m src.phase2 link  # M7.2 normalize/filter, M7.3 link
+python -m src.report_phase2                              # M7.4 metrics + open pipeline CSVs
+python -m src.validate_pipeline                          # independent open-pipeline check vs full permit dataset
+python -m src.phase2 sheets                              # M7.5 label sheet + hand-check sheets
+python -m src.phase2 import-labels reports/manual-labels-site-plans.csv
+```
+Analysis: `reports/phase2-analysis.md`.
