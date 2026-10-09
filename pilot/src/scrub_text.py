@@ -45,14 +45,14 @@ PLACE_NEXT = STREET | {"PARK", "CENTER", "CENTRE", "BUILDING", "BLDG", "TOWER", 
 BUSINESS_NEXT = {"FOUNDATION", "REPAIR", "REPAIRS", "SERVICES", "SERVICE", "PLUMBING", "ELECTRIC", "ELECTRICAL", "ROOFING", "CONSTRUCTION", "MECHANICAL", "CONTRACTORS",
                  "CONTRACTING", "ENGINEERING", "FENCE", "FENCING", "HVAC", "DESIGN", "ARCHITECTS", "ARCHITECTURE", "BUILDERS", "HOMES", "PAINTING", "LANDSCAPING", "SOLAR",
                  "ENERGY", "WATER", "UTILITY", "DISTRICT", "FIBER", "CEMENT", "SIDING", "PLANK", "SHINGLES", "TILE", "FLOORING", "COMPANY", "ASSOCIATES", "SUPPLY", "INDUSTRIES",
-                 "LUMBER", "STEEL", "CONCRETE", "WINDOWS", "DOORS", "CABINETS", "COUNTERTOPS", "POOLS", "TRUST", "CONGREGATION", "MINISTRIES", "PUA", "ISD"}
+                 "PROPERTIES", "HOLDINGS", "PARTNERS", "CAPITAL", "ENTERPRISES", "INVESTMENTS", "REALTY", "DEVELOPMENT", "LLC", "INC", "LP", "LTD", "CORP", "LUMBER", "STEEL", "CONCRETE", "WINDOWS", "DOORS", "CABINETS", "COUNTERTOPS", "POOLS", "TRUST", "CONGREGATION", "MINISTRIES", "PUA", "ISD"}
 GENERIC_BEFORE_RESIDENCE = {"single", "family", "existing", "new", "commercial", "residential", "multi", "two", "duplex", "guest", "main", "primary", "accessory",
                             "style", "the", "a", "an", "of", "for", "to", "assisted", "living", "senior", "student", "independent", "luxury", "model", "show",
                             "caretaker", "custodian", "principal", "rental", "private", "detached", "attached", "historic", "old", "former", "proposed"}
 
 
 BRANDS = {"james hardie", "hardie", "tamko", "tamko titan", "owens corning", "sherwin williams", "johnson controls", "carrier", "trane", "otis",
-          "home depot", "best buy", "dish wireless", "t mobile", "american tower", "crown castle", "ericsson", "nokia", "samsung", "verizon"}
+          "hardy board", "hardy", "jc penny", "jc penney", "jcpenney", "dillards", "dillard", "macys", "lowes", "home depot", "best buy", "dish wireless", "t mobile", "american tower", "crown castle", "ericsson", "nokia", "samsung", "verizon"}
 BASE_COMMON = {"roof", "roofing", "replacement", "transfer", "switch", "fire", "damage", "shade", "structure", "dumpster", "enclosure", "pool", "deck", "retail",
                "space", "remodel", "kitchen", "interior", "exterior", "tenant", "finish", "demo", "scope", "mep", "antenna", "antennas", "install", "upgrade",
                "floor", "wall", "walls", "ceiling", "door", "window", "windows", "building", "suite", "unit", "storage", "office", "parking", "garage", "sign",

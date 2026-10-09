@@ -137,3 +137,11 @@ def test_initial_surname_still_removed_for_a_non_directional_initial_and_after_a
     sc = Scrubber()
     assert sc.scrub("Remodel per J. Rodriguez comments")[0] == "Remodel per [NAME] comments"
     assert "Whitaker" not in sc.scrub("Contact: W. Whitaker for access")[0]
+
+
+@pytest.mark.parametrize("text", [
+    "J. MOORE PROPERTIES LLC", "replace rotted siding with Hardy Board. NO INTERIOR work", "common area between Dillard's and JC Penny.",
+])
+def test_businesses_and_brands_seen_in_review_are_not_names(text):
+    sc = Scrubber()
+    assert sc.scrub(text) == (text, 0) and sc.scrub(text, ner=False) == (text, 0)
