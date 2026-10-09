@@ -25,3 +25,14 @@ def clean_entity(name: str | None) -> tuple[str | None, bool]:
     if not name or not name.strip():
         return None, False
     return (name.strip(), False) if is_entity(name) else (None, True)
+
+
+TAG = re.compile(r"[\s\(\[\*]*\bMAIN\b[\s\)\]\*]*", re.I)
+
+
+def clean_org(name: str | None) -> str | None:
+    """Strip permit-system tags such as '(MAIN)', '***MAIN***', '*MAIN*' from an organization name; None if nothing real is left."""
+    if not name:
+        return None
+    n = re.sub(r"\s+", " ", TAG.sub(" ", name)).strip(" *-,")
+    return n or None

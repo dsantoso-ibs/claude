@@ -1,27 +1,53 @@
-case_number,case_name,address_norm,proposed_use,use_class,owner_entity,applicant_org,status,submitted_date,size_hint
-,2026 Bucker Villas Site Plan,11110 TOM ADAMS DR,Commercial,commercial,,,Intake Pending,2026-09-04,
-SP-2021-0456C(R2),Project West Austin,6801 RIVER PL BLVD,Commercial,commercial,"SE Cosmos, LLC",,In Review,2026-08-12,
-SP-2023-1000C.013,AUS - UICW East (2),3600 PRESIDENTIAL BLVD,Public/Civic,public_civic,City of Austin Department of Aviation,"HDR Engineering, Inc.",In Review,2026-07-07,
-SP-2021-0318CX(R1),RRISD Grisham Ms Artificial Turf Field,10805 SCHOOL HOUSE LN,Commercial,commercial,ROUND ROCK ISD,,Awaiting Update,2026-04-24,
-SP-2023-1000C.012,AUS - UICW West (1),3600 PRESIDENTIAL BLVD,Public/Civic,public_civic,,"HDR Engineering, Inc.",Awaiting Update,2026-04-24,
-SP-2026-0086C,Springdale Garage (W/R SP-2024-0461C),979 SPRINGDALE RD,Mixed Use (Residential/Commercial),commercial,,"Austin Civil Engineering, Inc.",Awaiting Update,2026-03-04,
-SP-2026-0045D,Northcross Mall Redevelopment,2525 W ANDERSON LN,Commercial,commercial,NORTHCROSS 2019 OWNER LP % RIVERSIDE,KBGE,Awaiting Update,2026-02-17,
-SP-2026-0075C,Switch Expansion (W/R SP-2024-0474C),4100 SMITH SCHOOL RD,Commercial,commercial,TX AUS 2 LLC,Kimley-Horn,Awaiting Update,2026-02-13,
-SP-94-0047CX(R1),Round Rock ISD Career & Technical Education (CTE) Center,9900 SPECTRUM DR,Commercial,commercial,Round Rock Independent School District Trustee,Civilitude LLC,Approved and Released,2026-01-20,
-SP-2025-0410CX,Crockett High School - Gym Addition,5601 MENCHACA RD,Public/Civic,public_civic,AUSTIN INDEPENDENT SCHOOL DISTRICT,Civilitude LLC,In Review,2025-12-22,
-SP-2025-0401D,1612 South Congress D-Permit,1612 S CONGRESS AVE,Commercial,commercial,1612 SOCO LLC,,Approved and Released,2025-12-16,
-SP-2025-0396C,Austin's Park Thrillz,16231 N IH 35 SVRD NB,Commercial,commercial,,FORESITE GROUP,Awaiting Update,2025-12-09,
-SP-2023-0333C(R1),Element Critical AUS1 - DH4 3rd Train,8025 N IH 35 SVRD NB,Commercial,commercial,SMBC LEASING AND FINANCE INC,Jacobs Engineering,Approved and Released,2025-12-05,
-SP-2025-0311C,HOWARD PLAZA LOT 2,3127 E HOWARD LN,Mixed Use (Residential/Commercial),commercial,PHAM PETER & HA VU,Way Consulting Engineers,In Review,2025-09-08,
-SP-99-2023C(R2),Springdale Outparcel,7112 ED BLUESTEIN BLVD SVRD SB,Commercial,commercial,,,Approved and Released,2025-08-05,
-SP-2025-0248D,Dell PS3B OCS P,701 E PARMER LN,Industrial,industrial,DELL USA LP,Pape-Dawson Engineers,Approved and Released,2025-07-23,
-SP-2019-5509C(R1),Met Center II Creative Office,8000 METROPOLIS DR,Commercial,commercial,Preylock Met Center LLC,,Approved and Released,2025-04-24,
-SP-2025-0094D,Center for Child Protection,8509 FM 969 RD,Commercial,commercial,,Kimley-Horn,Waiting on Fiscal,2025-02-28,
-SP-99-2023C(R1),HEB Austin #13 Store Building Expansion,7112 ED BLUESTEIN BLVD SVRD SB,Commercial,commercial,SPRINGDALE EDENS LLC,,Approved and Released,2025-01-29,
-SP-2014-0262C(R2),"Lantana Block P, Lot 3 (Revision 2)",7415 SOUTHWEST PKWY,Mixed Use (Residential/Commercial),commercial,"Stratus Block 150, L.P.",LJA Engineering,Approved and Released,2025-01-24,
-SPC-2025-0018C,ACCX - Convention Center C2,500 E 3RD ST,Public/Civic,public_civic,,,Approved and Released,2025-01-21,
-SP-2024-0493D,1001 W Howard,1001 W HOWARD LN,Industrial,industrial,,"Pape-Dawson Engineers, Inc.",Waiting on Fiscal,2024-12-27,
-SP-2024-0384C,Bubble Car Wash Tech Ridge,12213 TECH RIDGE BLVD,Commercial,commercial,,QT South LLC,Waiting on Legal,2024-12-02,
-SP-2024-0447CS,Lake Austin Marina,2215 WESTLAKE DR,Commercial,commercial,LAKE AUSTIN MARINA I L P,Sandlin Services,Approved and Released,2024-11-21,
-SP-2024-0421C,Davis Spring Center (W/R SP-2023-0414C),9900 W PARMER LN,Commercial,commercial,NENNAH GROUP INVESTMENTS LP,"Griffin Engineering Group, Inc.",Approved and Released,2024-11-05,
-SP-2024-0410CX,AISD - Crockett ECHS,5601 MENCHACA RD,Public/Civic,public_civic,AUSTIN INDEPENDENT SCHOOL DISTRICT,"Civilitude, LLC",Approved and Released,2024-10-28,
+recency_days,recency_date,case_number,case_name,project_type,remodel_subtype,size_band,use_class,proposed_use,description,applicant_org,owner_entity,address_raw,address_norm,status,submitted_date,size_hint
+22,2026-09-17,SP-94-0047CX(R1),Round Rock ISD Career & Technical Education (CTE) Center,remodel,repair_or_other,unknown,commercial,Commercial,The applicant is proposing a revision to a previously approved and released site plan SP-94-0047C.,Civilitude LLC,Round Rock Independent School District Trustee,9900 SPECTRUM DR,9900 SPECTRUM DR,Approved and Released,2026-01-20,
+35,2026-09-04,,2026 Bucker Villas Site Plan,remodel,interior_remodel,unknown,commercial,Commercial,"The applicant is proposing senior living multi-family development consisting of 1 building, underground parking garage, site , utility and drainage pond improvements.",,,11110 TOM ADAMS DR,11110 TOM ADAMS DR,Intake Pending,2026-09-04,
+58,2026-08-12,SP-2021-0456C(R2),Project West Austin,remodel,interior_remodel,unknown,commercial,Commercial,"The applicant proposes to revise a previously approved Site Plan.
+(office)",,"SE Cosmos, LLC",6801 RIVER PLACE BLVD,6801 RIVER PL BLVD,In Review,2026-08-12,
+84,2026-07-17,SP-2025-0401D,1612 South Congress D-Permit,remodel,interior_remodel,unknown,commercial,Commercial,"The applicant is proposing streetscape improvements and awings for the existing retail space with associated improvements.  
+
+NO UTILITY WORK IS AUTHORIZED. jc 5/12/26",,1612 SOCO LLC,1612 S CONGRESS AVE,1612 S CONGRESS AVE,Approved and Released,2025-12-16,
+86,2026-07-15,SP-2023-0333C(R1),Element Critical AUS1 - DH4 3rd Train,remodel,interior_remodel,unknown,commercial,Commercial,"The applicant is proposing new development with associated improvements. (Revision)
+
+Previously a child of 153813 - SP-94-0423CR",Jacobs Engineering,SMBC LEASING AND FINANCE INC,8025 N IH 35 SVRD NB,8025 N IH 35 SVRD NB,Approved and Released,2025-12-05,
+94,2026-07-07,SP-2023-1000C.013,AUS - UICW East (2),remodel,repair_or_other,unknown,public_civic,Public/Civic,"Applicant is proposing Installation of utilities to support the Airport Expansion Development Program, including a water quality pond and power distribution center. 
+
+Pupr3
+
+AEDP
+
+PC = KW","HDR Engineering, Inc.",City of Austin Department of Aviation,3600 PRESIDENTIAL BLVD,3600 PRESIDENTIAL BLVD,In Review,2026-07-07,
+105,2026-06-26,SP-2019-5509C(R1),Met Center II Creative Office,remodel,interior_remodel,unknown,commercial,Commercial,The applicant is proposing to revise a previously approved site plan.,,Preylock Met Center LLC,8000 METROPOLIS DR,8000 METROPOLIS DR,Approved and Released,2025-04-24,
+121,2026-06-10,SP-2014-0262C(R2),"Lantana Block P, Lot 3 (Revision 2)",remodel,repair_or_other,unknown,commercial,Mixed Use (Residential/Commercial),The applicant proposes to revise a previously approved Site Plan.,LJA Engineering,"Stratus Block 150, L.P.",7415 SOUTHWEST PKWY,7415 SOUTHWEST PKWY,Approved and Released,2025-01-24,
+168,2026-04-24,SP-2021-0318CX(R1),RRISD Grisham Ms Artificial Turf Field,remodel,repair_or_other,unknown,commercial,Commercial,"The applicant is proposing a revision to an existing approved and release site plan. 
+AWPTurf",,ROUND ROCK ISD,10805 SCHOOL HOUSE LN,10805 SCHOOL HOUSE LN,Awaiting Update,2026-04-24,
+168,2026-04-24,SP-2023-1000C.012,AUS - UICW West (1),remodel,repair_or_other,unknown,public_civic,Public/Civic,"Applicant is proposing installation of utilities to support the Airport Expansion Development Program, including water quality and detention ponds.
+
+PUPR3
+PC = KW 
+AEDP","HDR Engineering, Inc.",,3600 PRESIDENTIAL BLVD,3600 PRESIDENTIAL BLVD,Awaiting Update,2026-04-24,
+219,2026-03-04,SP-2026-0086C,Springdale Garage (W/R SP-2024-0461C),remodel,interior_remodel,unknown,commercial,Mixed Use (Residential/Commercial),The applicant proposes to build a parking garage with associated improvements.,"Austin Civil Engineering, Inc.",,979 SPRINGDALE RD,979 SPRINGDALE RD,Awaiting Update,2026-03-04,
+225,2026-02-26,SP-99-2023C(R2),Springdale Outparcel,remodel,repair_or_other,250k_to_5m,commercial,Commercial,The applicant is proposing to revise a previously approved site plan.,,,7112 ED BLUESTEIN BLVD SVRD SB,7112 ED BLUESTEIN BLVD SVRD SB,Approved and Released,2025-08-05,
+234,2026-02-17,SP-2026-0045D,Northcross Mall Redevelopment,remodel,interior_remodel,unknown,commercial,Commercial,"The applicant is proposing the demolition of existing building and utilities and construction of water quality, parking and utility improvement for future mixed use development.",KBGE,NORTHCROSS 2019 OWNER LP % RIVERSIDE,2525 W ANDERSON LN,2525 W ANDERSON LN,Awaiting Update,2026-02-17,
+238,2026-02-13,SP-2026-0075C,Switch Expansion (W/R SP-2024-0474C),remodel,interior_remodel,unknown,commercial,Commercial,The applicant is proposing to expand two existing buildings with associated improvements.,Kimley-Horn,TX AUS 2 LLC,4100 SMITH SCHOOL RD,4100 SMITH SCHOOL RD,Awaiting Update,2026-02-13,
+256,2026-01-26,SP-2024-0421C,Davis Spring Center (W/R SP-2023-0414C),remodel,interior_remodel,unknown,commercial,Commercial,The applicant is proposing new construction along with associated improvements.,"Griffin Engineering Group, Inc.",NENNAH GROUP INVESTMENTS LP,9900 W PARMER LN,9900 W PARMER LN,Approved and Released,2024-11-05,
+282,2025-12-31,SP-2024-0410CX,AISD - Crockett ECHS,remodel,interior_remodel,unknown,public_civic,Public/Civic,"Applicant proposes additions to the existing campus of a new fine arts addition, gym building, and track and field along with associated utilities and drainage improvements.
+
+PuPR3
+
+AWPTurf","Civilitude, LLC",AUSTIN INDEPENDENT SCHOOL DISTRICT,5601 MENCHACA RD,5601 MENCHACA RD,Approved and Released,2024-10-28,
+291,2025-12-22,SP-2025-0410CX,Crockett High School - Gym Addition,remodel,tenant_finish_out,unknown,public_civic,Public/Civic,The applicant is proposing the construction of a new gym building along with associated improvements.,Civilitude LLC,AUSTIN INDEPENDENT SCHOOL DISTRICT,5601 MENCHACA RD,5601 MENCHACA RD,In Review,2025-12-22,
+304,2025-12-09,SP-2025-0248D,Dell PS3B OCS P,remodel,interior_remodel,unknown,industrial,Industrial,The applicant is proposing the Construction of an exterior MEP equipment yard along with associated improvements.,Pape-Dawson Engineers,DELL USA LP,701 E PARMER LN,701 E PARMER LN,Approved and Released,2025-07-23,
+304,2025-12-09,SP-2025-0396C,Austin's Park Thrillz,remodel,interior_remodel,unknown,commercial,Commercial,The applicant is proposing the addition of a themed family amusement area with associated improvements.,FORESITE GROUP,,16231 N IH 35 SVRD NB,16231 N IH 35 SVRD NB,Awaiting Update,2025-12-09,
+339,2025-11-04,SPC-2025-0018C,ACCX - Convention Center C2,remodel,repair_or_other,over_5m,public_civic,Public/Civic,"Applicant is proposing the construction of a new Convention Center with corresponding utilities on a 14.1475 acre site at 500 E 3rd Street
+
+PuPR1
+
+ACCX
+
+PC = KW",,,500 E 3RD ST,500 E 3RD ST,Approved and Released,2025-01-21,
+378,2025-09-26,SP-99-2023C(R1),HEB Austin #13 Store Building Expansion,remodel,repair_or_other,250k_to_5m,commercial,Commercial,The applicant is proposing to revise a previously approved site plan.,,SPRINGDALE EDENS LLC,7112 ED BLUESTEIN BLVD SVRD SB,7112 ED BLUESTEIN BLVD SVRD SB,Approved and Released,2025-01-29,
+396,2025-09-08,SP-2025-0311C,HOWARD PLAZA LOT 2,remodel,interior_remodel,unknown,commercial,Mixed Use (Residential/Commercial),The applicant is proposing Mixed-Use development along with associated improvements.,Way Consulting Engineers,PHAM PETER & HA VU,3127 E HOWARD LN,3127 E HOWARD LN,In Review,2025-09-08,
+563,2025-03-25,SP-2024-0447CS,Lake Austin Marina,remodel,interior_remodel,unknown,commercial,Commercial,The applicant is proposing the replacement of an existing UST with associated improvements.,Sandlin Services,LAKE AUSTIN MARINA I L P,2215 WESTLAKE DR,2215 WESTLAKE DR,Approved and Released,2024-11-21,
+588,2025-02-28,SP-2025-0094D,Center for Child Protection,remodel,interior_remodel,unknown,commercial,Commercial,The applicant is proposing a parking lot development with associated improvements.,Kimley-Horn,,8509 FM 969 RD,8509 FM 969 RD,Waiting on Fiscal,2025-02-28,
+651,2024-12-27,SP-2024-0493D,1001 W Howard,remodel,interior_remodel,unknown,industrial,Industrial,The applicant is proposing an industrial development with associated improvements.,"Pape-Dawson Engineers, Inc.",,1001 W HOWARD LN,1001 W HOWARD LN,Waiting on Fiscal,2024-12-27,
+676,2024-12-02,SP-2024-0384C,Bubble Car Wash Tech Ridge,remodel,interior_remodel,unknown,commercial,Commercial,The applicant is proposing automatic car wash along with associated improvements.,QT South LLC,,12213 TECH RIDGE BLVD,12213 TECH RIDGE BLVD,Waiting on Legal,2024-12-02,

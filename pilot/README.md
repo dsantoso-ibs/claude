@@ -31,3 +31,7 @@ Valuation is **not** a filter any more; it only feeds `size_band` (see `reports/
 
 Default set = new_build, shell, addition (`project_type`); remodels are reported separately (`reports/project-type-impact.md`).
 Label sheets (30 projects, default set only): `python -m src.phase2 sheets`. Enrichment dry run: `python -m src.enrich` (a real run needs a configured provider, `enrichment.enabled: true` and a confirmed cap).
+
+Remodels: `remodel_subtype` (tenant_finish_out, interior_remodel, repair_or_other); only repair, signage and demolition-only are excluded as non-projects. Every record carries
+use_class, description, applicant, contractor (permits), address and `recency_days`. Report: `python -m src.report_remodels` -> `reports/remodels-YYYY-MM-DD.md` + `reports/remodels-12m.csv`.
+Search (newest first): `python -m src.index search "tenant finish out" --type remodel --subtype tenant_finish_out`. Remodels are never enriched.

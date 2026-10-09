@@ -1,6 +1,8 @@
 """M2a: raw permits -> project-level candidates (grouped by project_key) + address normalization."""
 from __future__ import annotations
 import json
+
+from src.entities import clean_org
 import re
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -46,23 +48,18 @@ def build_candidates(con, source: str, scfg: dict) -> int:
         rows.sort(key=lambda x: (x.get(fm["permit_type"]) == "BP", _f(x.get(fm["valuation"])) or 0), reverse=True)
         rep = rows[0]
         addr = rep.get(fm["address"]) or rep.get(fm["address_fallback"])
-        con.execute(
-            "INSERT INTO candidates(source, source_id, address_norm, lat, lon, valuation, permit_type, work_class, use_class,"
-            " issued_date, description, contractor_name, status, permit_count, permit_numbers, first_seen_at)"
-            " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-            " ON CONFLICT(source, source_id) DO UPDATE SET address_norm=excluded.address_norm, lat=excluded.lat, lon=excluded.lon,"
-            " valuation=excluded.valuation, permit_type=excluded.permit_type, work_class=excluded.work_class,"
-            " use_class=excluded.use_class, issued_date=excluded.issued_date, description=excluded.description,"
-            " contractor_name=excluded.contractor_name, status=excluded.status, permit_count=excluded.permit_count,"
-            " permit_numbers=excluded.permit_numbers",
-            (source, key, normalize_address(addr), _f(rep.get(fm["lat"])), _f(rep.get(fm["lon"])),
-             max((_f(x.get(fm["valuation"])) or 0) for x in rows),
-             "|".join(sorted({x.get(fm["permit_type"]) or "" for x in rows})),
-             "|".join(sorted({x.get(fm["work_class"]) or "" for x in rows})),
-             "|".join(sorted({x.get(fm["permit_class"]) or "" for x in rows})),
-             min((x.get(fm["issued"]) or "")[:10] for x in rows), (rep.get(fm["description"]) or "")[:500],
-             rep.get(fm["company"]) or rep.get(fm["company_alt"]),
-             "|".join(sorted({x.get(fm["status"]) or "" for x in rows})), len(rows),
-             "|".join(sorted(x[fm["permit_number"]] for x in rows)), now))
+        cols = ("address_norm", "lat", "lon", "valuation", "permit_type", "work_class", "use_class", "issued_date", "description", "contractor_name",
+                "status", "permit_count", "permit_numbers", "applicant_org", "address_raw", "applied_date", "last_issued_date")
+        vals = (normalize_address(addr), _f(rep.get(fm["lat"])), _f(rep.get(fm["lon"])), max((_f(x.get(fm["valuation"])) or 0) for x in rows),
+                "|".join(sorted({x.get(fm["permit_type"]) or "" for x in rows})), "|".join(sorted({x.get(fm["work_class"]) or "" for x in rows})),
+                "|".join(sorted({x.get(fm["permit_class"]) or "" for x in rows})), min((x.get(fm["issued"]) or "")[:10] for x in rows),
+                (rep.get(fm["description"]) or "")[:500],
+                clean_org(next((x.get(fm["company"]) for x in rows if clean_org(x.get(fm["company"]))), None)),      # contractor only (applicant is kept separately)
+                "|".join(sorted({x.get(fm["status"]) or "" for x in rows})), len(rows), "|".join(sorted(x[fm["permit_number"]] for x in rows)),
+                clean_org(next((x.get(fm["company_alt"]) for x in rows if clean_org(x.get(fm["company_alt"]))), None)), addr,
+                min(((x.get("applieddate") or "")[:10] or "9999") for x in rows).replace("9999", "") or None,
+                max((x.get(fm["issued"]) or "")[:10] for x in rows) or None)
+        con.execute(f"INSERT INTO candidates(source, source_id, first_seen_at, {', '.join(cols)}) VALUES(?,?,?,{','.join('?' * len(cols))}) "
+                    f"ON CONFLICT(source, source_id) DO UPDATE SET {', '.join(f'{c}=excluded.{c}' for c in cols)}", (source, key, now) + vals)
     con.commit()
     return len(groups)

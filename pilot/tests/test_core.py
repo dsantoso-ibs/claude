@@ -281,3 +281,76 @@ def test_enrichment_refuses_stub_and_dry_run_writes_nothing():
     with pytest.raises(PermissionError):
         run(con, cfg, dry_run=False)                       # stub refused
     assert con.execute("SELECT COUNT(*) FROM enrichments").fetchone()[0] == 0
+
+
+REMODEL_CASES = [
+    ("Install monument sign for tenant", False, "non_project_signage"), ("Signage and ACM Paneling on Gas Canopy", False, "non_project_signage"),
+    ("Interior demolition of suite", False, "non_project_demolition_only"), ("Selective demo", False, "non_project_demolition_only"),
+    ("Re-roof existing office", False, "non_project_repair"), ("Foundation Repair", False, "non_project_repair"),
+    ("TENANT IMPROVEMENT WITH LOCKER ROOMS and exit sign", True, None), ("Infill cased opening and add exit sign create two suites", True, None),
+    ("Interior tenant improvement existing space. Demo and new interior walls", True, None), ("Demolition of walls and finishes. Construction of new walls", True, None),
+    ("Interior remodel and repair of damaged wall", True, None), ("Tenant improvement; repair damaged ceiling", True, None),
+    ("INSTALLATION OF PV MODULES ON EXISTING COMMERCIAL ROOF.", False, "solar_or_ev_trade"), ("Certificate of Occupancy", True, None),
+]
+
+
+def test_remodel_only_repair_signage_demolition_are_non_projects():
+    fc = cfgmod.load()["filters"]
+    base = dict(permit_type="BP", work_class="Remodel", use_class="C-1000 Commercial Remodel", status="Active")
+    for desc, ok, reason in REMODEL_CASES:
+        assert evaluate({**base, "description": desc}, fc) == (ok, reason), desc
+
+
+def test_remodel_not_excluded_by_structures_only_or_class_keywords_and_use_is_not_ranked():
+    fc = cfgmod.load()["filters"]
+    base = dict(permit_type="BP", work_class="Remodel", status="Active", description="Interior finish out")
+    for cls in ("C- 329 Com Structures Other Than Bldg", "C-1001 Commercial Finish Out", "C- 326 Schools & Other Educational Bldgs",
+                "C- 324 Office, Bank & Professional Bldgs", "C- 105 Five or More Family Bldgs"):
+        assert evaluate({**base, "use_class": cls}, fc) == (True, None), cls
+    # a new build with only C-329 is still excluded (rule unchanged outside remodels)
+    assert evaluate({**base, "work_class": "New", "use_class": "C- 329 Com Structures Other Than Bldg"}, fc)[1] == "structures_only"
+
+
+def test_remodel_subtype():
+    from src.remodel import subtype
+    rc = cfgmod.load()["filters"]["remodel"]
+    assert subtype("Interior Finish-Out for an Office/Warehouse (Suite 101)", ["C-1001 Commercial Finish Out"], rc) == "tenant_finish_out"
+    assert subtype("Tenant improvement of existing retail space", ["C-1000 Commercial Remodel"], rc) == "tenant_finish_out"
+    assert subtype("Interior remodel of 2nd floor", ["C-1000 Commercial Remodel"], rc) == "interior_remodel"
+    assert subtype("Add/Remove equipment to existing tower", ["C-1000 Commercial Remodel"], rc) == "repair_or_other"
+    assert subtype(None, [], rc) == "repair_or_other"
+
+
+def test_recency_and_search_index():
+    from datetime import date
+    from src.recency import refresh
+    from src.index import rebuild, search
+    con = connect(":memory:")
+    con.execute("INSERT INTO candidates(source,source_id,applied_date,last_issued_date,issued_date,description,applicant_org,contractor_name,address_raw,address_norm,use_class,first_seen_at,project_type,remodel_subtype)"
+                " VALUES('austin','A','2026-01-01','2026-03-01','2026-03-01','tenant finish out for bakery','Acme Design','Beta Builders','1 Main Street','1 MAIN ST','C-1001','t','remodel','tenant_finish_out'),"
+                "('austin','B','2026-09-01','2026-09-20','2026-09-20','tenant finish out clinic','Zed','Yoyo Co','2 Oak Ave','2 OAK AVE','C-1001','t','remodel','tenant_finish_out')")
+    con.execute("INSERT INTO filter_results VALUES(1,1,NULL),(2,1,NULL)")
+    refresh(con, date(2026, 10, 1))
+    assert con.execute("SELECT recency_date, recency_days FROM candidates WHERE source_id='B'").fetchone()[:] == ("2026-09-20", 11)
+    assert con.execute("SELECT recency_days FROM candidates WHERE source_id='A'").fetchone()[0] == 214
+    rebuild(con)
+    got = search(con, "tenant finish out")
+    assert [r["address"] for r in got] == ["2 Oak Ave", "1 Main Street"]            # newest first
+    assert [r["address"] for r in search(con, "Beta Builders")] == ["1 Main Street"]   # contractor is searchable
+    assert [r["address"] for r in search(con, "Zed")] == ["2 Oak Ave"]                 # applicant is searchable
+
+
+def test_enrichment_never_targets_remodels():
+    from src.enrich import targets
+    cfg = cfgmod.load(); con = connect(":memory:")
+    con.execute("INSERT INTO plan_review_candidates(permit_number,project_name,address_norm,work_class,project_type,in_default,passed,applied_date,size_band)"
+                " VALUES('PR1','a','1 A ST','Remodel','remodel',0,1,'2099-01-01','unknown'),('PR2','b','2 A ST','New','new_build',1,1,'2099-01-01','unknown')")
+    got = targets(con, cfg, "x")
+    assert [t["ref_id"] for t in got] == [2]
+
+
+def test_clean_org_strips_permit_system_tags():
+    from src.entities import clean_org
+    assert clean_org("Kimley-Horn (MAIN)") == "Kimley-Horn" and clean_org("Joeris General Contractors***MAIN***") == "Joeris General Contractors"
+    assert clean_org("MAIN**") is None and clean_org("**MAIN") is None and clean_org(None) is None
+    assert clean_org("Mainstreet Builders") == "Mainstreet Builders"          # a word starting with MAIN is not the tag

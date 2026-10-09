@@ -75,12 +75,12 @@ def targets(con, cfg: dict, provider: str) -> list[dict]:
     done = {(r["stage"], r["candidate_id"]) for r in con.execute("SELECT stage, candidate_id FROM enrichments WHERE provider=?", (provider,))}
     out = []
     if "site_plan_open" in cfg["enrichment"]["stages"]:
-        out += [dict(stage="site_plan_open", ref_id=r["id"], name=r["case_name"], address=r["address_norm"], owner_entity=r["owner_entity"],
+        out += [dict(stage="site_plan_open", ref_id=r["id"], project_type=r["project_type"], name=r["case_name"], address=r["address_norm"], owner_entity=r["owner_entity"],
                      applicant_org=r["applicant_org"], size_band=r["size_band"]) for r in open_pipeline(con, cfg)]
     if "plan_review_open" in cfg["enrichment"]["stages"]:
-        out += [dict(stage="plan_review_open", ref_id=r["id"], name=r["project_name"], address=r["address_norm"], owner_entity=r["owner_entity"],
+        out += [dict(stage="plan_review_open", ref_id=r["id"], project_type=r["project_type"], name=r["project_name"], address=r["address_norm"], owner_entity=r["owner_entity"],
                      applicant_org=r["applicant_org"], size_band=r["size_band"]) for r in pr_open_pipeline(con, cfg)]
-    assert all(t["size_band"] is not None or True for t in out)
+    assert not any(t["project_type"] == "remodel" for t in out), "remodels are never enrichment targets"
     return [t for t in out if (t["stage"], t["ref_id"]) not in done]
 
 

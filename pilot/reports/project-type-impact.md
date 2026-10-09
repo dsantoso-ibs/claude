@@ -1,3 +1,5 @@
+> **Remodel counts below are superseded** by `reports/remodels-2026-10-09.md`: repair, signage and demolition-only remodels are now excluded as non-projects, `remodel_subtype` was added, and permit-system tags such as `(MAIN)` are stripped from organization names.
+
 # Default set (new build, shell, addition) vs remodels (2026-10-09)
 
 `project_type` is on permit, Plan Review and site plan candidates. Default set = passed the filter and project_type in (new_build, shell, addition). Used for the pipeline, reports, open-pipeline CSVs, label sheets and enrichment targets. Remodels are in a separate report section and separate CSVs, never in the headline numbers. No raw data was removed.

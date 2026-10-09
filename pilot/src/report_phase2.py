@@ -51,7 +51,7 @@ def open_pipeline(con, cfg: dict, remodel: bool = False) -> list[dict]:
     linked = _any_link(con, "site_plan_permit_links", "case_id", cfg["linking"]["review_score"])
     rows = []
     sel = "project_type='remodel'" if remodel else "in_default=1"
-    for r in con.execute(f"SELECT * FROM site_plan_candidates WHERE passed=1 AND {sel} AND submitted_date>=? ORDER BY submitted_date DESC", (cutoff,)):
+    for r in con.execute(f"SELECT * FROM site_plan_candidates WHERE passed=1 AND {sel} AND submitted_date>=? ORDER BY recency_days ASC", (cutoff,)):
         r = dict(r)
         if r["id"] in linked or not any((r["status"] or "").startswith(x) for x in fc["open_statuses"]):
             continue
@@ -63,7 +63,7 @@ def pr_open_pipeline(con, cfg: dict, remodel: bool = False) -> list[dict]:
     cutoff = (date.today() - timedelta(days=int(cfg["site_plan_filters"]["open_pipeline_max_age_months"] * 30.5))).isoformat()
     linked = _any_link(con, "plan_review_permit_links", "pr_id", cfg["linking"]["review_score"])
     sel = "project_type='remodel'" if remodel else "in_default=1"
-    return [dict(r) for r in con.execute(f"SELECT * FROM plan_review_candidates WHERE passed=1 AND {sel} AND issued_date IS NULL AND applied_date>=? ORDER BY applied_date DESC", (cutoff,))
+    return [dict(r) for r in con.execute(f"SELECT * FROM plan_review_candidates WHERE passed=1 AND {sel} AND issued_date IS NULL AND applied_date>=? ORDER BY recency_days ASC", (cutoff,))
             if r["id"] not in linked]
 
 
@@ -90,6 +90,8 @@ def _fmt_q(xs):
 
 def main() -> None:
     cfg = cfgmod.load(); con = connect(cfgmod.DB_PATH); today = date.today()
+    from src.recency import refresh
+    refresh(con, today)
     lc = cfg["linking"]
     L = [f"# Phase 2 report: Austin Site Plan Cases and Plan Review Cases, {today}", ""]
     # ---------------- site plans
@@ -157,9 +159,10 @@ def main() -> None:
         L.append("No linked cases.")
     # ---- 4 open pipeline
     pipe = open_pipeline(con, cfg)
-    cols = ["case_number", "case_name", "address_norm", "proposed_use", "use_class", "owner_entity", "applicant_org", "status", "submitted_date", "size_hint"]
+    cols = ["recency_days", "recency_date", "case_number", "case_name", "project_type", "remodel_subtype", "size_band", "use_class", "proposed_use", "description",
+            "applicant_org", "owner_entity", "address_raw", "address_norm", "status", "submitted_date", "size_hint"]
     with open(cfgmod.ROOT / "reports" / "open-pipeline-site-plans.csv", "w", newline="") as fh:
-        w = csv.writer(fh); w.writerow(cols); [w.writerow([c[k] or "" for k in cols]) for c in pipe]
+        w = csv.writer(fh); w.writerow(cols); [w.writerow([c.get(k) if c.get(k) is not None else "" for k in cols]) for c in pipe]
     age = [(today - _d(c["submitted_date"])).days for c in pipe]
     L += ["", "### 4. Open pipeline (stage 2 product): passed, open status, submitted within 24 months, no permit link", "",
           f"**{len(pipe)} cases** (full list: `reports/open-pipeline-site-plans.csv`). By use class: " + ", ".join(f"{k} {v}" for k, v in Counter(c['use_class'] for c in pipe).most_common()) + ".",
@@ -199,8 +202,9 @@ def main() -> None:
     own = [(_d(c["issued_date"]) - _d(c["applied_date"])).days for c in pr if c["issued_date"] and c["applied_date"]]
     ppipe = pr_open_pipeline(con, cfg)
     with open(cfgmod.ROOT / "reports" / "open-pipeline-plan-review.csv", "w", newline="") as fh:
-        w = csv.writer(fh); pc = ["permit_number", "project_name", "valuation", "work_class", "use_class", "status", "applied_date", "owner_entity", "applicant_org", "units"]
-        w.writerow(pc); [w.writerow([c[k] if c[k] is not None else "" for k in pc]) for c in ppipe]
+        w = csv.writer(fh); pc = ["recency_days", "recency_date", "permit_number", "project_name", "project_type", "remodel_subtype", "size_band", "valuation", "work_class", "use_class",
+                                  "description", "applicant_org", "owner_entity", "address_raw", "address_norm", "status", "applied_date", "units"]
+        w.writerow(pc); [w.writerow([c.get(k) if c.get(k) is not None else "" for k in pc]) for c in ppipe]
     p28 = sum(_d(c["applied_date"]) >= s28 for c in pr if c["applied_date"]); p365 = sum(_d(c["applied_date"]) >= s365 for c in pr if c["applied_date"])
     L += ["", "## B. Plan Review Cases (building-permit applications with valuation)", "",
           f"Loaded {len(pr_all):,} commercial/multi-family-class applications (applied since {min(c['applied_date'] for c in pr_all if c['applied_date'])}). "
@@ -223,9 +227,8 @@ def main() -> None:
     perm_rm = [dict(r) for r in con.execute("SELECT c.size_band, c.issued_date FROM candidates c JOIN filter_results f ON f.candidate_id=c.id "
                                             "WHERE c.source='austin' AND f.passed=1 AND c.project_type='remodel'")]
     sp_rm_open, pr_rm_open = open_pipeline(con, cfg, remodel=True), pr_open_pipeline(con, cfg, remodel=True)
-    for name, rows, cols_, getter in (("site-plans", sp_rm_open, cols, lambda c, k: c[k] or ""),
-                                      ("plan-review", pr_rm_open, ["permit_number", "project_name", "valuation", "work_class", "use_class", "status", "applied_date", "owner_entity", "applicant_org", "size_band"],
-                                       lambda c, k: c[k] if c[k] is not None else "")):
+    for name, rows, cols_, getter in (("site-plans", sp_rm_open, cols, lambda c, k: c.get(k) if c.get(k) is not None else ""),
+                                      ("plan-review", pr_rm_open, pc, lambda c, k: c.get(k) if c.get(k) is not None else "")):
         with open(cfgmod.ROOT / "reports" / f"open-pipeline-{name}-remodel.csv", "w", newline="") as fh:
             w = csv.writer(fh); w.writerow(cols_); [w.writerow([getter(c, k) for k in cols_]) for c in rows]
     L += ["", "## C. Remodels (reported separately; NOT in the headline numbers above)", "",
@@ -237,7 +240,7 @@ def main() -> None:
               ("Plan Review, passed, 5 years", pr_remodel),
               ("site plan open pipeline (remodel)", sp_rm_open),
               ("Plan Review open pipeline (remodel)", pr_rm_open)]) + [
-          "", "Files: `reports/open-pipeline-site-plans-remodel.csv`, `reports/open-pipeline-plan-review-remodel.csv`.", ""]
+          "", "Files: `reports/open-pipeline-site-plans-remodel.csv`, `reports/open-pipeline-plan-review-remodel.csv`. Remodel subtypes, weekly volume and applicant/contractor coverage: `reports/remodels-" + str(today) + ".md`.", ""]
     L += ["", "Size bands, Plan Review:", ""] + band_table([("passed", pr), ("passed, last 12 months", [c for c in pr if c["applied_date"] and _d(c["applied_date"]) >= s365]), ("open pipeline", ppipe)])
     out = cfgmod.ROOT / "reports" / f"phase2-{today}.md"
     out.write_text("\n".join(L) + "\n")

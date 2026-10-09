@@ -84,8 +84,29 @@ filters:
   exclude_class_codes: ['101', '102', '103']       # single-family, secondary apt, duplex (C- or R-)
   exclude_class_keywords: [Demolition, Driveway, Sidewalk, Sign, Relocation, Medical Gas, Boat Dock]
   weak_class_codes: ['329']                        # structures other than buildings: only counts if the project has another class
-  exclude_description_regex: '(?i)\b(solar|photovoltaic|PV system|EV charg)'   # spec: solar is trade-only
+  exclude_description_regex: '(?i)\b(solar|photovoltaic|PV (system|module|panel|array)s?|EV charg)'   # spec: solar is trade-only
   exclude_statuses: [VOID, Withdrawn, Cancelled, Denied, Revoked, Rejected, Aborted]   # prefix match
+  # Remodel projects (Remodel is the only construction work class). Only repair, signage and demolition-only are non-projects; building use is
+  # never used to rank or exclude (use class stays an attribute). Status and the solar/EV trade rule still apply; structures_only and the class
+  # keyword exclusions do NOT apply to remodels.
+  remodel:
+    work_classes: [Remodel]
+    # A description containing an override word is a real project even if it also mentions a repair/sign/demolition. Each rule has its own
+    # list: "tenant" rescues a repair or demolition but not a sign ("monument sign for tenant"); "interior" rescues a repair or sign but not
+    # a demolition ("interior demolition").
+    project_words_regex: '(?i)(remodel|re-?model|renovat|finish.?out|build.?out|interior|alteration|addition|new construction|conver|change of (use|occupancy)|expan|tenant|improvement|suite)'
+    signage_override_regex: '(?i)(remodel|re-?model|renovat|finish.?out|build.?out|interior|alteration|addition|conver|change of (use|occupancy)|expan|improvement|suite|partition|walls?\b|ceiling|restroom|create)'
+    demolition_override_regex: '(?i)(remodel|re-?model|renovat|finish.?out|build.?out|alteration|addition|conver|change of (use|occupancy)|improvement|tenant|new |construction|install|sub.?divid|combine|retail shell|and (build|construct|install))'
+    repair_regex: '(?i)(\brepair|re-?roof|\broof(ing)? replacement|storm damage|fire damage|hail damage|water damage|like.for.like|replac\w* (of )?(the )?(existing )?(roof|roofing|window|door|siding|hvac|rtu|water heater|boiler|chiller|fence)s?\b)'
+    signage_regex: '(?i)(\bsigns?\b|signage|monument|pylon|channel letters|awning sign|billboard)'
+    demolition_regex: '(?i)(\bdemo\b|demolition|demolish)'
+    class_signage_keywords: [Sign]
+    class_demolition_keywords: [Demolition]
+    subtype:
+      tenant_class_regex: '(?i)finish.?out'
+      tenant_desc_regex: '(?i)(tenant|finish.?out|build.?out|\bT\.?I\.?\b|lease(d)? space|change of (use|occupancy)|new (restaurant|retail|office|store|salon|clinic|gym))'
+      interior_desc_regex: '(?i)(interior|remodel|renovat|alteration|\balter\b|reconfigur|upgrade|improvement|restroom|kitchen|demising|partition|\bADA\b|accessib|classroom|office)'
+      # everything else (terse or unclassifiable descriptions, repair-like work that survived) -> repair_or_other
 
 baseline:
   match_geo_radius_m: 100
@@ -99,6 +120,7 @@ region:   # billing region = metro/county (confirmed). Austin permit dataset cov
   counties: [Travis, Williamson, Hays]
 
 enrichment:
+  remodels: never           # remodels are NEVER enrichment targets (enforced in code and tested)
   enabled: false              # a real (paid) run needs enabled: true AND a configured provider adapter; dry-run always works
   daily_cost_cap_usd: 25.0    # HARD cap per UTC day, checked before every call. PROPOSED value, not confirmed by Donny.
   stages: [site_plan_open, plan_review_open]    # default open pipeline only (new_build/shell/addition); never remodels

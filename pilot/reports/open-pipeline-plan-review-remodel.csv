@@ -1,248 +1,333 @@
-permit_number,project_name,valuation,work_class,use_class,status,applied_date,owner_entity,applicant_org,size_band
-2026-132570 PR,2205 OHLEN RD,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-10-08,LUMINOUS HOLDINGS LLC,Pet Day LLC,unknown
-2026-131929 PR,1730 E OLTORF ST,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-07,1730 HILLSIDE LLC,,unknown
-2026-131962 PR,816 CONGRESS AVE UNIT 970,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-07,,**MAIN,unknown
-2026-132247 PR,1211 E 4TH ST UNIT 200,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-10-07,,*Main*,unknown
-2026-132171 PR,11815 ALTERRA PKWY UNIT FLR9,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-07,,Cushing Terrell **MAIN,unknown
-2026-131779 PR,4616 W HOWARD LN BLDG 5 UNIT 550,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-10-07,,Waterloo512 **MAIN,unknown
-2026-132323 PR,1900 W WILLIAM CANNON DR,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-07,1908 W WILLIAM CANNON LLC,Spencer-Pierce Architecture and Interiors **MAIN,unknown
-2026-131856 PR,4416 1/2 RIDGE OAK DR,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-10-07,,City of Austin,unknown
-2026-131577 PR,3600 PRESIDENTIAL BLVD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Upload,2026-10-06,,"Corgan Associates, Inc.",unknown
-2026-131245 PR,3500 E PARMER LN UNIT 2152,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-10-06,,,unknown
-2026-131579 PR,203 W 10TH ST UNIT 600,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-10-06,,The Beck Group,unknown
-2026-131218 PR,3429 EXECUTIVE CENTER DR UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-06,,*Main*,unknown
-2026-131623 PR,1300 GUADALUPE ST UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-06,,Jordan Michael Design,unknown
-2026-131136 PR,2310 S LAMAR BLVD UNIT 101,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Upload,2026-10-06,,,unknown
-2026-131347 PR,901 E 5TH ST UNIT 300,0.0,Remodel,C-1000 Commercial Remodel,e-Prerequisite Review Pending,2026-10-06,,Waterloo512 **MAIN,unknown
-2026-131545 PR,9600 N MOPAC EXPY SVRD SB UNIT 400,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-10-06,,,unknown
-2026-131633 PR,303 COLORADO ST UNIT 1975,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,In Review,2026-10-06,,,unknown
-2026-130845 PR,9600 S IH 35 SVRD SB BLDG G UNIT 400,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-05,,ARCV,unknown
-2026-130727 PR,9314 1/2 MC NEIL RD UNIT B,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-05,,,unknown
-2026-130790 PR,4800 BURNET RD BLDG D UNIT 410,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-05,,,unknown
-2026-130682 PR,4516 SETON CENTER PKWY UNIT 280,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-05,,Waterloo512 **MAIN,unknown
-2026-130758 PR,1044 CAMINO LA COSTA UNIT 1043,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-10-05,,,unknown
-2026-130859 PR,505 W YAGER LN,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-05,CULLIGAN ULTRAPURE REAL ESTATE INC,,unknown
-2026-130594 PR,11501 DOMAIN DR UNIT 250,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-05,,Waterloo512 **MAIN,unknown
-2026-130771 PR,4411 S CONGRESS AVE,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-10-05,TCHFC SOCO LAND LLC,"ND Enterprises, LLC",unknown
-2026-130088 PR,3500 E PARMER LN UNIT 1190,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-10-02,,,unknown
-2026-129831 PR,1300 E 5TH ST UNIT FLR4,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-02,,**MAIN,unknown
-2026-130107 PR,11200 LAKELINE MALL DR,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-02,LAKELINE DEVELOPERS,Mercury Permits Inc. *MAIN*,unknown
-2026-129883 PR,14900 AVERY RANCH BLVD BLDG A UNIT 300,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-02,,,unknown
-2026-130117 PR,2905 SAN GABRIEL ST UNIT 217,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-02,,Mercury Permits *MAIN*,unknown
-2026-129809 PR,2304 FORBES DR,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-10-02,3724 ACQUISITIONS LLC,Mercury Permits Inc. (This One),unknown
-2026-129297 PR,5501 N LAMAR BLVD BLDG A UNIT 107,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-01,,**MAIN,unknown
-2026-129424 PR,401 W 4TH ST UNIT 3150,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-10-01,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-129600 PR,301 CHICON ST,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-10-01,,ATX Construction Group **MAIN**,unknown
-2026-129419 PR,3801 BERKMAN DR UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-01,,,unknown
-2026-129325 PR,3500 E PARMER LN UNIT 12125,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-10-01,,MAIN**,unknown
-2026-129641 PR,10535 BOYER BLVD UNIT 150,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-01,,Waterloo512 **MAIN,unknown
-2026-129423 PR,3600 PRESIDENTIAL BLVD UNIT 2196,0.0,Remodel,C-1000 Commercial Remodel,Intake Pending,2026-10-01,,,unknown
-2026-129386 PR,7200 N MOPAC EXPY SVRD SB UNIT 400,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-10-01,,Harrison Fletcher LLC,unknown
-2026-129545 PR,5426 GUADALUPE ST,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-10-01,,Caseco,unknown
-2026-128544 PR,2500 RIDGEPOINT DR,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-30,TLO TX1 INVESTMENTS LLC,Facility Solutions Group **MAIN,unknown
-2026-128487 PR,321 W BEN WHITE BLVD SVRD EB UNIT 201,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-30,,Cotton Commercial USA Inc,unknown
-2026-129064 PR,1305 TOWN CREEK DR UNIT 8,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-30,,,unknown
-2026-128790 PR,710 RED RIVER ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-30,MCDANIEL COMMERCIAL LLC,CSW Construction Services LTD,unknown
-2026-128620 PR,6929 AIRPORT BLVD UNIT 137,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-30,,MAD ARCHITECTURE (This one),unknown
-2026-129071 PR,401 CONGRESS AVE UNIT 1150,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-30,,**MAIN,unknown
-2026-127991 PR,9707 ANDERSON MILL RD UNIT 220,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-29,,,unknown
-2026-127608 PR,6207 FM 2244 RD UNIT 301,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-28,,,unknown
-2026-126647 PR,10600 N LAMAR BLVD,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-25,CHEUNG ROSE CHILDRENS TRUST,"Linbeck Group, LLC",unknown
-2026-126783 PR,15900 N IH 35 SVRD SB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-25,,AMP Engineering,unknown
-2026-126576 PR,6606 SANDSHOF DR UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-25,,JAG PERMITS *MAIN*,unknown
-2026-126213 PR,210 E ST ELMO RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-24,,WareSpace,unknown
-2026-125913 PR,14005 N US 183 HWY SVRD NB BLDG B UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-24,,SGA Constructions LLC,unknown
-2026-125878 PR,11301 LAKELINE BLVD BLDG 8 UNIT FLR2,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-09-24,,,unknown
-2026-126256 PR,1308 WEST LYNN ST UNIT 110,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-09-24,,Waterloo512 **MAIN,unknown
-2026-125952 PR,2227 AMBITION WAY UNIT 100,0.0,Remodel,C-1001 Commercial Finish Out,e-Prerequisite Review Pending,2026-09-24,,Waterloo512 **MAIN,unknown
-2026-126182 PR,2901 S CAPITAL OF TEXAS HWY NB UNIT C01A,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-24,,,unknown
-2026-125624 PR,8900 N IH 35 SVRD SB UNIT 1082,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-23,,,unknown
-2026-125322 PR,103 W MILTON ST,0.0,Remodel,C-1000 Commercial Remodel,e-Prerequisite Review Pending,2026-09-23,,**MAIN,unknown
-2026-125315 PR,3500 S SH 130 SVRD SB BLDG 2,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-23,,Mancini Duffy Architects,unknown
-2026-124672 PR,1001 W HOWARD LN,0.0,Remodel,C-1000 Commercial Remodel,In E-Review,2026-09-22,SL PROJECT TEXAS 2 LP,Austin Permit Service Inc. (MAIN),unknown
-2026-124556 PR,1600 S 1ST ST UNIT 130,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-22,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-124625 PR,11920 WILSON PARKE AVE,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-22,TRAVIS COUNTY % AUSTIN TCHFC-DMA HOUSING LLC,Travis County,unknown
-2026-124290 PR,5001 NUCKOLS CROSSING RD UNIT 120,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-22,,Aus-Tex Building Consultants **MAIN,unknown
-2026-124350 PR,11110 TOM ADAMS DR BLDG C,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-22,,,unknown
-2026-124476 PR,600 CONGRESS AVE UNIT 3000,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-22,,*Main*,unknown
-2026-124651 PR,98 SAN JACINTO BLVD UNIT FSR903,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-22,,Bennett Consulting **MAIN,unknown
-2026-123750 PR,2609 PERSEVERANCE DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-21,,JDAI Studio,unknown
-2026-123855 PR,700 RIVER ST,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update - Fees Due,2026-09-21,,Austin Permit Service Inc. (MAIN),unknown
-2026-123625 PR,8522 CONNOR LN UNIT 160,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-21,,Corvus Construction,unknown
-2026-124020 PR,6034 WEST COURTYARD DR,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-21,6034 WEST COURTYARD LP,JDAI Studio,unknown
-2026-124101 PR,500 W 5TH ST UNIT 1150,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-21,,*Main*,unknown
-2026-123009 PR,3400 SPIRIT OF TEXAS DR BLDG 250,0.0,Remodel,C-1000 Commercial Remodel,In E-Review,2026-09-18,,,unknown
-2026-122929 PR,1801 E 51ST ST BLDG CB,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-18,,Permit Us Now  **MAIN,unknown
-2026-123281 PR,1801 LAVACA ST UNIT 1C,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-09-18,,,unknown
-2026-123130 PR,8801 S CONGRESS AVE,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-18,HEB GROCERY COMPANY LP,Permit Us Now  **MAIN,unknown
-2026-122324 PR,1801 E 51ST ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-17,AUSTIN MUELLER MD LLC,MAIN,unknown
-2026-122630 PR,8801 S CONGRESS AVE,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-17,HEB GROCERY COMPANY LP,MAIN,unknown
-2026-121684 PR,221 W 6TH ST UNIT 750,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-16,,Waterloo512 **MAIN,unknown
-2026-121703 PR,1801 N LAMAR BLVD UNIT FLR1,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-16,,*Main*,unknown
-2026-121626 PR,44 EAST AVE,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-16,LROC PROPERTIES SOUTHWEST LP,,unknown
-2026-121604 PR,3601 DAVIS LN UNIT 320,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,Awaiting Update,2026-09-16,,,unknown
-2026-121611 PR,2412 KRAMER LN BLDG C,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-16,,,unknown
-2026-120906 PR,1912 W 35TH ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-15,1912 W 35TH ST LLC,Mercury Permits Inc. (This One),unknown
-2026-120928 PR,4616 W HOWARD LN BLDG 6 UNIT 600,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-15,,"HDR Engineering, Inc.",unknown
-2026-120919 PR,8863 ANDERSON MILL RD UNIT 117,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-15,,"B&B Social, LLC",unknown
-2026-120901 PR,3700 CONVICT HILL RD,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-15,AUSTIN INDEPENDENT SCHOOL DISTRICT,Pfluger Architects,unknown
-2026-121227 PR,200 W CESAR CHAVEZ ST UNIT 300,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update - Fees Due,2026-09-15,,Austin Permit Service Inc. (MAIN),unknown
-2026-120651 PR,720 BASTROP HWY SB UNIT 108,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-14,,"Duet Alone, LLC",unknown
-2026-120683 PR,1608 S CONGRESS AVE,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-14,MONEYPENNY SOCO LLC,Waterloo512 **MAIN,unknown
-2026-120333 PR,2501 W PARMER LN UNIT 125,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-14,,Schwarz-Hanson Architects,unknown
-2026-119555 PR,221 W 6TH ST UNIT 200,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-11,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-119507 PR,3204 TOM GREEN ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-11,,,unknown
-2026-119748 PR,221 W 6TH ST UNIT 1700,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-11,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-119520 PR,9807 MIDDLE FISKVILLE RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-11,RLF III CENTRAL LLC,,unknown
-2026-119884 PR,10901 N LAMAR BLVD BLDG D UNIT 402,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-11,,,unknown
-2026-119479 PR,6406 N IH 35 SVRD SB UNIT 2700,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update - Fee Paid,2026-09-11,,"LCCP, LLC **MAIN",unknown
-2026-119515 PR,7200 BURLESON RD UNIT 202,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-09-11,,Link Architecture,unknown
-2026-118777 PR,3500 E PARMER LN UNIT 10150,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,Awaiting Update,2026-09-10,,Mercury Permits Inc. (This One),unknown
-2026-119017 PR,11209 METRIC BLVD,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-10,B9 SEQUOIA BRAKER OWNER LP,WareSpace,unknown
-2026-118830 PR,12001 BURNET RD UNIT F,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-10,,,unknown
-2026-119230 PR,7825 ELKHORN MOUNTAIN TRL,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-10,ROUND ROCK ISD,,unknown
-2026-118828 PR,7601 S CONGRESS AVE BLDG 3 UNIT 310,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-10,,**MAIN,unknown
-2026-118682 PR,401 S 1ST ST UNIT 1525,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update - Fee Paid,2026-09-09,,Austin Permit Service Inc. (MAIN),unknown
-2026-118153 PR,525 W HOWARD LN UNIT 110,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-09-09,,,unknown
-2026-118429 PR,3001 S LAMAR BLVD BLDG G UNIT 200,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update - Fee Paid,2026-09-09,,"LCCP, LLC **MAIN",unknown
-2026-117520 PR,121 W 6TH ST,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-08,,Husch Blackwell LLP,unknown
-2026-116478 PR,2703 SPIRIT OF TEXAS DR UNIT 100,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-09-04,,Bennett Consulting **MAIN,unknown
-2026-116476 PR,805 LAS CIMAS PKWY BLDG 3 UNIT 200,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-04,,Waterloo512 **MAIN,unknown
-2026-116597 PR,3506 SPEEDWAY UNIT 206,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-04,,**MAIN,unknown
-2026-115871 PR,3600 PRESIDENTIAL BLVD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update - Fee Paid,2026-09-03,,,unknown
-2026-115969 PR,13740 N US 183 HWY SVRD SB BLDG K UNIT 5,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,Awaiting Update,2026-09-03,,,unknown
-2026-115922 PR,7201 LEVANDER LOOP,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-03,CITY OF AUSTIN,City of Austin,unknown
-2026-114908 PR,2043 S LAMAR BLVD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-01,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-114857 PR,301 W HOWARD LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-01,CASA MARCO TX II LLC,,unknown
-2026-114889 PR,1401 PHILOMENA ST UNIT 410,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-09-01,,"IA Interior Architects, LLC",unknown
-2026-114872 PR,10840 1/2 BOULDER LN,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-09-01,,,unknown
-2026-114562 PR,1200 W 40TH ST UNIT 121,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-01,,ATX Construction Group **MAIN**,unknown
-2026-114814 PR,2153 S LAMAR BLVD BLDG C UNIT 500,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-09-01,,,unknown
-2026-114942 PR,12625 N IH 35 SVRD NB,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-09-01,SERITAGE SRC FINANCE LLC,"Zipline International, Inc.",unknown
-2026-114883 PR,3100 GUADALUPE ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-09-01,KASPAR ALICE G TRUSTEE,Aus-Tex Building Consultants **MAIN,unknown
-2026-113958 PR,12234 N IH 35 SVRD SB BLDG A,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-08-31,,,unknown
-2026-114170 PR,2323 S LAMAR BLVD UNIT 134,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update,2026-08-31,,,unknown
-2026-113847 PR,601 W 2ND ST BLDG FLR17,0.0,Remodel,C-1001 Commercial Finish Out,In Review,2026-08-31,,Mercury Permits Inc. (This One),unknown
-2026-113788 PR,3001 OAK SPRINGS DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-31,AUSTIN HOUSING FINANCE CORP,SWD Architects,unknown
-2026-113697 PR,11116 MIDDLE FISKVILLE RD UNIT H,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-08-31,,TROPICANA MART LLC,unknown
-2026-113250 PR,12901 N IH 35 SVRD NB BLDG 2 UNIT 200,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update - Fee Paid,2026-08-28,,"LCCP, LLC **MAIN",unknown
-2026-112607 PR,9301 CARGO AVE,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update - Fee Paid,2026-08-27,,"STR International, LLC",unknown
-2026-112353 PR,6231 E STASSNEY LN BLDG 12 UNIT 103,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-27,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-111774 PR,5700 S MOPAC EXPY SB BLDG A UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-26,,SIXTHRIVER,unknown
-2026-111848 PR,2901 S CAPITAL OF TEXAS HWY NB UNIT N10,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-26,,SH Architect **MAIN,unknown
-2026-111816 PR,2801 VIA FORTUNA UNIT 350,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-26,,,unknown
-2026-111211 PR,12611 N MOPAC EXPY SVRD NB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-25,CENTRO NP HOLDINGS 12 SPE LLC,pb archiecture engineering,unknown
-2026-111071 PR,301 W RIVERSIDE DR,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-25,MAE CROCKETT PARTNERS LTD,Mercury Permits *MAIN*,unknown
-2026-109714 PR,2001 S MOPAC EXPY SVRD NB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-21,POST APARTMENT HOMES LP,**MAIN,unknown
-2026-109890 PR,8648 RESEARCH BLVD SVRD SB,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-21,WP DEVELOPMENTS LLC,,unknown
-2026-109583 PR,825 E RUNDBERG LN UNIT K-2,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-21,,NPM BUSINESS LLC,unknown
-2026-109024 PR,502 E 6TH ST,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-08-20,FRC&A LLC,,unknown
-2026-108958 PR,2421 WEBBERVILLE RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-20,RAUL & IRMA AGUILAR LIVING TRUST,Land Strategies Inc. *MAIN*,unknown
-2026-108561 PR,7601 S CONGRESS AVE BLDG 4 UNIT 480,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-19,,"Digital Metal, Inc",unknown
-2026-107776 PR,7912 CAMERON RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-18,JOSEPH ROGER DEVELOPMENTS INC,,unknown
-2026-107191 PR,801 E WILLIAM CANNON DR UNIT 250,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-17,,SH Architect **MAIN,unknown
-2026-106137 PR,1901 W WILLIAM CANNON DR UNIT 153,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,Awaiting Update,2026-08-14,,Beam Team Construction In,unknown
-2026-105525 PR,8222 JAMESTOWN DR BLDG A UNIT 401,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-13,,**MAIN,unknown
-2026-105088 PR,6600 MIDDLE FISKVILLE RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-12,,Greenlite,unknown
-2026-105301 PR,11501 ROCK ROSE AVE UNIT 152,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-12,,Austin Permit Service **MAIN**,unknown
-2026-105328 PR,1701 E MARTIN LUTHER KING JR BLVD UNIT 103,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-12,,THOMPSON SAFETY  LLC,unknown
-2026-105424 PR,3120 PALM WAY UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update - Fee Paid,2026-08-12,,Austin Permit Service **MAIN**,unknown
-2026-103539 PR,8312 BURNET RD UNIT 105,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-10,,Permit Us Now  **MAIN,unknown
-2026-103605 PR,1908 KRAMER LN BLDG B UNIT 200,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-10,,,unknown
-2026-103633 PR,13929 CENTER LAKE DR BLDG 4.1 UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,In E-Review,2026-08-10,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-103602 PR,3503 HYRIDGE DR,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-08-10,ORANGESTONE HYRIDGE LLC,JAG PERMITS *MAIN*,unknown
-2026-102813 PR,2005 SOUTHERN OAKS DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-07,,CLEANTAG LLC,unknown
-2026-103084 PR,11305 FOUR POINTS DR BLDG 2 UNIT 200,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-07,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-103140 PR,3414 1/2 DAVIS LN,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-07,,,unknown
-2026-102098 PR,309 E 3RD ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-06,TRINITY WAY LLC,KS Permitting LLC **MAIN**,unknown
-2026-102230 PR,2825 HANCOCK DR UNIT 105,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-06,,,unknown
-2026-100651 PR,1015 E 32ND ST UNIT 204,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-04,,"AUSTIN PERMIT SERVICE, INC *MAIN*",unknown
-2026-100964 PR,4631 AIRPORT BLVD UNIT 122,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-08-04,,,unknown
-2026-100013 PR,5451 N IH 35 SVRD NB UNIT B,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-08-03,,SH Architect **MAIN,unknown
-2026-100380 PR,525 W HOWARD LN UNIT 120,0.0,Remodel,C-1001 Commercial Finish Out,Awaiting Update - Fee Paid,2026-08-03,,,unknown
-2026-098185 PR,600 W 10TH ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-29,,,unknown
-2026-097156 PR,415 COLORADO ST UNIT 1600,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-28,,**MAIN**,unknown
-2026-096577 PR,2206 RIO GRANDE ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-27,HH RIO GRANDE LLC,KS Permitting LLC **MAIN**,unknown
-2026-096821 PR,1910 ROBBINS PL UNIT 102,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-07-27,,,unknown
-2026-096530 PR,918 CONGRESS AVE,0.0,Remodel,C-1000 Commercial Remodel,In E-Review,2026-07-27,,KS Permitting LLC **MAIN**,unknown
-2026-096550 PR,11800 DESSAU RD BLDG 3 UNIT 300,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-27,,Thompson Construction,unknown
-2026-094573 PR,2324 S LAMAR BLVD UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-22,,KS Permitting LLC **MAIN**,unknown
-2026-093848 PR,8901 WALL ST UNIT 450,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-21,,,unknown
-2026-094136 PR,1814 HARVEY ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-21,1814 HARVEY LLC,,unknown
-2026-093030 PR,10213 BROWNIE DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-20,,,unknown
-2026-093244 PR,9900 S IH 35 SVRD SB BLDG A UNIT 250,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-20,,MCM Architecture,unknown
-2026-092589 PR,5209 MANOR RD UNIT B,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-17,,,unknown
-2026-089922 PR,12885 N US 183 HWY SVRD NB BLDG A UNIT 203,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-07-13,,,unknown
-2026-089597 PR,5809 1/2 S IH 35 SVRD NB,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-07-13,,Fullerton Engineering,unknown
-2026-088108 PR,6600 ED BLUESTEIN BLVD SB BLDG 3,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-09,,Real Estate Buy Design,unknown
-2026-087482 PR,11416 N FM 620 RD UNIT J,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-07-08,,**MAIN,unknown
-2026-086607 PR,7010 W SH 71 UNIT 160,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-07-07,,**MAIN,unknown
-2026-084401 PR,3820 S CONGRESS AVE BLDG 2,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-07-01,,Fill A Bag LLC (Thrift at the warehouse),unknown
-2026-083071 PR,1201 W ANDERSON LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-29,ORCID HOLDINGS LLC,AUSTIN PLANS FOR PERMITS *MAIN,unknown
-2026-082835 PR,1504 WEST AVE,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-06-29,1504 WEST AVE LLC,,unknown
-2026-081712 PR,1030 NORWOOD PARK BLVD BLDG 4 UNIT 400,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-25,,Berman Architecture,unknown
-2026-078127 PR,4606 BURLESON RD UNIT 160,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-18,,KS Permitting LLC **MAIN**,unknown
-2026-075843 PR,11282 TAYLOR DRAPER LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-15,NORTHLAND CHANNINGS MARK LLC,Nationwide Renovation LLC,unknown
-2026-075918 PR,1308 WEST LYNN ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-15,,Waterloo512 **MAIN,unknown
-2026-075782 PR,11266 TAYLOR DRAPER LN,0.0,Remodel,C-1000 Commercial Remodel,In Review,2026-06-15,NORTHLAND MUSEO LLC,Nationwide Renovation LLC,unknown
-2026-072329 PR,2104 W BEN WHITE BLVD SVRD WB,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-06-08,,Goldtree Holdings LLC,unknown
-2026-071613 PR,6800 WEST GATE BLVD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-05,LEVY CANNON WEST LLC,Dewberry,unknown
-2026-071624 PR,8711 N LAMAR BLVD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-05,DELARAM PROPERTIES LLC,,unknown
-2026-071886 PR,5601 MENCHACA RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-05,AUSTIN INDEPENDENT SCHOOL DISTRICT,**MAIN,unknown
-2026-070286 PR,1834 FERGUSON LN UNIT 1400,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-03,,,unknown
-2026-069474 PR,110 ACADEMY DR UNIT 51,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-02,,**MAIN,unknown
-2026-069260 PR,2400 SETON AVE,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-06-01,YUGO AUSTIN WATERLOO LLC,,unknown
-2026-067322 PR,4606 BURLESON RD UNIT 100,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,Awaiting Update,2026-05-28,,KS Permitting LLC **MAIN**,unknown
-2026-063421 PR,2301 SCARBROUGH DR UNIT 360,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-05-19,,TAG International **MAIN,unknown
-2026-062588 PR,8400 RESEARCH BLVD SVRD SB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-05-18,GROUP 1 REALTY INC,,unknown
-2026-060209 PR,12530 RESEARCH BLVD SVRD SB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-05-13,GYRO PLUS LLC,,unknown
-2026-058434 PR,5338 THUNDER CREEK RD,0.0,Remodel,C-1000 Commercial Remodel,Pending,2026-05-11,KOO FAMILY REAL ESTATE LLC,,unknown
-2026-055957 PR,2308 CORONADO ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-05-05,2308 CORONADO LLC,,unknown
-2026-053181 PR,12885 N US 183 HWY SVRD NB UNIT 103,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-04-29,,Skin & Tonic Beauty Bar,unknown
-2026-050269 PR,6705 W US 290 HWY BLDG E UNIT 608,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-04-23,,,unknown
-2026-049085 PR,1904 WEST LOOP,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-04-21,,**MAIN,unknown
-2026-047634 PR,12900 N IH 35 SVRD SB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-04-17,WAL-MART STORES TEXAS L P #1185,CESO inc,unknown
-2026-046854 PR,415 E ST ELMO RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-04-16,415 ST ELMO LLC,,unknown
-2026-046708 PR,2925 W ANDERSON LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-04-16,,,unknown
-2026-043153 PR,2201 N LAMAR BLVD BLDG B,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-04-09,,,unknown
-2026-038371 PR,219 W 4TH ST,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-03-31,,,unknown
-2026-037435 PR,3004 S CONGRESS AVE,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-03-27,T & N REALESTATE GROUP LLC,Permit Solutions ***MAIN***,unknown
-2026-035086 PR,502 1/2 CANYON RIDGE DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-03-24,,EVgo,unknown
-2026-033300 PR,1711 ENFIELD RD,0.0,Remodel,C-1000 Commercial Remodel,Pending,2026-03-19,1711 ENFIELD LLC,"Next Level , LLC **MAIN**",unknown
-2026-033446 PR,12029 JOLLYVILLE RD UNIT 100,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-03-19,,,unknown
-2026-032704 PR,16231 N IH 35 SVRD NB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-03-18,AUSTINS FEC RE LLC,,unknown
-2026-030342 PR,6937 N IH 35 SVRD NB,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2026-03-12,,,unknown
-2026-029477 PR,613 W BEN WHITE BLVD SVRD EB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-03-11,603 W BEN WHITE OWNER LLC,MAIN**,unknown
-2026-024083 PR,4103 W SLAUGHTER LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-02-27,,**MAIN,unknown
-2026-022361 PR,600 BARWOOD PARK BLDG 16,0.0,Remodel,C-1000 Commercial Remodel,Pending,2026-02-24,,,unknown
-2026-020394 PR,1019 E RIVERSIDE DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-02-20,,1019 E Riverside Condo Assoc,unknown
-2026-015104 PR,1818 E 12TH ST BLDG 1,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-02-09,,OPA Design Studio Inc,unknown
-2026-013879 PR,6305 CAMERON RD UNIT 117,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-02-05,,,unknown
-2026-011808 PR,8515 BRODIE LN BLDG 16,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-01-30,,,unknown
-2026-011687 PR,2611 E BRAKER LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-01-30,CITY OF AUSTIN,,unknown
-2026-010166 PR,8515 BRODIE LN UNIT 2411,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-01-27,,,unknown
-2026-008663 PR,5800 E PARMER LN UNIT 315,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,Awaiting Update,2026-01-23,,Tedrow Design Group,unknown
-2026-003298 PR,209 E BEN WHITE BLVD SVRD EB UNIT 110,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2026-01-09,,Motors Corner USA **MAIN,unknown
-2025-162095 PR,1316 W 6TH ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-12-26,,,unknown
-2025-161052 PR,8104 EXCHANGE DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-12-22,,Method Architecture,unknown
-2025-159199 PR,1008 REINLI ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-12-16,1008 REINLI ST LLC,Gambit Construction,unknown
-2025-156614 PR,305 W MARTIN LUTHER KING JR BLVD,0.0,Remodel,"C- 213 Hotels, Motels, & Tourist Cabins",Awaiting Update,2025-12-10,PATTERSON MICHAEL E & THOMAS F & NANCY L,Mercury Permits Inc. *MAIN*,unknown
-2025-154467 PR,900 E BRAKER LN UNIT 125,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2025-12-04,,**MAIN,unknown
-2025-153594 PR,900 E BRAKER LN UNIT 169,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2025-12-03,,**MAIN,unknown
-2025-153373 PR,606 W 29TH ST,0.0,Remodel,C-1001 Commercial Finish Out,Prerequisite Review Approved,2025-12-02,FIVE SPEED LLC SERIES B,,unknown
-2025-152888 PR,8624 N LAMAR BLVD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-12-02,PHINIK COMPANY INC,ENCON LLC,unknown
-2025-150596 PR,1611 W 5TH ST UNIT 105,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-11-24,,Techno LTD,unknown
-2025-150573 PR,4826 E CESAR CHAVEZ ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-11-24,,,unknown
-2025-149983 PR,207 W 4TH ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-11-21,,**MAIN,unknown
-2025-150277 PR,1001 KRAMER LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-11-21,,Herrera Civil Engineering PLLC,unknown
-2025-145408 PR,2511 1/2 WINSTED LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-11-12,,,unknown
-2025-142225 PR,804 1/2 W YAGER LN,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-11-04,,Fullerton Engineering,unknown
-2025-141523 PR,2225 ANDREW ZILKER RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-11-03,CITY OF AUSTIN,"Clean Tag Permits, LLC",unknown
-2025-137227 PR,8527 N CAPITAL OF TEXAS HIGHWAY Bldg 8511,0.0,Remodel,C-1000 Commercial Remodel,Prerequisite Review Approved,2025-10-22,,,unknown
-2025-112974 PR,2943 E 12TH ST,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-09-05,2019 TAYLOR LP,Mercury Permits Inc. (This One),unknown
-2025-110987 PR,208 BARTON SPRINGS RD,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-09-02,HHR AUSTIN LLC,Hyatt Regency Austin,unknown
-2025-086368 PR,13553 N US 183 HWY SVRD NB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-07-11,MCDAVID AUSTIN-ACRA LLC,DENTON ARCHITECTURE,unknown
-2025-085624 PR,6800 E BEN WHITE BLVD SVRD WB BLDG 7,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-07-10,,McFarland Architecture,unknown
-2025-082957 PR,2363 E SH 71 WB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-07-03,,,unknown
-2025-026334 PR,411 BASTROP HWY NB,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2025-03-05,,,unknown
-2024-154813 PR,1907 FORESTGLADE DR,0.0,Remodel,C-1000 Commercial Remodel,Awaiting Update,2024-11-21,MAGNOLIA REALTY LLC,,unknown
+recency_days,recency_date,permit_number,project_name,project_type,remodel_subtype,size_band,valuation,work_class,use_class,description,applicant_org,owner_entity,address_raw,address_norm,status,applied_date,units
+1,2026-10-08,2026-132570 PR,2205 OHLEN RD,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of use of existing 2,672 SF commercial building to Pet Services. Indoor dog daycare and boarding; no remodel, construction, or site work. 2026-120762 DA.",Pet Day LLC,LUMINOUS HOLDINGS LLC,2205 OHLEN RD,2205 OHLEN RD,Prerequisite Review Approved,2026-10-08,
+2,2026-10-07,2026-131929 PR,1730 E OLTORF ST,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Move existing metal perimeter fence that is over the property line; move existing vehicle access gate that is over the property line; remove (2) carport covers.,,1730 HILLSIDE LLC,1730 E OLTORF ST,1730 E OLTORF ST,In Review,2026-10-07,
+2,2026-10-07,2026-131962 PR,816 CONGRESS AVE UNIT 970,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior alteration of an existing office space expansion (small project).,,,816 CONGRESS AVE UNIT 970,816 CONGRESS AVE,In Review,2026-10-07,
+2,2026-10-07,2026-132247 PR,1211 E 4TH ST UNIT 200,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,INTERIOR REMODEL_EXPANSION _ COMBIN 2 EXISTING SUITE INTO 1 UNIFIED SPACE,,,1211 E 4TH ST UNIT 200,1211 E 4TH ST,Prerequisite Review Approved,2026-10-07,
+2,2026-10-07,2026-132171 PR,11815 ALTERRA PKWY UNIT FLR9,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Tenant improvement of cafe seating and additional trellis structure on outdoor deck.,Cushing Terrell,,11815 ALTERRA PKWY UNIT FLR9,11815 ALTERRA PKWY,In Review,2026-10-07,
+2,2026-10-07,2026-131779 PR,4616 W HOWARD LN BLDG 5 UNIT 550,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"3 phase project for tenant improvement to existing office/warehouse. Occupied remodel. No HPS scope in this permit. Racking is existing. No hazmat. No access control. Arch demo, new partitions, finish",Waterloo512,,4616 W HOWARD LN BLDG 5 UNIT 550,4616 W HOWARD LN,Prerequisite Review Approved,2026-10-07,
+2,2026-10-07,2026-132323 PR,1900 W WILLIAM CANNON DR,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Come demolition and new walls, new windows, demolition of teller lanes on site.",Spencer-Pierce Architecture and Interiors,1908 W WILLIAM CANNON LLC,1900 W WILLIAM CANNON DR,1900 W WILLIAM CANNON DR,In Review,2026-10-07,
+2,2026-10-07,2026-131856 PR,4416 1/2 RIDGE OAK DR,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Replace optional standby generator and automatic transfer switch and add docking station.,City of Austin,,4416 1/2 RIDGE OAK DR,4416 1/2 RIDGE OAK DR,Prerequisite Review Approved,2026-10-07,
+3,2026-10-06,2026-131577 PR,3600 PRESIDENTIAL BLVD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: BAUS Review- Interior Remodel Break Area Will Be Subdivided into Two Separate Areas, Scope of Work to Include New Partial Height Partitions and Entry Door.","Corgan Associates, Inc.",,3600 PRESIDENTIAL BLVD,3600 PRESIDENTIAL BLVD,Awaiting Upload,2026-10-06,
+3,2026-10-06,2026-131245 PR,3500 E PARMER LN UNIT 2152,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"First-generation tenant finish-out of an existing commercial shell space for a new cocktail lounge.
+2026 131266 FR",,,3500 E PARMER LN UNIT 2152,3500 E PARMER LN,In Review,2026-10-06,
+3,2026-10-06,2026-131579 PR,203 W 10TH ST UNIT 600,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Tenant Improvements for the expansion of 6 private offices and 1 conference room.,The Beck Group,,203 W 10TH ST UNIT 600,203 W 10TH ST,Awaiting Update,2026-10-06,
+3,2026-10-06,2026-131218 PR,3429 EXECUTIVE CENTER DR UNIT 100,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,INTERIOR REMODEL OF EXISTING OFFICE SPACE.,,,3429 EXECUTIVE CENTER DR UNIT 100,3429 EXECUTIVE CENTER DR,In Review,2026-10-06,
+3,2026-10-06,2026-131623 PR,1300 GUADALUPE ST UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of Use - Interior finish-out of a new gym and wellness center in a former office space. Phase 1 will include demolition of some non-loadbearing walls, construction of new walls, and and install",Jordan Michael Design,,1300 GUADALUPE ST UNIT 100,1300 GUADALUPE ST,In Review,2026-10-06,
+3,2026-10-06,2026-131136 PR,2310 S LAMAR BLVD UNIT 101,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review - Interior Remodel to Existing Restaurant (1,820 SF).",,,2310 S LAMAR BLVD UNIT 101,2310 S LAMAR BLVD,Awaiting Upload,2026-10-06,
+3,2026-10-06,2026-131347 PR,901 E 5TH ST UNIT 300,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review - Interior Remodel, Tenant Improvements. Level 3 will be a demo of Existing Partitions, Scope of Work include Interior Non-Structural Partitions, and Updated MSP wor",Waterloo512,,901 E 5TH ST UNIT 300,901 E 5TH ST,e-Prerequisite Review Pending,2026-10-06,
+3,2026-10-06,2026-131545 PR,9600 N MOPAC EXPY SVRD SB UNIT 400,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,We will remove an existing door and wall-off / we will remove a wall and have an open space. It will still be one area in the building.,,,9600 N MOPAC EXPY SVRD SB UNIT 400,9600 N MOPAC EXPY SVRD SB,Prerequisite Review Approved,2026-10-06,
+3,2026-10-06,2026-131633 PR,303 COLORADO ST UNIT 1975,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,"INTERIOR ALTERATION OF APPROX. (3,516SF) OF EXISTING INTERIOR SPACE",,,303 COLORADO ST UNIT 1975,303 COLORADO ST,In Review,2026-10-06,
+4,2026-10-05,2026-130845 PR,9600 S IH 35 SVRD SB BLDG G UNIT 400,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"EXISTING SPACE, NEW TENANT TO INCLUDE NEW WALLS FINISHES FIXTURES AND PAINT.",ARCV,,9600 S IH 35 SVRD SB BLDG G UNIT 400,9600 S IH 35 SVRD SB,In Review,2026-10-05,
+4,2026-10-05,2026-130727 PR,9314 1/2 MC NEIL RD UNIT B,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Verizon Will be doing a maintenance upgrade/antenna swap to their existing equipment.,,,9314 1/2 MC NEIL RD UNIT B,9314 1/2 MC NEIL RD,In Review,2026-10-05,
+4,2026-10-05,2026-130790 PR,4800 BURNET RD BLDG D UNIT 410,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior remodel. New finishes on floors and walls, new hand sink on FOD.",,,4800 BURNET RD BLDG D UNIT 410,4800 BURNET RD,In Review,2026-10-05,
+4,2026-10-05,2026-130682 PR,4516 SETON CENTER PKWY UNIT 280,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior office remodel. No change of use. No access control.,Waterloo512,,4516 SETON CENTER PKWY UNIT 280,4516 SETON CENTER PKWY,In Review,2026-10-05,
+4,2026-10-05,2026-130758 PR,1044 CAMINO LA COSTA UNIT 1043,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Rebuild and restore fire-damaaged apartment unit, to pre-loss condition. Existing multifamily unit.",,,1044 CAMINO LA COSTA UNIT 1043,1044 CAMINO LA COSTA,Prerequisite Review Approved,2026-10-05,
+4,2026-10-05,2026-130859 PR,505 W YAGER LN,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Minor Electric (Panel), Minor Plumbing (Top Out), Mechanical (Roof Units), Duct work. Replacement of missing drywall, insulation, flooring, painting and finish carpentry. Existing Water treatment busi",,CULLIGAN ULTRAPURE REAL ESTATE INC,505 W YAGER LN,505 W YAGER LN,In Review,2026-10-05,
+4,2026-10-05,2026-130594 PR,11501 DOMAIN DR UNIT 250,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Phase 1: Interior remodel of the existing office suite. This is an occupied remodel, and Phase 2 will remain occupied while Phase 1 is under construction. Existing access control is to remain.
+
+Phase",Waterloo512,,11501 DOMAIN DR UNIT 250,11501 DOMAIN DR,In Review,2026-10-05,1.0
+4,2026-10-05,2026-130771 PR,4411 S CONGRESS AVE,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"Finish-out to create a sauna/wellness space, including new electrical, mechanical, and plumbing finishes and fixtures for Suite B","ND Enterprises, LLC",TCHFC SOCO LAND LLC,4411 S CONGRESS AVE,4411 S CONGRESS AVE,In Review,2026-10-05,1.0
+7,2026-10-02,2026-130088 PR,3500 E PARMER LN UNIT 1190,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,4325 SF Commercial Lease Space Build-Out for Nail Salon.,,,3500 E PARMER LN UNIT 1190,3500 E PARMER LN,In Review,2026-10-02,
+7,2026-10-02,2026-129831 PR,1300 E 5TH ST UNIT FLR4,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,First generation construction of new common corridor on Level 4 (small project review),,,1300 E 5TH ST UNIT FLR4,1300 E 5TH ST,In Review,2026-10-02,
+7,2026-10-02,2026-130107 PR,11200 LAKELINE MALL DR,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Refurbishment of existing rooftop units RTU-5 and RTU-9 serving an existing enclosed mall. Scope includes replacement of supply fans with fan arrays, cooling coils and compressors (existing R-22 recla",Mercury Permits Inc.,LAKELINE DEVELOPERS,11200 LAKELINE MALL DR,11200 LAKELINE MALL DR,In Review,2026-10-02,
+7,2026-10-02,2026-129883 PR,14900 AVERY RANCH BLVD BLDG A UNIT 300,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Approx. 1786 sf of interior finish updates, no change of use, existing tenant. Existing pet services.",,,14900 AVERY RANCH BLVD BLDG A UNIT 300,14900 AVERY RANCH BLVD,In Review,2026-10-02,
+7,2026-10-02,2026-130117 PR,2905 SAN GABRIEL ST UNIT 217,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel to create pilates studio. 2026-113312 DA.,Mercury Permits,,2905 SAN GABRIEL ST UNIT 217,2905 SAN GABRIEL ST,In Review,2026-10-02,
+7,2026-10-02,2026-129809 PR,2304 FORBES DR,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,First time finish out to create Spec Suite.,Mercury Permits Inc. (This One),3724 ACQUISITIONS LLC,2304 FORBES DR,2304 FORBES DR,In Review,2026-10-02,
+8,2026-10-01,2026-129297 PR,5501 N LAMAR BLVD BLDG A UNIT 107,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel and upgrades to space for a personal fitness trainer business.,,,5501 N LAMAR BLVD BLDG A UNIT 107,5501 N LAMAR BLVD,In Review,2026-10-01,
+8,2026-10-01,2026-129424 PR,401 W 4TH ST UNIT 3150,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,Finish out for admin office.,"AUSTIN PERMIT SERVICE, INC",,401 W 4TH ST UNIT 3150,401 W 4TH ST,In Review,2026-10-01,
+8,2026-10-01,2026-129419 PR,3801 BERKMAN DR UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of Use and interior tenant finish-out of an existing vacant commercial suite for a 645 sq. ft. neighborhood fitness club, including architectural, plumbing, HVAC, and electrical work.",,,3801 BERKMAN DR UNIT 100,3801 BERKMAN DR,In Review,2026-10-01,1.0
+8,2026-10-01,2026-129325 PR,3500 E PARMER LN UNIT 12125,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"Tenant finish out of a first generation lease space.
+
+2026-129333 FR",,,3500 E PARMER LN UNIT 12125,3500 E PARMER LN,In Review,2026-10-01,
+8,2026-10-01,2026-129641 PR,10535 BOYER BLVD UNIT 150,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior remodel with change of use to combine suites 200 and 150 as one suite, addressed as 150, for offices with storage and accessory assembly space for breakroom and training room. High Pile Stora",Waterloo512,,10535 BOYER BLVD UNIT 150,10535 BOYER BLVD,In Review,2026-10-01,
+8,2026-10-01,2026-129423 PR,3600 PRESIDENTIAL BLVD UNIT 2196,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: BAUS Review- Interior Remodel to Install Wall frame, Scope of Work Will Also Include Electrical Assemblies (660,000 SF).",,,3600 PRESIDENTIAL BLVD UNIT 2196,3600 PRESIDENTIAL BLVD,Intake Pending,2026-10-01,
+8,2026-10-01,2026-129545 PR,5426 GUADALUPE ST,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel.,Caseco,,5426 GUADALUPE ST,5426 GUADALUPE ST,In Review,2026-10-01,
+9,2026-09-30,2026-128544 PR,2500 RIDGEPOINT DR,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Rebuilding the existing electrical service damaged by vandalism at administrative/office building.,Facility Solutions Group,TLO TX1 INVESTMENTS LLC,2500 RIDGEPOINT DR,2500 RIDGEPOINT DR,Prerequisite Review Approved,2026-09-30,1.0
+9,2026-09-30,2026-128487 PR,321 W BEN WHITE BLVD SVRD EB UNIT 201,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Rebuild suites from soot damages. No changes to floor plans, finishes or occupancy. Like for like conditions as covered by insurance. (2 Apps - Unit 201 and 202)",Cotton Commercial USA Inc,,321 W BEN WHITE BLVD SVRD EB UNIT 201,321 W BEN WHITE BLVD SVRD EB,In Review,2026-09-30,
+9,2026-09-30,2026-129064 PR,1305 TOWN CREEK DR UNIT 8,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,This is an abandoned system. There is an existing 4.860KW roof mounted system onsite and (1) 10KW Franklin Battery. We will be requesting a pre-inspection and actively seeking meter variance as this i,,,1305 TOWN CREEK DR UNIT 8,1305 TOWN CREEK DR,Prerequisite Review Approved,2026-09-30,
+9,2026-09-30,2026-128620 PR,6929 AIRPORT BLVD UNIT 137,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior remodel and Change of Use from retail to create restaurant. Add rear landing at door and add exterior grease trap. 
+
+2026 128636 FR",MAD ARCHITECTURE (This one),,6929 AIRPORT BLVD UNIT 137,6929 AIRPORT BLVD,Awaiting Update,2026-09-30,
+9,2026-09-30,2026-129071 PR,401 CONGRESS AVE UNIT 1150,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior alteration consisting of an expansion of building amenity and fitness spaces.,,,401 CONGRESS AVE UNIT 1150,401 CONGRESS AVE,Awaiting Update,2026-09-30,
+10,2026-09-29,2026-127991 PR,9707 ANDERSON MILL RD UNIT 220,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Change of Use from Admin business office to Medical Office.,,,9707 ANDERSON MILL RD UNIT 220,9707 ANDERSON MILL RD,Awaiting Update,2026-09-29,
+11,2026-09-28,2026-127608 PR,6207 FM 2244 RD UNIT 301,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior non structural remodel of existing office space,,,6207 FM 2244 RD UNIT 301,6207 FM 2244 RD,In Review,2026-09-28,
+14,2026-09-25,2026-126647 PR,10600 N LAMAR BLVD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,New power and data in existing office. New exterior lighting.,"Linbeck Group, LLC",CHEUNG ROSE CHILDRENS TRUST,10600 N LAMAR BLVD,10600 N LAMAR BLVD,In Review,2026-09-25,1.0
+14,2026-09-25,2026-126783 PR,15900 N IH 35 SVRD SB,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Replace existing Electric Vehicle Charging Stations with New Stations. Existing Shell station.,AMP Engineering,,15900 N IH 35 SVRD SB,15900 N IH 35 SVRD SB,Awaiting Update,2026-09-25,
+14,2026-09-25,2026-126576 PR,6606 SANDSHOF DR UNIT 100,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Combining 3 Unit spaces into 1,JAG PERMITS,,6606 SANDSHOF DR UNIT 100,6606 SANDSHOF DR,Awaiting Update,2026-09-25,
+15,2026-09-24,2026-126213 PR,210 E ST ELMO RD,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Project consists of interior renovations to facilitate subdivision of existing building into individual tenant units as a business warehousing facility. Individual units are leased empty fixtures, and",WareSpace,,210 E ST ELMO RD,210 E ST ELMO RD,Awaiting Update,2026-09-24,1.0
+15,2026-09-24,2026-125913 PR,14005 N US 183 HWY SVRD NB BLDG B UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change Of Use From Retail to Educational, interior non structural demolition of existing wall partitions and relocating of existing outlets.",SGA Constructions LLC,,14005 N US 183 HWY SVRD NB BLDG B UNIT 100,14005 N US 183 HWY SVRD NB,Awaiting Update,2026-09-24,
+15,2026-09-24,2026-125878 PR,11301 LAKELINE BLVD BLDG 8 UNIT FLR2,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"First Tenant improvement finish-out of 14,052 SF shell space for 2nd-floor office use. NO EXTERIOR WORK, LANDSCAPE, UTILITY, OR PARKING MODIFICATIONS.",,,11301 LAKELINE BLVD BLDG 8 UNIT FLR2,11301 LAKELINE BLVD,Awaiting Update,2026-09-24,
+15,2026-09-24,2026-126256 PR,1308 WEST LYNN ST UNIT 110,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,First level tenant 2 finish out Ste 110 for Art Gallery and Ste 200 for offices. No exterior work. Return to shell previously submitted 2026-075918 PR,Waterloo512,,1308 WEST LYNN ST UNIT 110,1308 W LYNN ST,Awaiting Update,2026-09-24,
+15,2026-09-24,2026-125952 PR,2227 AMBITION WAY UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"ePlan: Commercial Expedited Review - [APPROVED] First Time Finish Out for Factory/Warehouse (95,728 SF).",Waterloo512,,2227 AMBITION WAY UNIT 100,2227 AMBITION WAY,e-Prerequisite Review Pending,2026-09-24,
+15,2026-09-24,2026-126182 PR,2901 S CAPITAL OF TEXAS HWY NB UNIT C01A,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Suite remodel.,,,2901 S CAPITAL OF TEXAS HWY NB UNIT C01A,2901 S CAPITAL OF TEXAS HWY NB,Awaiting Update,2026-09-24,
+16,2026-09-23,2026-125322 PR,103 W MILTON ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review - [APPROVED] Interior Remodel top Existing Retail Space. Work to include new Storefront and new ADA restroom (1,481 SF).",,,103 W MILTON ST,103 W MILTON ST,e-Prerequisite Review Pending,2026-09-23,
+17,2026-09-22,2026-124672 PR,1001 W HOWARD LN,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,ePlan Review: Remodel for Prudential Warehouse,Austin Permit Service Inc.,SL PROJECT TEXAS 2 LP,1001 W HOWARD LN,1001 W HOWARD LN,In E-Review,2026-09-22,1.0
+17,2026-09-22,2026-124556 PR,1600 S 1ST ST UNIT 130,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel and expansion of existing pilates studio (unit 130 - 1598 sf) - Phase 1 scope and change of use and remodel to expand pilates studio. This phase remodels 120 and then combines units 1,"AUSTIN PERMIT SERVICE, INC",,1600 S 1ST ST UNIT 130,1600 S 1ST ST,In Review,2026-09-22,
+17,2026-09-22,2026-124625 PR,11920 WILSON PARKE AVE,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Renovation of 18206 SF of the 2nd Floor of the Travis County BCPWP Wilson Parke Building; includes select demolition, new metal stud and gypboard walls, doors and frames, finishes and associated MEP.",Travis County,TRAVIS COUNTY % AUSTIN TCHFC-DMA HOUSING LLC,11920 WILSON PARKE AVE,11920 WILSON PARKE AVE,Prerequisite Review Approved,2026-09-22,1.0
+17,2026-09-22,2026-124290 PR,5001 NUCKOLS CROSSING RD UNIT 120,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Change of use & remodel to dental office (No Med Gas),Aus-Tex Building Consultants,,5001 NUCKOLS CROSSING RD UNIT 120,5001 NUCKOLS CROSSING RD,Awaiting Update,2026-09-22,
+17,2026-09-22,2026-124350 PR,11110 TOM ADAMS DR BLDG C,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Relocate existing Building C fire pump feeder from temporary overhead routing to permanent underground raceway; no load or service capacity increase.,,,11110 TOM ADAMS DR BLDG C,11110 TOM ADAMS DR,Awaiting Update,2026-09-22,
+17,2026-09-22,2026-124476 PR,600 CONGRESS AVE UNIT 3000,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"REMODEL OF AN EXTERIOR ROOF DECK ON THE 30TH FLOOR - SCOPE INCLUDES REPLACEMENT OF EXTERIOR DOORS AND WINDOWS AND ROOFING, STRUCTURAL REINFORCEMENT, AND MODIFICATION OF EXISTING ELECTRICAL AND PLUMBIN",,,600 CONGRESS AVE UNIT 3000,600 CONGRESS AVE,In Review,2026-09-22,
+17,2026-09-22,2026-124651 PR,98 SAN JACINTO BLVD UNIT FSR903,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,INTERIOR REMODEL OF EXISTING CONDO,Bennett Consulting,,98 SAN JACINTO BLVD UNIT FSR903,98 SAN JACINTO BLVD,In Review,2026-09-22,
+18,2026-09-21,2026-123750 PR,2609 PERSEVERANCE DR,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"INTERIOR REMODEL/FINISH OUT: DEMO OF EXST ADMIN OFFICES FOR NEW YOGA STUDIO ROOM, WITH ADDITION OF SMALL FOOD PREP AREA NEAR RECEPTION.
+
+2026 123774 FR",JDAI Studio,,2609 PERSEVERANCE DR,2609 PERSEVERANCE DR,Awaiting Update,2026-09-21,
+18,2026-09-21,2026-123855 PR,700 RIVER ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"ePlan: Commercial Expedited Review - First Time Finish out For Wellness Club Scope of Work to Include Cafe, Locker Rooms, Sauna, cold plunge and Hot Tub (3,355 SF).",Austin Permit Service Inc.,,700 RIVER ST,700 RIVER ST,Awaiting Update - Fees Due,2026-09-21,
+18,2026-09-21,2026-123625 PR,8522 CONNOR LN UNIT 160,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Demising wall with no mechanical, electrical, plumbing, or fire sprinkler/alarm work.",Corvus Construction,,8522 CONNOR LN UNIT 160,8522 CONNOR LN,Awaiting Update,2026-09-21,
+18,2026-09-21,2026-124020 PR,6034 WEST COURTYARD DR,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"143: interior remodel to existing office space
+
+144: interior remodel to existing office space",JDAI Studio,6034 WEST COURTYARD LP,6034 WEST COURTYARD DR,6034 W COURTYARD DR,In Review,2026-09-21,
+18,2026-09-21,2026-124101 PR,500 W 5TH ST UNIT 1150,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"interior remodel - private offices, storage room, conference rooms, reception area, and break area",,,500 W 5TH ST UNIT 1150,500 W 5TH ST,Awaiting Update,2026-09-21,
+21,2026-09-18,2026-123009 PR,3400 SPIRIT OF TEXAS DR BLDG 250,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: BAUS Review Replace a Free Standing Cooler (24,300 SF).",,,3400 SPIRIT OF TEXAS DR BLDG 250,3400 SPIRIT OF TEXAS DR,In E-Review,2026-09-18,
+21,2026-09-18,2026-122929 PR,1801 E 51ST ST BLDG CB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Existing Curbside Pick-up Remodel.,Permit Us Now,,1801 E 51ST ST BLDG CB,1801 E 51ST ST,Prerequisite Review Approved,2026-09-18,
+21,2026-09-18,2026-123281 PR,1801 LAVACA ST UNIT 1C,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,Interior tenant finishout of commercial office space less than 5000 sq ft.,,,1801 LAVACA ST UNIT 1C,1801 LAVACA ST,In Review,2026-09-18,
+21,2026-09-18,2026-123130 PR,8801 S CONGRESS AVE,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel to existing Curbside Pickup and Produce area dock. 2026-123152 FR.,Permit Us Now,HEB GROCERY COMPANY LP,8801 S CONGRESS AVE,8801 S CONGRESS AVE,Prerequisite Review Approved,2026-09-18,
+22,2026-09-17,2026-122324 PR,1801 E 51ST ST,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Refrigerated display case upgrade and remodel within the store at various department.
+
+2026 122353 FR",,AUSTIN MUELLER MD LLC,1801 E 51ST ST,1801 E 51ST ST,Awaiting Update,2026-09-17,
+22,2026-09-17,2026-122630 PR,8801 S CONGRESS AVE,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Refrigerated display case upgrade and remodel within the store at various department
+FR 2026 122644",,HEB GROCERY COMPANY LP,8801 S CONGRESS AVE,8801 S CONGRESS AVE,In Review,2026-09-17,
+23,2026-09-16,2026-121684 PR,221 W 6TH ST UNIT 750,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,The interior remodel of an existing office space in an existing sprinklered building. No change of use. No access control.,Waterloo512,,221 W 6TH ST UNIT 750,221 W 6TH ST,In Review,2026-09-16,
+23,2026-09-16,2026-121703 PR,1801 N LAMAR BLVD UNIT FLR1,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"INTERIOR REMODEL OF EXISTING OFFICES MAJOR REMODEL FLOORS 1, 2, AND 3",,,1801 N LAMAR BLVD UNIT FLR1,1801 N LAMAR BLVD,Awaiting Update,2026-09-16,
+23,2026-09-16,2026-121626 PR,44 EAST AVE,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Demo remodel of the current existing outdoor swimming pool on floor 11 of 44 East Avenue for multi family use
+FR 2026 121636",,LROC PROPERTIES SOUTHWEST LP,44 EAST AVE,44 E AVE,Awaiting Update,2026-09-16,
+23,2026-09-16,2026-121604 PR,3601 DAVIS LN UNIT 320,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,First time tenant build out of soccer training facility,,,3601 DAVIS LN UNIT 320,3601 DAVIS LN,Awaiting Update,2026-09-16,
+23,2026-09-16,2026-121611 PR,2412 KRAMER LN BLDG C,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Electrical Upgrades. (Floor 2),,,2412 KRAMER LN BLDG C,2412 KRAMER LN,Awaiting Update,2026-09-16,
+24,2026-09-15,2026-120906 PR,1912 W 35TH ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE MEDICAL OFFICE TO PROFESSIONAL OFFICE Interior remodel of existing medical professional office to create professional office. Concurrent review for change of use.,Mercury Permits Inc. (This One),1912 W 35TH ST LLC,1912 W 35TH ST,1912 W 35TH ST,Awaiting Update,2026-09-15,
+24,2026-09-15,2026-120928 PR,4616 W HOWARD LN BLDG 6 UNIT 600,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE OFFICE WAREHOUSE TO RESEARCH SERVICES Interior Remodel, 13,860 sf of research and testing space. addition of a janitor closet, wheelchair lift, enclosed testing chamber. Mechanical, elec","HDR Engineering, Inc.",,4616 W HOWARD LN BLDG 6 UNIT 600,4616 W HOWARD LN,Awaiting Update,2026-09-15,
+24,2026-09-15,2026-120919 PR,8863 ANDERSON MILL RD UNIT 117,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Change of use to indoor sports and recreation and interior remodel.,"B&B Social, LLC",,8863 ANDERSON MILL RD UNIT 117,8863 ANDERSON MILL RD,Awaiting Update,2026-09-15,
+24,2026-09-15,2026-120901 PR,3700 CONVICT HILL RD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Per AISD 2022 Bond Language. Secure entry vestibule upgrades, storefront and glazing installation. Life safety and security improvements. Big gym replacement.",Pfluger Architects,AUSTIN INDEPENDENT SCHOOL DISTRICT,3700 CONVICT HILL RD,3700 CONVICT HILL RD,In Review,2026-09-15,
+24,2026-09-15,2026-121227 PR,200 W CESAR CHAVEZ ST UNIT 300,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,ePlan: Commercial Expedited Review - Interior Remodel to Existing Office. Scope of work includes Suite 300 and Remodel to create corridor and renovate elevator lobby on 3rd floor ( SF).,Austin Permit Service Inc.,,200 W CESAR CHAVEZ ST UNIT 300,200 W CESAR CHAVEZ ST,Awaiting Update - Fees Due,2026-09-15,
+25,2026-09-14,2026-120651 PR,720 BASTROP HWY SB UNIT 108,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE OFFICE WAREHOUSE TO INDOOR ENTERTAINMENT,"Duet Alone, LLC",,720 BASTROP HWY SB UNIT 108,720 BASTROP HWY SB,Awaiting Update,2026-09-14,
+25,2026-09-14,2026-120683 PR,1608 S CONGRESS AVE,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE RESTAURANT RETAIL TO PERSONAL IMPROVEMENT SERVICES Phase1Ext and Int Remodel of floor 1 and a portion of floor 3 for new personal improvement services. Exterior improvements will be phas,Waterloo512,MONEYPENNY SOCO LLC,1608 S CONGRESS AVE,1608 S CONGRESS AVE,Awaiting Update,2026-09-14,
+25,2026-09-14,2026-120333 PR,2501 W PARMER LN UNIT 125,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE RETAIL TO PERSONAL SERVICE 2,270 square foot interior renovation of an existing suite for Hammer and Nails Mens Grooming Salon.",Schwarz-Hanson Architects,,2501 W PARMER LN UNIT 125,2501 W PARMER LN,Awaiting Update,2026-09-14,
+28,2026-09-11,2026-119555 PR,221 W 6TH ST UNIT 200,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel existing office areas - Phase 1 and 2 (2 apps),"AUSTIN PERMIT SERVICE, INC",,221 W 6TH ST UNIT 200,221 W 6TH ST,Awaiting Update,2026-09-11,
+28,2026-09-11,2026-119507 PR,3204 TOM GREEN ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Remodeling of 6 dwelling units, no change of use, no expansion or addition to the building and the site. The building is currently vacant.",,,3204 TOM GREEN ST,3204 TOM GREEN ST,Awaiting Update,2026-09-11,
+28,2026-09-11,2026-119748 PR,221 W 6TH ST UNIT 1700,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel existing office entry areas scope does not overlap with 2026-081280 BP. this area is in another part of the suite.,"AUSTIN PERMIT SERVICE, INC",,221 W 6TH ST UNIT 1700,221 W 6TH ST,Awaiting Update,2026-09-11,
+28,2026-09-11,2026-119520 PR,9807 MIDDLE FISKVILLE RD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"creating a receiving room and a break room, installing lights, outlets and switches, cabinets and flooring at existing office.",,RLF III CENTRAL LLC,9807 MIDDLE FISKVILLE RD,9807 MIDDLE FISKVILLE RD,Awaiting Update,2026-09-11,
+28,2026-09-11,2026-119884 PR,10901 N LAMAR BLVD BLDG D UNIT 402,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Partition to create a pony wall space 12 feet  width x 20 feet long  x 4 feet height.,,,10901 N LAMAR BLVD BLDG D UNIT 402,10901 N LAMAR BLVD,Prerequisite Review Approved,2026-09-11,
+28,2026-09-11,2026-119479 PR,6406 N IH 35 SVRD SB UNIT 2700,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review - Interior Remodel and Change of Use from Personal Services to Storage for Retail Store (suite 2700), Suite 2700 Scope will Include Interior remodel (16,790 SF).","LCCP, LLC",,6406 N IH 35 SVRD SB UNIT 2700,6406 N IH 35 SVRD SB,Awaiting Update - Fee Paid,2026-09-11,
+28,2026-09-11,2026-119515 PR,7200 BURLESON RD UNIT 202,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"Tenant finish-out of an existing shell building for food distribution. (Building 2)
+
+2026-119541 FR",Link Architecture,,7200 BURLESON RD UNIT 202,7200 BURLESON RD,Awaiting Update,2026-09-11,
+29,2026-09-10,2026-118777 PR,3500 E PARMER LN UNIT 10150,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,"First Time Finish Out of existing shell to create restaurant. 
+FR 2026 118803",Mercury Permits Inc. (This One),,3500 E PARMER LN UNIT 10150,3500 E PARMER LN,Awaiting Update,2026-09-10,
+29,2026-09-10,2026-119017 PR,11209 METRIC BLVD,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Project consists of interior renovations to facilitate subdivision of existing building into individual tenant units as a business warehousing facility. Individual units are leased empty fixtures, and",WareSpace,B9 SEQUOIA BRAKER OWNER LP,11209 METRIC BLVD,11209 METRIC BLVD,In Review,2026-09-10,
+29,2026-09-10,2026-118830 PR,12001 BURNET RD UNIT F,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of use to Food Sales and interior remodel.
+
+2026 118868 FR",,,12001 BURNET RD UNIT F,12001 BURNET RD,In Review,2026-09-10,
+29,2026-09-10,2026-119230 PR,7825 ELKHORN MOUNTAIN TRL,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Replace interior flooring throughout, replace plumbing fixtures, replace 2 storefront windows, fix exterior drainage issues, envelope maintenance, and minor electrical work.",,ROUND ROCK ISD,7825 ELKHORN MOUNTAIN TRL,7825 ELKHORN MOUNTAIN TRL,Awaiting Update,2026-09-10,
+29,2026-09-10,2026-118828 PR,7601 S CONGRESS AVE BLDG 3 UNIT 310,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE TO PERSONAL SERVICE with interior remodel demolish non structural interior walls, build new walls, install new wiring for lights, install 8 wall sconces, new flooring",,,7601 S CONGRESS AVE BLDG 3 UNIT 310,7601 S CONGRESS AVE,In Review,2026-09-10,
+30,2026-09-09,2026-118682 PR,401 S 1ST ST UNIT 1525,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,ePlan Review: Finish Out for Office,Austin Permit Service Inc.,,401 S 1ST ST UNIT 1525,401 S 1ST ST,Awaiting Update - Fee Paid,2026-09-09,1.0
+30,2026-09-09,2026-118153 PR,525 W HOWARD LN UNIT 110,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"Tenant finish-out to create Donut shop. 
+
+2026-118176 FR",,,525 W HOWARD LN UNIT 110,525 W HOWARD LN,Awaiting Update,2026-09-09,
+30,2026-09-09,2026-118429 PR,3001 S LAMAR BLVD BLDG G UNIT 200,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review -[CONCURRENT] Change of Use from Retail to Restaurant, Scope of work to Include Addition of Grease Trap (3,500 SF).","LCCP, LLC",,3001 S LAMAR BLVD BLDG G UNIT 200,3001 S LAMAR BLVD,Awaiting Update - Fee Paid,2026-09-09,
+31,2026-09-08,2026-117520 PR,121 W 6TH ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Change of use from B (Admin/ Professional Offices) to Education for private school use.,Husch Blackwell LLP,,121 W 6TH ST,121 W 6TH ST,In Review,2026-09-08,
+35,2026-09-04,2026-116478 PR,2703 SPIRIT OF TEXAS DR UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"Finish Out to create C-Store 
+
+SP2023-1000C.010 -SP",Bennett Consulting,,2703 SPIRIT OF TEXAS DR UNIT 100,2703 SPIRIT OF TEXAS DR,Awaiting Update,2026-09-04,1.0
+35,2026-09-04,2026-116476 PR,805 LAS CIMAS PKWY BLDG 3 UNIT 200,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel to existing admin office including access control and associate MEP scopes. No change of use.,Waterloo512,,805 LAS CIMAS PKWY BLDG 3 UNIT 200,805 LAS CIMAS PKWY,In Review,2026-09-04,
+36,2026-09-03,2026-115871 PR,3600 PRESIDENTIAL BLVD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: BAUS Review- Interior Remodel of existing space for a Restaurant, Scope of Work Also Includes Addition of Equipment to be Added to Existing Apron Level Storage Designated for the Restaurant.",,,3600 PRESIDENTIAL BLVD,3600 PRESIDENTIAL BLVD,Awaiting Update - Fee Paid,2026-09-03,
+36,2026-09-03,2026-115969 PR,13740 N US 183 HWY SVRD SB BLDG K UNIT 5,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,"Tenant finish out to add 4 sinks in place of one and add washer dryer with water, drain for washer and electric for dryer",,,13740 N US 183 HWY SVRD SB BLDG K UNIT 5,13740 N US 183 HWY SVRD SB,Awaiting Update,2026-09-03,
+36,2026-09-03,2026-115922 PR,7201 LEVANDER LOOP,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,New electrical service for 2 vehicle shorelines and a free-standing electrical service rack.,City of Austin,CITY OF AUSTIN,7201 LEVANDER LOOP,7201 LEVANDER LOOP,Prerequisite Review Approved,2026-09-03,
+38,2026-09-01,2026-114908 PR,2043 S LAMAR BLVD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Remodel existing exit stairs to add security gates in existing office space,"AUSTIN PERMIT SERVICE, INC",,2043 S LAMAR BLVD,2043 S LAMAR BLVD,Awaiting Update,2026-09-01,
+38,2026-09-01,2026-114857 PR,301 W HOWARD LN,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior renovation of an existing Universal Technical Institute occupied space. New work to include new utilities required to support new electrical training equipment. No change of use or work to th,,CASA MARCO TX II LLC,301 W HOWARD LN,301 W HOWARD LN,Awaiting Update,2026-09-01,
+38,2026-09-01,2026-114889 PR,1401 PHILOMENA ST UNIT 410,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"New tenant interior construction in a First Generation tenant space consisting of new partitions, ceilings, finishies, millwork, furniture, and equipment with associated MEP scope for an outpatient fa","IA Interior Architects, LLC",,1401 PHILOMENA ST UNIT 410,1401 PHILOMENA ST,Awaiting Update,2026-09-01,
+38,2026-09-01,2026-114872 PR,10840 1/2 BOULDER LN,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Lift Station Improvements- New pumps, wet well, valve vault and electrical improvements.",,,10840 1/2 BOULDER LN,10840 1/2 BOULDER LN,Prerequisite Review Approved,2026-09-01,
+38,2026-09-01,2026-114562 PR,1200 W 40TH ST UNIT 121,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel to vehicle damage apartment unit.,ATX Construction Group,,1200 W 40TH ST UNIT 121,1200 W 40TH ST,Awaiting Update,2026-09-01,
+38,2026-09-01,2026-114814 PR,2153 S LAMAR BLVD BLDG C UNIT 500,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"FIRST TIME TENANT FINISH-OUT FOR A TAKE OUT RESTAURANT
+
+2026 114842 FR",,,2153 S LAMAR BLVD BLDG C UNIT 500,2153 S LAMAR BLVD,Awaiting Update,2026-09-01,
+38,2026-09-01,2026-114942 PR,12625 N IH 35 SVRD NB,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Installation of drone chargers, fencing, and the required power and fiber connections.","Zipline International, Inc.",SERITAGE SRC FINANCE LLC,12625 N IH 35 SVRD NB,12625 N IH 35 SVRD NB,In Review,2026-09-01,
+38,2026-09-01,2026-114883 PR,3100 GUADALUPE ST,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"NTERIOR REMODEL OF EXISTING 1000SF  RESTAURANT (A-2), ADDITION OF 2000SF INTERIOR SPACE. DECK AND CANOPY  ADDITIONS.
+
+2026-114906 FR (Needs to be paid)
+
+[New Construction/Addition/Remodel]",Aus-Tex Building Consultants,KASPAR ALICE G TRUSTEE,3100 GUADALUPE ST,3100 GUADALUPE ST,Awaiting Update,2026-09-01,1.0
+39,2026-08-31,2026-113958 PR,12234 N IH 35 SVRD SB BLDG A,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior demo of interior wall and ductwork, Install hydraulic lift, shelving and racking.",,,12234 N IH 35 SVRD SB BLDG A,12234 N IH 35 SVRD SB,Prerequisite Review Approved,2026-08-31,1.0
+39,2026-08-31,2026-114170 PR,2323 S LAMAR BLVD UNIT 134,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,First Generation Tenant Improvement. Proposed gym use.,,,2323 S LAMAR BLVD UNIT 134,2323 S LAMAR BLVD,Awaiting Update,2026-08-31,
+39,2026-08-31,2026-113847 PR,601 W 2ND ST BLDG FLR17,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"Tenant improvement of shell office space and minor renovations of existing shell amenity, storage and mechanical spaces. Work to include stairwell only work to Floors 17-20.
+
+2 apps (Flr 17 and Flr 18",Mercury Permits Inc. (This One),,601 W 2ND ST BLDG FLR17,601 W 2ND ST,In Review,2026-08-31,
+39,2026-08-31,2026-113788 PR,3001 OAK SPRINGS DR,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Remodel of existing apartment building, including minor adjustments to lobby, office and common area spaces, and new interior apartment finishes.  3 apartments will be modified to be accessible.  Exte",SWD Architects,AUSTIN HOUSING FINANCE CORP,3001 OAK SPRINGS DR,3001 OAK SPRINGS DR,Awaiting Update,2026-08-31,
+39,2026-08-31,2026-113697 PR,11116 MIDDLE FISKVILLE RD UNIT H,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of use from Warehouse to Food Sales.
+
+2026 113720 FR",TROPICANA MART LLC,,11116 MIDDLE FISKVILLE RD UNIT H,11116 MIDDLE FISKVILLE RD,Prerequisite Review Approved,2026-08-31,
+42,2026-08-28,2026-113250 PR,12901 N IH 35 SVRD NB BLDG 2 UNIT 200,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review - [APPROVED] Interior Remodel and Change of Use from Retail to Indoor Sports and Rec Golf Facility with Kitchen and Bar (11,635 SF).
+
+2026-128267 FR","LCCP, LLC",,12901 N IH 35 SVRD NB BLDG 2 UNIT 200,12901 N IH 35 SVRD NB,Awaiting Update - Fee Paid,2026-08-28,
+43,2026-08-27,2026-112607 PR,9301 CARGO AVE,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,ePlan: BAUS Review- Installation of Overhead Door.,"STR International, LLC",,9301 CARGO AVE,9301 CARGO AVE,Awaiting Update - Fee Paid,2026-08-27,
+43,2026-08-27,2026-112353 PR,6231 E STASSNEY LN BLDG 12 UNIT 103,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel existing warehouse and lt. manuf  install roasting equip and assoc. infrastructure,"AUSTIN PERMIT SERVICE, INC",,6231 E STASSNEY LN BLDG 12 UNIT 103,6231 E STASSNEY LN,Awaiting Update,2026-08-27,
+44,2026-08-26,2026-111774 PR,5700 S MOPAC EXPY SB BLDG A UNIT 100,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,INTERIOR ALTERATION OF AN EXISTING OFFICE AND ASSEMBLY SPACE.,SIXTHRIVER,,5700 S MOPAC EXPY SB BLDG A UNIT 100,5700 S MOPAC EXPY SB,In Review,2026-08-26,
+44,2026-08-26,2026-111848 PR,2901 S CAPITAL OF TEXAS HWY NB UNIT N10,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel of an existing space for a new retail tenant.,SH Architect,,2901 S CAPITAL OF TEXAS HWY NB UNIT N10,2901 S CAPITAL OF TEXAS HWY NB,In Review,2026-08-26,1.0
+44,2026-08-26,2026-111816 PR,2801 VIA FORTUNA UNIT 350,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"NC,A,&R - renovation of existing tenant suite with no change in occupancy type or use.",,,2801 VIA FORTUNA UNIT 350,2801 VIA FORTUNA,In Review,2026-08-26,
+45,2026-08-25,2026-111211 PR,12611 N MOPAC EXPY SVRD NB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel of an existing Planet Fitness,pb archiecture engineering,CENTRO NP HOLDINGS 12 SPE LLC,12611 N MOPAC EXPY SVRD NB,12611 N MOPAC EXPY SVRD NB,Awaiting Update,2026-08-25,1.0
+45,2026-08-25,2026-111071 PR,301 W RIVERSIDE DR,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior and exterior remodel of existing restaurant - 9,390 sqft interior and 3,624 sqft exterior. 2026-111172 FR.",Mercury Permits,MAE CROCKETT PARTNERS LTD,301 W RIVERSIDE DR,301 W RIVERSIDE DR,In Review,2026-08-25,
+49,2026-08-21,2026-109714 PR,2001 S MOPAC EXPY SVRD NB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel.,,POST APARTMENT HOMES LP,2001 S MOPAC EXPY SVRD NB,2001 S MOPAC EXPY SVRD NB,Awaiting Update,2026-08-21,
+49,2026-08-21,2026-109890 PR,8648 RESEARCH BLVD SVRD SB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Remodel of a former Arby's to a Tim Hortons coffee shop 2026-108669 DA.,,WP DEVELOPMENTS LLC,8648 RESEARCH BLVD SVRD SB,8648 RESEARCH BLVD SVRD SB,In Review,2026-08-21,
+49,2026-08-21,2026-109583 PR,825 E RUNDBERG LN UNIT K-2,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE FINANCE TO RETAIL Total Wireless retail store,NPM BUSINESS LLC,,825 E RUNDBERG LN UNIT K-2,825 E RUNDBERG LN,Awaiting Update,2026-08-21,
+50,2026-08-20,2026-109024 PR,502 E 6TH ST,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Upgrade to a new 200A 3-phase fused main disconnect, dedicated circuits for kitchen equipment, dedicated circuit - warming station and entry plugs and additional outlets.",,FRC&A LLC,502 E 6TH ST,502 E 6TH ST,Prerequisite Review Approved,2026-08-20,
+50,2026-08-20,2026-108958 PR,2421 WEBBERVILLE RD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"The existing 1-story vacant bar space is being remodeled to allow for an active bar space within the building. No additional area is being added to the building, nor any additional impervious cover to",Land Strategies Inc.,RAUL & IRMA AGUILAR LIVING TRUST,2421 WEBBERVILLE RD,2421 WEBBERVILLE RD,Awaiting Update,2026-08-20,
+51,2026-08-19,2026-108561 PR,7601 S CONGRESS AVE BLDG 4 UNIT 480,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Gas Line installation and Ventilation Work. Existing warehouse.,"Digital Metal, Inc",,7601 S CONGRESS AVE BLDG 4 UNIT 480,7601 S CONGRESS AVE,Awaiting Update,2026-08-19,
+53,2026-08-17,2026-107191 PR,801 E WILLIAM CANNON DR UNIT 250,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Remodel existing restaurant. 
+
+2026-107284 FR",SH Architect,,801 E WILLIAM CANNON DR UNIT 250,801 E WILLIAM CANNON DR,In Review,2026-08-17,
+56,2026-08-14,2026-106137 PR,1901 W WILLIAM CANNON DR UNIT 153,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,New tenant fit out,Beam Team Construction In,,1901 W WILLIAM CANNON DR UNIT 153,1901 W WILLIAM CANNON DR,Awaiting Update,2026-08-14,
+58,2026-08-12,2026-105088 PR,6600 MIDDLE FISKVILLE RD,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,DOWNSIZE REMODEL OF AN EXISTING BURLINGTON MERCANTILE STORE,Greenlite,,6600 MIDDLE FISKVILLE RD,6600 MIDDLE FISKVILLE RD,Awaiting Update,2026-08-12,
+58,2026-08-12,2026-105301 PR,11501 ROCK ROSE AVE UNIT 152,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,INTERIOR AND STOREFRONT REMODEL OF EXISTING RESTAURANT SPACE #152. 2026-105321 FR,Austin Permit Service,,11501 ROCK ROSE AVE UNIT 152,11501 ROCK ROSE AVE,In Review,2026-08-12,
+58,2026-08-12,2026-105328 PR,1701 E MARTIN LUTHER KING JR BLVD UNIT 103,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Upgrading existing kitchen from type 2 to type 1. more specifically grease hood, exhaust fan and makeup air also insulation of new ansul suppression system.
+
+2026 105374 FR",THOMPSON SAFETY LLC,,1701 E MARTIN LUTHER KING JR BLVD UNIT 103,1701 E MARTIN LUTHER KING JR BLVD,Awaiting Update,2026-08-12,
+58,2026-08-12,2026-105424 PR,3120 PALM WAY UNIT 100,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review - Interior Remodel to Existing Restaurant Scope of Work Include Interior and Storefront Remodel (21,500 SF)",Austin Permit Service,,3120 PALM WAY UNIT 100,3120 PALM WAY,Awaiting Update - Fee Paid,2026-08-12,
+60,2026-08-10,2026-103539 PR,8312 BURNET RD UNIT 105,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,THIS PROJECT CONSISTS OF ELECTRICAL UPGRADE TO EXISTING SUITE.,Permit Us Now,,8312 BURNET RD UNIT 105,8312 BURNET RD,Awaiting Update,2026-08-10,
+60,2026-08-10,2026-103605 PR,1908 KRAMER LN BLDG B UNIT 200,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,No change of use. No expansion or addition to the building. Nothing being added to the property. Project will be completed in one phase and no one will occupy the building during construction. No exis,,,1908 KRAMER LN BLDG B UNIT 200,1908 KRAMER LN,Awaiting Update,2026-08-10,
+60,2026-08-10,2026-103633 PR,13929 CENTER LAKE DR BLDG 4.1 UNIT 100,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan Review: Interior Remodel Existing Office Areas. Phase 1 Scope includes new TNFM and entry canopy and interior remodel existing office areas. Phase 2
+
+2 Applications","AUSTIN PERMIT SERVICE, INC",,13929 CENTER LAKE DR BLDG 4.1 UNIT 100,13929 CENTER LAKE DR,In E-Review,2026-08-10,2.0
+60,2026-08-10,2026-103602 PR,3503 HYRIDGE DR,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of use from mercantile to food sales with interior remodel adding kitchen and prep area.
+
+2026 103628 FR",JAG PERMITS,ORANGESTONE HYRIDGE LLC,3503 HYRIDGE DR,3503 HYRIDGE DR,Prerequisite Review Approved,2026-08-10,
+63,2026-08-07,2026-102813 PR,2005 SOUTHERN OAKS DR,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE RELIGOUS SERVICES TO PET SERVICES,CLEANTAG LLC,,2005 SOUTHERN OAKS DR,2005 SOUTHERN OAKS DR,Awaiting Update,2026-08-07,
+63,2026-08-07,2026-103084 PR,11305 FOUR POINTS DR BLDG 2 UNIT 200,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Remove demising wall to expand suite into adjacent areas. Phase 1 scope. (2 Apps, Suite 200 and 201)","AUSTIN PERMIT SERVICE, INC",,11305 FOUR POINTS DR BLDG 2 UNIT 200,11305 FOUR POINTS DR,Awaiting Update,2026-08-07,
+63,2026-08-07,2026-103140 PR,3414 1/2 DAVIS LN,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"SMALL PROJECT - T-Mobile plans to install: 1 platform, 6 antennas, 6 radios and associated cabling, (1) 10'x13' canopy, 1 GPS antenna, 1 PPC, 4 LED flood lights, 1 ciena,1 DC cabinet and 1 battery cab",,,3414 1/2 DAVIS LN,3414 1/2 DAVIS LN,In Review,2026-08-07,
+64,2026-08-06,2026-102098 PR,309 E 3RD ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Change of use and an interior remodel to create an office.,KS Permitting LLC,TRINITY WAY LLC,309 E 3RD ST,309 E 3RD ST,Awaiting Update,2026-08-06,
+64,2026-08-06,2026-102230 PR,2825 HANCOCK DR UNIT 105,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE RETAIL TO DANCE STUDIO within an existing tenant space,,,2825 HANCOCK DR UNIT 105,2825 HANCOCK DR,Awaiting Update,2026-08-06,
+66,2026-08-04,2026-100651 PR,1015 E 32ND ST UNIT 204,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel existing medical office areas units 204 and 214,"AUSTIN PERMIT SERVICE, INC",,1015 E 32ND ST UNIT 204,1015 E 32ND ST,Awaiting Update,2026-08-04,
+66,2026-08-04,2026-100964 PR,4631 AIRPORT BLVD UNIT 122,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Demolition of non structural demising wall, create new non structural wall to divide retail and warehouse space, build small tea cafe
+FR 2026 100992",,,4631 AIRPORT BLVD UNIT 122,4631 AIRPORT BLVD,Awaiting Update,2026-08-04,
+67,2026-08-03,2026-100013 PR,5451 N IH 35 SVRD NB UNIT B,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Remodel existing restaurant
+FR 2026 100050
+Existing kitchen to remain",SH Architect,,5451 N IH 35 SVRD NB UNIT B,5451 N IH 35 SVRD NB,In Review,2026-08-03,
+67,2026-08-03,2026-100380 PR,525 W HOWARD LN UNIT 120,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"ePlan: Commercial Expedited Review - First Time Finish out for Restaurant (3,000 SF).
+
+2026 125217 FR",,,525 W HOWARD LN UNIT 120,525 W HOWARD LN,Awaiting Update - Fee Paid,2026-08-03,
+72,2026-07-29,2026-098185 PR,600 W 10TH ST,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"SMALL PROJECT - Provide a 3/4"" EMT from the boiler room to the ground floor parking garage and provide two junction boxes with #6 THHN CU for a 60-amp circuit. Charging stations to be installed by Ene",,,600 W 10TH ST,600 W 10TH ST,Awaiting Update,2026-07-29,
+73,2026-07-28,2026-097156 PR,415 COLORADO ST UNIT 1600,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Texas Capital is only taking half of floor 16. This will consist of offices & open office space and a beverage bar.,,,415 COLORADO ST UNIT 1600,415 COLORADO ST,Awaiting Update,2026-07-28,
+74,2026-07-27,2026-096577 PR,2206 RIO GRANDE ST,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior upgrades to Mechanical and Electrical scope.,KS Permitting LLC,HH RIO GRANDE LLC,2206 RIO GRANDE ST,2206 RIO GRANDE ST,Awaiting Update,2026-07-27,
+74,2026-07-27,2026-096530 PR,918 CONGRESS AVE,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"ePlan: Commercial Expedited Review - 918 Congress Ave: Interior remodel and change of use from office to event space, including minor remodeling (5,645 SF). This PR also includes work at 916 and 920 C",KS Permitting LLC,,918 CONGRESS AVE,918 CONGRESS AVE,In E-Review,2026-07-27,
+74,2026-07-27,2026-096550 PR,11800 DESSAU RD BLDG 3 UNIT 300,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Minor remodeling.,Thompson Construction,,11800 DESSAU RD BLDG 3 UNIT 300,11800 DESSAU RD,Awaiting Update,2026-07-27,
+79,2026-07-22,2026-094573 PR,2324 S LAMAR BLVD UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE RETAIL TO FOOD SALES with interior remodel to create a retail Matcha, and a cafe, Matcha lattes, cake prepared off site. No food prep onsite
+FR 2026 094604",KS Permitting LLC,,2324 S LAMAR BLVD UNIT 100,2324 S LAMAR BLVD,Awaiting Update,2026-07-22,
+80,2026-07-21,2026-093848 PR,8901 WALL ST UNIT 450,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Proposed drone padlock within an existing warehouse structure, including fenced outdoor area with drone launch landing pads, free standing shade canopies.",,,8901 WALL ST UNIT 450,8901 WALL ST,Awaiting Update,2026-07-21,
+80,2026-07-21,2026-094136 PR,1814 HARVEY ST,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Building permit for existing shade structure.,,1814 HARVEY LLC,1814 HARVEY ST,1814 HARVEY ST,Awaiting Update,2026-07-21,
+81,2026-07-20,2026-093244 PR,9900 S IH 35 SVRD SB BLDG A UNIT 250,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"SMALL PROJECT - Interior Remodel to change occupancy from existing building to new tanning salon. new interior wall construction, mechanical and electrical modifications, minor plumbing",MCM Architecture,,9900 S IH 35 SVRD SB BLDG A UNIT 250,9900 S IH 35 SVRD SB,Awaiting Update,2026-07-20,
+84,2026-07-17,2026-092589 PR,5209 MANOR RD UNIT B,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from auto repair to grocery store (food sales), no remodel proposed. This is for unit B (middle unit), and DA approved 2026-073093 
+FR is 2026 092622",,,5209 MANOR RD UNIT B,5209 MANOR RD,Awaiting Update,2026-07-17,
+88,2026-07-13,2026-089922 PR,12885 N US 183 HWY SVRD NB BLDG A UNIT 203,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Change of Use from Medical Office to Med Spa/Aesthetic Services.,,,12885 N US 183 HWY SVRD NB BLDG A UNIT 203,12885 N US 183 HWY SVRD NB,Prerequisite Review Approved,2026-07-13,
+88,2026-07-13,2026-089597 PR,5809 1/2 S IH 35 SVRD NB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Equipment upgrade on the existing tower. 2026-080985 DA - approved.,Fullerton Engineering,,5809 1/2 S IH 35 SVRD NB,5809 1/2 S IH 35 SVRD NB,Prerequisite Review Approved,2026-07-13,
+92,2026-07-09,2026-088108 PR,6600 ED BLUESTEIN BLVD SB BLDG 3,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior only add washer/dryer appliances to all 12 units, unit numbers and phases noted on site plan, building permit, plumbing permit and electrical permit required.",Real Estate Buy Design,,6600 ED BLUESTEIN BLVD SB BLDG 3,6600 ED BLUESTEIN BLVD SB,Awaiting Update,2026-07-09,
+93,2026-07-08,2026-087482 PR,11416 N FM 620 RD UNIT J,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from Indoor Entertainment (Event Space) to Retail Boutique with No Remodel.
+
+2024 097308 DA - Approved",,,11416 N FM 620 RD UNIT J,11416 N FM 620 RD,Prerequisite Review Approved,2026-07-08,1.0
+94,2026-07-07,2026-086607 PR,7010 W SH 71 UNIT 160,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE MEDICAL OFFICE TO NAIL SALON,,,7010 W SH 71 UNIT 160,7010 W SH 71,In Review,2026-07-07,
+100,2026-07-01,2026-084401 PR,3820 S CONGRESS AVE BLDG 2,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE MEDICAL OFFICE TO RETAIL First time interior tenant finish out of existing shell for retail. Change of use Group B medical office to Group M mercantile. No structural mods, no new electr",Fill A Bag LLC (Thrift at the warehouse),,3820 S CONGRESS AVE BLDG 2,3820 S CONGRESS AVE,Awaiting Update,2026-07-01,
+102,2026-06-29,2026-083071 PR,1201 W ANDERSON LN,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE MULTIFAMILY TO INDOOR SPORTS AND RECREATION Replace all non Tamper Resistant receptacles with 20 amp
+
+2026 007199 DA - Pending",AUSTIN PLANS FOR PERMITS,ORCID HOLDINGS LLC,1201 W ANDERSON LN,1201 W ANDERSON LN,Awaiting Update,2026-06-29,
+102,2026-06-29,2026-082835 PR,1504 WEST AVE,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Installation of one (1) convenience receptacle, gfci breaker protected.",,1504 WEST AVE LLC,1504 WEST AVE,1504 W AVE,Prerequisite Review Approved,2026-06-29,
+106,2026-06-25,2026-081712 PR,1030 NORWOOD PARK BLVD BLDG 4 UNIT 400,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior build out for a new quick serve restaurant in an existing Walmart store. 2026-081744 FR.,Berman Architecture,,1030 NORWOOD PARK BLVD BLDG 4 UNIT 400,1030 NORWOOD PARK BLVD,Awaiting Update,2026-06-25,
+113,2026-06-18,2026-078127 PR,4606 BURLESON RD UNIT 160,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior tenant improvement for a new indoor pickleball within a renovated commercial shell. Scope includes non-structural partitions, new kitchen and MEP upgrades, no exterior work proposed.",KS Permitting LLC,,4606 BURLESON RD UNIT 160,4606 BURLESON RD,Awaiting Update,2026-06-18,
+116,2026-06-15,2026-075843 PR,11282 TAYLOR DRAPER LN,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Remodeling pool common area. [Updated Application recieved on 6/17/26].,Nationwide Renovation LLC,NORTHLAND CHANNINGS MARK LLC,11282 TAYLOR DRAPER LN,11282 TAYLOR DRAPER LN,Awaiting Update,2026-06-15,
+116,2026-06-15,2026-075918 PR,1308 WEST LYNN ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,CHANGE OF USE CHURCH TO SHELL NOT FOR OCCUPANCY with interior remodel to return building to shell state for future finish out work permitted separately by tenants. No occupancy requested in this phase,Waterloo512,,1308 WEST LYNN ST,1308 W LYNN ST,Awaiting Update,2026-06-15,
+116,2026-06-15,2026-075782 PR,11266 TAYLOR DRAPER LN,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Remodeling pool common area, framing, plumbing and electric. Making an unused space to dog wash station, framing, plumbing and electric. (2 Apps)",Nationwide Renovation LLC,NORTHLAND MUSEO LLC,11266 TAYLOR DRAPER LN,11266 TAYLOR DRAPER LN,In Review,2026-06-15,
+123,2026-06-08,2026-072329 PR,2104 W BEN WHITE BLVD SVRD WB,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Change of use from Salon to General Retail.,Goldtree Holdings LLC,,2104 W BEN WHITE BLVD SVRD WB,2104 W BEN WHITE BLVD SVRD WB,Prerequisite Review Approved,2026-06-08,
+126,2026-06-05,2026-071613 PR,6800 WEST GATE BLVD,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,7 DAY - installation of evcs in parking lot - OVA,Dewberry,LEVY CANNON WEST LLC,6800 WEST GATE BLVD,6800 W GATE BLVD,Awaiting Update,2026-06-05,
+126,2026-06-05,2026-071624 PR,8711 N LAMAR BLVD,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE RETAIL TO RESTAURANT ice cream shop
+FR 2026 071641",,DELARAM PROPERTIES LLC,8711 N LAMAR BLVD,8711 N LAMAR BLVD,Awaiting Update,2026-06-05,
+126,2026-06-05,2026-071886 PR,5601 MENCHACA RD,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"7 DAY - New construction of bleachers, pressbox, retaining walls and storage containers. Other PRs (2026-047690 PR Scoreboards & 2026-033356 PR Lighting) Tied to the same site plan - OVA",,AUSTIN INDEPENDENT SCHOOL DISTRICT,5601 MENCHACA RD,5601 MENCHACA RD,Awaiting Update,2026-06-05,
+128,2026-06-03,2026-070286 PR,1834 FERGUSON LN UNIT 1400,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Install Metal Racking Inside of Building for Suite 1400,,,1834 FERGUSON LN UNIT 1400,1834 FERGUSON LN,Awaiting Update,2026-06-03,1.0
+129,2026-06-02,2026-069474 PR,110 ACADEMY DR UNIT 51,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"New rooftop pool installation within an existing penthouse terrace area designed for future pool use. Scope includes pool equipment, electrical and plumbing connections, and associated terrace improve",,,110 ACADEMY DR UNIT 51,110 ACADEMY DR,Awaiting Update,2026-06-02,
+130,2026-06-01,2026-069260 PR,2400 SETON AVE,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,New RTU for elevator,,YUGO AUSTIN WATERLOO LLC,2400 SETON AVE,2400 SETON AVE,Awaiting Update,2026-06-01,
+134,2026-05-28,2026-067322 PR,4606 BURLESON RD UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,"Tenant improvement for new restaurant
+FR 2026 067348
+
+ATTN ELEC INSP The GFCI protection required in 210.8(A) and (B) shall be readily accessible. 2023 NEC article 210.8",KS Permitting LLC,,4606 BURLESON RD UNIT 100,4606 BURLESON RD,Awaiting Update,2026-05-28,
+143,2026-05-19,2026-063421 PR,2301 SCARBROUGH DR UNIT 360,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,Combine two existing tenant spaces and add exterior ramp in existing truck court,TAG International,,2301 SCARBROUGH DR UNIT 360,2301 SCARBROUGH DR,Awaiting Update,2026-05-19,
+144,2026-05-18,2026-062588 PR,8400 RESEARCH BLVD SVRD SB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Existing automotive dealership. The scope of work is to install a temporary restroom trailer to alleviate the foot traffic between the existing service drive and showroom.,,GROUP 1 REALTY INC,8400 RESEARCH BLVD SVRD SB,8400 RESEARCH BLVD SVRD SB,Awaiting Update,2026-05-18,
+149,2026-05-13,2026-060209 PR,12530 RESEARCH BLVD SVRD SB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior cosmetic remodel of existing restaurant/bar.
+
+All existing Mechanical. However, no record inspections or permit for restaurant.",,GYRO PLUS LLC,12530 RESEARCH BLVD SVRD SB,12530 RESEARCH BLVD SVRD SB,Awaiting Update,2026-05-13,
+151,2026-05-11,2026-058434 PR,5338 THUNDER CREEK RD,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,4699 SQ. FT. TWO STORY RESTAURANT,,KOO FAMILY REAL ESTATE LLC,5338 THUNDER CREEK RD,5338 THUNDER CREEK RD,Pending,2026-05-11,
+157,2026-05-05,2026-055957 PR,2308 CORONADO ST,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"7 DAY - NEW 15'X25' IN GROUND POOL - OVA
+
+2026-056049 FR",,2308 CORONADO LLC,2308 CORONADO ST,2308 CORONADO ST,Awaiting Update,2026-05-05,
+163,2026-04-29,2026-053181 PR,12885 N US 183 HWY SVRD NB UNIT 103,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,7 DAY - CHANGE OF USE FROM MED SPA TO MED SPA AND LASER TRAINING AT EXISTING OFFICE SPACE - OVA,Skin & Tonic Beauty Bar,,12885 N US 183 HWY SVRD NB UNIT 103,12885 N US 183 HWY SVRD NB,Prerequisite Review Approved,2026-04-29,
+169,2026-04-23,2026-050269 PR,6705 W US 290 HWY BLDG E UNIT 608,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Remodel of store new floors and countertop. Upgrade HVAC. Existing restaurant. 2026 050296 FR.,,,6705 W US 290 HWY BLDG E UNIT 608,6705 W US 290 HWY,Prerequisite Review Approved,2026-04-23,
+171,2026-04-21,2026-049085 PR,1904 WEST LOOP,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Fire and Water Damage Rebuild for Suites A, B, C, and D.",,,1904 WEST LOOP,1904 W LOOP,Awaiting Update,2026-04-21,4.0
+175,2026-04-17,2026-047634 PR,12900 N IH 35 SVRD SB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Install interior and exterior doors as shown on plans. Rework existing exterior pavement in accommodation of new exterior doors as shown on plans. Update door hardware as shown on plans. Existing Wal,CESO inc,WAL-MART STORES TEXAS L P #1185,12900 N IH 35 SVRD SB,12900 N IH 35 SVRD SB,Awaiting Update,2026-04-17,
+176,2026-04-16,2026-046854 PR,415 E ST ELMO RD,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of Use from warehouse to art gallery, no construction or remodel. (Building 1 - Unit 1A and Unit 1B)  
+
+2026-032195 DA",,415 ST ELMO LLC,415 E ST ELMO RD,415 E ST ELMO RD,Awaiting Update,2026-04-16,
+176,2026-04-16,2026-046708 PR,2925 W ANDERSON LN,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE PERSONAL SERVICE TO RETAIL, painting the main area and adding lvp flooring",,,2925 W ANDERSON LN,2925 W ANDERSON LN,Awaiting Update,2026-04-16,
+183,2026-04-09,2026-043153 PR,2201 N LAMAR BLVD BLDG B,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Existing building, siding and sheathing replacement. New painted wood siding throughout.",,,2201 N LAMAR BLVD BLDG B,2201 N LAMAR BLVD,Awaiting Update,2026-04-09,
+192,2026-03-31,2026-038371 PR,219 W 4TH ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from a wedding venue to a bar/nightclub, including an interior remodel.
+
+2025 141618 DA - Approved",,,219 W 4TH ST,219 W 4TH ST,Prerequisite Review Approved,2026-03-31,1.0
+196,2026-03-27,2026-037435 PR,3004 S CONGRESS AVE,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of use to Personal Improvement Services (yoga studio) install hooks for aerial yoga. small pony dividers, like for like door replacement - no demo or cutting into the drywall will be needed.",Permit Solutions,T & N REALESTATE GROUP LLC,3004 S CONGRESS AVE,3004 S CONGRESS AVE,Awaiting Update,2026-03-27,
+199,2026-03-24,2026-035086 PR,502 1/2 CANYON RIDGE DR,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Installation of 4 additional electric vehicle charging stations at existing EVgo station. Previously permitted under 2023-012835 BP.,EVgo,,502 1/2 CANYON RIDGE DR,502 1/2 CANYON RIDGE DR,Awaiting Update,2026-03-24,
+204,2026-03-19,2026-033300 PR,1711 ENFIELD RD,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Window for window replacement. No location or size changes. The is the for entire complex. Please forward her new submission ticket to me.,"Next Level , LLC",1711 ENFIELD LLC,1711 ENFIELD RD,1711 ENFIELD RD,Pending,2026-03-19,
+204,2026-03-19,2026-033446 PR,12029 JOLLYVILLE RD UNIT 100,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"First time finish out of first floor, Retail sales, display and storage for sale and distribution of liquor and liquor products beer and wine",,,12029 JOLLYVILLE RD UNIT 100,12029 JOLLYVILLE RD,Prerequisite Review Approved,2026-03-19,
+205,2026-03-18,2026-032704 PR,16231 N IH 35 SVRD NB,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Replace existing outside attractions, landscaping, and theming.",,AUSTINS FEC RE LLC,16231 N IH 35 SVRD NB,16231 N IH 35 SVRD NB,Awaiting Update,2026-03-18,
+211,2026-03-12,2026-030342 PR,6937 N IH 35 SVRD NB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,QUICK TURNAROUND: Renovation of 3rd level office space within an existing office building.,,,6937 N IH 35 SVRD NB,6937 N IH 35 SVRD NB,Prerequisite Review Approved,2026-03-12,
+212,2026-03-11,2026-029477 PR,613 W BEN WHITE BLVD SVRD EB,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE FROM MEDICAL TO RESTAURANT existing one story freestanding building to accommodate a 2005 sq ft Pollo Regio
+FR 2026 029525",,603 W BEN WHITE OWNER LLC,613 W BEN WHITE BLVD SVRD EB,613 W BEN WHITE BLVD SVRD EB,Awaiting Update,2026-03-11,
+224,2026-02-27,2026-024083 PR,4103 W SLAUGHTER LN,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,7 DAY - New construction of bleachers and pressbox highlighter on site plan. AISD project. - OVA,,,4103 W SLAUGHTER LN,4103 W SLAUGHTER LN,Awaiting Update,2026-02-27,
+242,2026-02-09,2026-015104 PR,1818 E 12TH ST BLDG 1,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Change of use to Food Service with remodel (1863 sf - Building 1 and 487 sf Building 2) - 2 apps
+
+2026-015126 FR",OPA Design Studio Inc,,1818 E 12TH ST BLDG 1,1818 E 12TH ST,Awaiting Update,2026-02-09,
+246,2026-02-05,2026-013879 PR,6305 CAMERON RD UNIT 117,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Interior remodel addition of wall and counter space,,,6305 CAMERON RD UNIT 117,6305 CAMERON RD,Awaiting Update,2026-02-05,1.0
+252,2026-01-30,2026-011687 PR,2611 E BRAKER LN,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,QT - 17 Pre-engineered carports at existing multi family complex - OVA,,CITY OF AUSTIN,2611 E BRAKER LN,2611 E BRAKER LN,Awaiting Update,2026-01-30,
+255,2026-01-27,2026-010166 PR,8515 BRODIE LN UNIT 2411,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Installing 15 steel piles to prevent further downward movement of slab to existing multifamily,,,8515 BRODIE LN UNIT 2411,8515 BRODIE LN,Awaiting Update,2026-01-27,
+259,2026-01-23,2026-008663 PR,5800 E PARMER LN UNIT 315,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1002 Commercial Remodel & Finish Out,"First-time Tenant Finish Out to create restaurant
+FR 2026 008749",Tedrow Design Group,,5800 E PARMER LN UNIT 315,5800 E PARMER LN,Awaiting Update,2026-01-23,
+273,2026-01-09,2026-003298 PR,209 E BEN WHITE BLVD SVRD EB UNIT 110,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from Retail to Automotive Sales
+
+2025 148588 DA - Approved",Motors Corner USA,,209 E BEN WHITE BLVD SVRD EB UNIT 110,209 E BEN WHITE BLVD SVRD EB,Awaiting Update,2026-01-09,1.0
+287,2025-12-26,2025-162095 PR,1316 W 6TH ST,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"7 DAY renovated garage, new roof and doors. drainage",,,1316 W 6TH ST,1316 W 6TH ST,Awaiting Update,2025-12-26,
+291,2025-12-22,2025-161052 PR,8104 EXCHANGE DR,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior and exterior renovation of existing office space over two floors. The exterior scope includes demolition and redesign of cladding at the rotunda, a new canopy at the rotunda, and replacement",Method Architecture,,8104 EXCHANGE DR,8104 EXCHANGE DR,Awaiting Update,2025-12-22,
+303,2025-12-10,2025-156614 PR,305 W MARTIN LUTHER KING JR BLVD,remodel,repair_or_other,unknown,0.0,Remodel,"C- 213 Hotels, Motels, & Tourist Cabins","Proposing to Redevelop the Site for the Construction of a 13-Story Hotel Shell
+
+SP-2024-0238C - Concurrent Reviews 
+
+14 Applications 
+
+2025 156641 FR",Mercury Permits Inc.,PATTERSON MICHAEL E & THOMAS F & NANCY L,305 W MARTIN LUTHER KING JR BLVD,305 W MARTIN LUTHER KING JR BLVD,Awaiting Update,2025-12-10,0.0
+309,2025-12-04,2025-154467 PR,900 E BRAKER LN UNIT 125,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"New sink installed at bar and installing TV sets around the space.
+2025 154474 FR",,,900 E BRAKER LN UNIT 125,900 E BRAKER LN,Prerequisite Review Approved,2025-12-04,
+310,2025-12-03,2025-153594 PR,900 E BRAKER LN UNIT 169,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Outdoor patio, installed TVs.",,,900 E BRAKER LN UNIT 169,900 E BRAKER LN,Prerequisite Review Approved,2025-12-03,
+311,2025-12-02,2025-153373 PR,606 W 29TH ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1001 Commercial Finish Out,"Change of use to cafe and adding mop sink and 3 3-compartment sink.
+
+2025 153737 FR",,FIVE SPEED LLC SERIES B,606 W 29TH ST,606 W 29TH ST,Prerequisite Review Approved,2025-12-02,
+311,2025-12-02,2025-152888 PR,8624 N LAMAR BLVD,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Addition of 658 Sq. Ft. wooden deck to existing patio.,ENCON LLC,PHINIK COMPANY INC,8624 N LAMAR BLVD,8624 N LAMAR BLVD,Awaiting Update,2025-12-02,
+319,2025-11-24,2025-150596 PR,1611 W 5TH ST UNIT 105,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Interior remodel of an existing single story restaurant building for a new restaurant tenant.  No change to existing zoning or occupancy.  Interior buildout for new tenant only.
+
+2025 150616 FR",Techno LTD,,1611 W 5TH ST UNIT 105,1611 W 5TH ST,Awaiting Update,2025-11-24,
+319,2025-11-24,2025-150573 PR,4826 E CESAR CHAVEZ ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from Office to Assembly Restaurant
+
+2025 125040 DA - Approved",,,4826 E CESAR CHAVEZ ST,4826 E CESAR CHAVEZ ST,Awaiting Update,2025-11-24,1.0
+322,2025-11-21,2025-149983 PR,207 W 4TH ST,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from Photo Studio to Event Space with Cocktail Lounge
+
+2025 118320 DA - Approved
+
+2025 150018 FR
+VERIFY NO MECHANICAL WORK BEING PERFORMED.",,,207 W 4TH ST,207 W 4TH ST,Awaiting Update,2025-11-21,2.0
+322,2025-11-21,2025-150277 PR,1001 KRAMER LN,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Construction of canopies. Some may have decks.,Herrera Civil Engineering PLLC,,1001 KRAMER LN,1001 KRAMER LN,Awaiting Update,2025-11-21,
+331,2025-11-12,2025-145408 PR,2511 1/2 WINSTED LN,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Upgrade AT&T equipment on an existing cell phone colocation monopole.,,,2511 1/2 WINSTED LN,2511 1/2 WINSTED LN,Awaiting Update,2025-11-12,
+339,2025-11-04,2025-142225 PR,804 1/2 W YAGER LN,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,Equipment upgrade on the existing tower.,Fullerton Engineering,,804 1/2 W YAGER LN,804 1/2 W YAGER LN,Awaiting Update,2025-11-04,
+340,2025-11-03,2025-141523 PR,2225 ANDREW ZILKER RD,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Replace existing challenge course with a new one.,"Clean Tag Permits, LLC",CITY OF AUSTIN,2225 ANDREW ZILKER RD,2225 ANDREW ZILKER RD,Awaiting Update,2025-11-03,
+399,2025-09-05,2025-112974 PR,2943 E 12TH ST,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Renovation of existing buildings to accommodate a new commercial kitchen and indoor/outdoor dining areas. Site Improvements include upgraded electrical service and a new grease trap. 
+FR 2025 112993",Mercury Permits Inc. (This One),2019 TAYLOR LP,2943 E 12TH ST,2943 E 12TH ST,Awaiting Update,2025-09-05,
+402,2025-09-02,2025-110987 PR,208 BARTON SPRINGS RD,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Modification to pool gate and enclosure.
+2025 111008 FR",Hyatt Regency Austin,HHR AUSTIN LLC,208 BARTON SPRINGS RD,208 BARTON SPRINGS RD,Awaiting Update,2025-09-02,
+455,2025-07-11,2025-086368 PR,13553 N US 183 HWY SVRD NB,remodel,interior_remodel,unknown,0.0,Remodel,C-1000 Commercial Remodel,"Remodel and expand an existing Acura Automobile Dealership Bldg. A & B
+
+Concurrent Reviews",DENTON ARCHITECTURE,MCDAVID AUSTIN-ACRA LLC,13553 N US 183 HWY SVRD NB,13553 N US 183 HWY SVRD NB,Awaiting Update,2025-07-11,2.0
+456,2025-07-10,2025-085624 PR,6800 E BEN WHITE BLVD SVRD WB BLDG 7,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,New shell Warehouse,McFarland Architecture,,6800 E BEN WHITE BLVD SVRD WB BLDG 7,6800 E BEN WHITE BLVD SVRD WB,Awaiting Update,2025-07-10,
+463,2025-07-03,2025-082957 PR,2363 E SH 71 WB,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from Equipment Sales to Automotive Sales, Rental and Repair 
+ATTN BLDNG INSP VERIFY THAT GFCI OUTLETS ARE PRESENT IN AUTO REPAIR AREA
+2025 069752 DA -Approved",,,2363 E SH 71 WB,2363 E SH 71 WB,Awaiting Update,2025-07-03,1.0
+583,2025-03-05,2025-026334 PR,411 BASTROP HWY NB,remodel,repair_or_other,unknown,0.0,Remodel,C-1000 Commercial Remodel,Obtain Certificate of Occupancy for automotive dealership. No construction or changes made.,,,411 BASTROP HWY NB,411 BASTROP HWY NB,Awaiting Update,2025-03-05,
+687,2024-11-21,2024-154813 PR,1907 FORESTGLADE DR,remodel,tenant_finish_out,unknown,0.0,Remodel,C-1000 Commercial Remodel,"CHANGE OF USE from Single Family Home to Office and Interior Non-Structural Demo
+
+2024 065157 DA - Approved
+VERIFY NO MECHANICAL WORK BEING PERFORMED.",,MAGNOLIA REALTY LLC,1907 FORESTGLADE DR,1907 FORESTGLADE DR,Awaiting Update,2024-11-21,1.0
