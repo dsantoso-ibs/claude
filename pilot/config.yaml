@@ -1,0 +1,29 @@
+# Baucore own-sourcing pilot config. Every threshold lives here, not in code.
+# Field mappings are filled in AFTER M0 schema review (reports/austin-schema.md).
+
+sources:
+  austin:
+    domain: data.austintexas.gov
+    dataset_id: 3syk-w9eu
+    # field_map: TODO after M0 review
+  los_angeles:
+    domain: data.lacity.org
+    dataset_id: pi9x-tg5x
+    # phase 2 (M6)
+
+socrata:
+  page_size: 1000
+  max_retries: 5
+  backoff_base_seconds: 2.0
+  timeout_seconds: 30
+
+filters:
+  min_valuation_usd: 250000
+  # permit type / work class / use rules added after M0 review
+
+enrichment:
+  daily_cost_cap_usd: 25.0
+
+decision:
+  min_novel_share: 0.30
+  min_contact_yield: 0.50
