@@ -27,6 +27,8 @@ def nonproject_reason(description: str | None, classes: list[str], rc: dict) -> 
 
 def subtype(description: str | None, classes: list[str], rc: dict) -> str:
     sc, text = rc["subtype"], description or ""
+    if re.search(sc["other_regex"], text) and not re.search(sc["other_override_regex"], text) and not any(re.search(sc["tenant_class_regex"], c) for c in classes):
+        return "repair_or_other"                                   # equipment-type work (tower, antenna, generator, RTU...) is not a remodel of space
     if any(re.search(sc["tenant_class_regex"], c) for c in classes) or re.search(sc["tenant_desc_regex"], text):
         return "tenant_finish_out"
     if re.search(sc["interior_desc_regex"], text):

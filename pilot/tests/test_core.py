@@ -354,3 +354,15 @@ def test_clean_org_strips_permit_system_tags():
     assert clean_org("Kimley-Horn (MAIN)") == "Kimley-Horn" and clean_org("Joeris General Contractors***MAIN***") == "Joeris General Contractors"
     assert clean_org("MAIN**") is None and clean_org("**MAIN") is None and clean_org(None) is None
     assert clean_org("Mainstreet Builders") == "Mainstreet Builders"          # a word starting with MAIN is not the tag
+
+
+def test_equipment_work_is_repair_or_other_unless_it_is_also_a_remodel():
+    from src.remodel import subtype
+    rc = cfgmod.load()["filters"]["remodel"]
+    C = ["C-1000 Commercial Remodel"]
+    assert subtype("Upgrade AT&T cell phone equipment on an existing tower", C, rc) == "repair_or_other"
+    assert subtype("Equipment upgrade on the existing tower", C, rc) == "repair_or_other"
+    assert subtype("Install generator and rooftop unit", C, rc) == "repair_or_other"
+    assert subtype("Interior remodel with new generator", C, rc) == "interior_remodel"
+    assert subtype("Tenant finish out, new RTU on roof", C, rc) == "tenant_finish_out"
+    assert subtype("Add equipment", ["C-1001 Commercial Finish Out"], rc) == "tenant_finish_out"     # a Finish Out class stays a finish-out

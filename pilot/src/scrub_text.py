@@ -51,13 +51,13 @@ GENERIC_BEFORE_RESIDENCE = {"single", "family", "existing", "new", "commercial",
                             "caretaker", "custodian", "principal", "rental", "private", "detached", "attached", "historic", "old", "former", "proposed"}
 
 
-BRANDS = {"james hardie", "hardie", "tamko", "tamko titan", "owens corning", "sherwin williams", "johnson controls", "carrier", "trane", "otis",
+BRANDS = {"kendra scott", "tim hortons", "dutch bros", "whataburger", "starbucks", "mcdonalds", "chick fil a", "taco bell", "james hardie", "hardie", "tamko", "tamko titan", "owens corning", "sherwin williams", "johnson controls", "carrier", "trane", "otis",
           "hardy board", "hardy", "jc penny", "jc penney", "jcpenney", "dillards", "dillard", "macys", "lowes", "home depot", "best buy", "dish wireless", "t mobile", "american tower", "crown castle", "ericsson", "nokia", "samsung", "verizon"}
 BASE_COMMON = {"roof", "roofing", "replacement", "transfer", "switch", "fire", "damage", "shade", "structure", "dumpster", "enclosure", "pool", "deck", "retail",
                "space", "remodel", "kitchen", "interior", "exterior", "tenant", "finish", "demo", "scope", "mep", "antenna", "antennas", "install", "upgrade",
                "floor", "wall", "walls", "ceiling", "door", "window", "windows", "building", "suite", "unit", "storage", "office", "parking", "garage", "sign",
                "signage", "sprinkler", "alarm", "riser", "trap", "grease", "bike", "gallery", "lecture", "residential", "commercial", "demising", "compliant",
-               "breakers", "breaker", "occupant", "load", "areas", "finishes", "guestrooms", "maintenance", "provided", "review", "complete", "select", "sheet", "rock",
+               "breakers", "breaker", "occupant", "load", "areas", "finishes", "guestrooms", "guestroom", "king", "queen", "maintenance", "provided", "review", "complete", "select", "sheet", "rock",
                "recover", "shingle", "simple", "covered", "existing", "new", "addition", "construction", "improvement", "improvements",
                # local place names that are also given names or surnames
                "austin", "texas", "travis", "williamson", "hays", "round", "rock", "cedar", "pflugerville", "manor", "lakeway", "leander", "georgetown",
@@ -171,7 +171,7 @@ class Scrubber:
         for tok in re.finditer(r"\S+", span):
             word = tok.group(0).strip(".,;:()")
             low = word.casefold()
-            if word.upper() in PLACE_NEXT or re.fullmatch(r"(?i)llc|inc|corp|co|ltd|lp|llp|company|construction|builders|group|properties|dental|clinic", word):
+            if word.upper() in PLACE_NEXT or any(part.upper() in PLACE_NEXT for part in word.split("-")) or re.fullmatch(r"(?i)llc|inc|corp|co|ltd|lp|llp|company|construction|builders|group|properties|dental|clinic", word):
                 return None if end is not None or tok.start() == 0 else None
             if low in STOP or low in self.common or low in self.single_orgs:
                 break

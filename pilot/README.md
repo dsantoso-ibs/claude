@@ -47,5 +47,9 @@ Setup: `pip install -r requirements.txt && python -m spacy download en_core_web_
 - **Limits (it is heuristic, not a guarantee):** an uncommon name with no cue and no name-list hit (e.g. "Yuki Tanaka" in running text) is not removed; a cue-less
   unusual surname alone is not removed; a brand or place that looks like "First Last" may be removed.
   Review `name_removed` rows and spot-check; tune `BRANDS`/`BASE_COMMON` in `src/scrub_text.py`.
+- **Measured (2026-10-09):** 94 of 21,014 permits, 3 of 2,944 site plans and 49 of 14,702 Plan Review rows have `name_removed = 1`. An audit of all 212 removed spans against the original text found about 4 false positives (brands, a hotel room type, streets named after people), roughly 2%; most removals are reviewer/applicant contact lines. **Recall is not measured**: on 16 hand-written unseen cases the first version caught 7, and after adding rules for the misses 19 of 20 (those cases then became development examples, so treat that as optimistic).
 - One-off re-scrub of already-stored payloads (idempotent): `python -m src.scrub_pipeline rescrub`, then rebuild (`run_filter`, `phase2 build`, `phase2 link`).
 - Check every CSV/report: `python -m src.leak_check` (add `--fix` to scrub Markdown tables in place).
+
+Repair after changing the scrub rules: `python -m src.refetch_flagged` re-fetches the original text of the flagged rows only and re-applies the current scrubber (the stored text
+cannot be un-scrubbed, so a full or targeted re-fetch is the only way to restore text that was removed by mistake).

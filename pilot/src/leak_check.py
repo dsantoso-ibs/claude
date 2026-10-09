@@ -18,6 +18,7 @@ from src.scrub_pipeline import build_scrubber
 from src.scrub_text import EMAIL, PHONE
 
 TEXT_COLS = {"description", "case_name", "project_name", "folder_description", "name", "description_of_work", "permit_class_desc"}
+TITLE_COLS = {"case_name", "project_name", "name"}      # short titles: checked without NER, exactly as the pipeline scrubs them
 
 
 def _md_tables(lines: list[str]):
@@ -55,7 +56,12 @@ def check(fix: bool = False) -> dict:
             head = [h.strip().lower() for h in rows[0]]
             tcols = [i for i, h in enumerate(head) if h in TEXT_COLS]
             texts = [(ri, ci, r[ci]) for ri, r in enumerate(rows[1:], 1) for ci in tcols if ci < len(r) and r[ci]]
-            for (ri, ci, t), (clean, n) in zip(texts, sc.scrub_many([t for _, _, t in texts])):
+            res = [None] * len(texts)
+            for ner in (True, False):
+                idx = [k for k, (_, ci, _) in enumerate(texts) if (head[ci] not in TITLE_COLS) == ner]
+                for k, r in zip(idx, sc.scrub_many([texts[k][2] for k in idx], ner=ner)):
+                    res[k] = r
+            for (ri, ci, t), (clean, n) in zip(texts, res):
                 if n and clean != t:
                     hits.append(f"row {ri} col {head[ci]}: scrubber would still remove {n}")
             for ri, r in enumerate(rows[1:], 1):
@@ -69,7 +75,8 @@ def check(fix: bool = False) -> dict:
                 for li in range(i + 2, j):
                     cells = _split(lines[li])
                     texts = [(k, cells[k].strip()) for k in tcols if k < len(cells) and cells[k].strip()]
-                    for (k, t), (clean, n) in zip(texts, sc.scrub_many([t for _, t in texts])):
+                    res = [sc.scrub(t, ner=(header[k] not in TITLE_COLS)) for k, t in texts]
+                    for (k, t), (clean, n) in zip(texts, res):
                         if n and clean != t:
                             hits.append(f"line {li + 1} col {header[k]}: scrubber would still remove {n}")
                             if fix:

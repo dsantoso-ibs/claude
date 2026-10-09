@@ -106,6 +106,9 @@ filters:
       tenant_class_regex: '(?i)finish.?out'
       tenant_desc_regex: '(?i)(tenant|finish.?out|build.?out|\bT\.?I\.?\b|lease(d)? space|change of (use|occupancy)|new (restaurant|retail|office|store|salon|clinic|gym))'
       interior_desc_regex: '(?i)(interior|remodel|renovat|alteration|\balter\b|reconfigur|upgrade|improvement|restroom|kitchen|demising|partition|\bADA\b|accessib|classroom|office)'
+      # equipment-type work (towers, antennas, generators, rooftop units, solar/PV, certificates) is repair_or_other unless the text also says remodel/finish-out/interior
+      other_regex: '(?i)(\btower\b|antenna|\bcell\b|wireless|telecom|\bRRU\b|generator|\bequipment\b|\bRTU\b|rooftop unit|\bPV\b|certificate of occupancy)'
+      other_override_regex: '(?i)(remodel|renovat|finish.?out|build.?out|tenant|interior|alteration|reconfigur)'
       # everything else (terse or unclassifiable descriptions, repair-like work that survived) -> repair_or_other
     default_list_subtypes: [tenant_finish_out, interior_remodel]   # repair_or_other is hidden from the default remodel list and reported as a separate bucket
 
