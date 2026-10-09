@@ -71,7 +71,9 @@ def main(source: str = "austin") -> None:
     show = [f for f in ["permit_number", "permit_type_desc", "permit_class", "work_class", "issue_date",
                         "total_job_valuation", "permit_location", "contractor_company_name",
                         "applicant_org", "description"] if f in names]
-    L.append(md_table(show, [[(str(r.get(f, ""))[:70]) for f in show] for r in sample]))
+    from src.scrub_pipeline import scrub_cell
+    TEXT = {"description", "case_name", "project_name"}            # free text: scrubbed of personal names before it is written to a report
+    L.append(md_table(show, [[(scrub_cell(str(r.get(f, "")))[:70] if f in TEXT else str(r.get(f, ""))[:70]) for f in show] for r in sample]))
 
     L += ["", "## Open questions for review", "",
           "- Which valuation field is authoritative for the >= $250k rule?",

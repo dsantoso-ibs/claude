@@ -47,20 +47,23 @@ def ingest(con, client, source: str, cfg: dict, *, months: int | None = None) ->
         where += f" AND ({scfg['ingest_where']})"
     run_id = con.execute("INSERT INTO runs(started_at, source, rows_fetched, rows_new, notes) VALUES(?,?,0,0,?)",
                          (now.isoformat(), source, f"started {mode}")).lastrowid
-    fetched = new = 0
-    for row in client.iter_rows(scfg["dataset_id"], where=where, order=":id", page_size=cfg["socrata"]["page_size"]):
-        sid = row.get(scfg["id_field"])
-        if not sid:
-            continue
-        fetched += 1
-        exists = con.execute(f"SELECT 1 FROM {table} WHERE source=? AND source_id=?", (source, sid)).fetchone()
-        con.execute(f"INSERT INTO {table}(source, source_id, fetched_at, payload_json) VALUES(?,?,?,?) "
-                    "ON CONFLICT(source, source_id) DO UPDATE SET fetched_at=excluded.fetched_at, payload_json=excluded.payload_json",
-                    (source, str(sid), now.isoformat(), json.dumps(scrub(source, row, scfg))))
-        new += 0 if exists else 1
+    fetched = new = scrubbed = 0
+    from src.scrub_pipeline import build_scrubber, chunks, scrub_payloads
+    scrubber = build_scrubber(con)
+    for batch in chunks(r for r in client.iter_rows(scfg["dataset_id"], where=where, order=":id", page_size=cfg["socrata"]["page_size"]) if r.get(scfg["id_field"])):
+        payloads = [scrub(source, r, scfg) for r in batch]
+        scrubbed += scrub_payloads(payloads, table, scrubber)                   # personal names in free text are removed BEFORE storage
+        for row, payload in zip(batch, payloads):
+            sid = row.get(scfg["id_field"])
+            fetched += 1
+            exists = con.execute(f"SELECT 1 FROM {table} WHERE source=? AND source_id=?", (source, sid)).fetchone()
+            con.execute(f"INSERT INTO {table}(source, source_id, fetched_at, payload_json) VALUES(?,?,?,?) "
+                        "ON CONFLICT(source, source_id) DO UPDATE SET fetched_at=excluded.fetched_at, payload_json=excluded.payload_json",
+                        (source, str(sid), now.isoformat(), json.dumps(payload)))
+            new += 0 if exists else 1
     con.execute("UPDATE runs SET rows_fetched=?, rows_new=?, notes=? WHERE id=?", (fetched, new, f"ok {mode} since {since[:10]}", run_id))
     con.commit()
-    return {"source": source, "mode": mode, "since": since[:10], "fetched": fetched, "new": new}
+    return {"source": source, "mode": mode, "since": since[:10], "fetched": fetched, "new": new, "rows_with_name_removed": scrubbed}
 
 
 def main(argv: list[str]) -> None:

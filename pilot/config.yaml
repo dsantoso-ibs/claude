@@ -107,6 +107,7 @@ filters:
       tenant_desc_regex: '(?i)(tenant|finish.?out|build.?out|\bT\.?I\.?\b|lease(d)? space|change of (use|occupancy)|new (restaurant|retail|office|store|salon|clinic|gym))'
       interior_desc_regex: '(?i)(interior|remodel|renovat|alteration|\balter\b|reconfigur|upgrade|improvement|restroom|kitchen|demising|partition|\bADA\b|accessib|classroom|office)'
       # everything else (terse or unclassifiable descriptions, repair-like work that survived) -> repair_or_other
+    default_list_subtypes: [tenant_finish_out, interior_remodel]   # repair_or_other is hidden from the default remodel list and reported as a separate bucket
 
 baseline:
   match_geo_radius_m: 100

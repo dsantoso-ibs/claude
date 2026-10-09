@@ -35,3 +35,17 @@ Label sheets (30 projects, default set only): `python -m src.phase2 sheets`. Enr
 Remodels: `remodel_subtype` (tenant_finish_out, interior_remodel, repair_or_other); only repair, signage and demolition-only are excluded as non-projects. Every record carries
 use_class, description, applicant, contractor (permits), address and `recency_days`. Report: `python -m src.report_remodels` -> `reports/remodels-YYYY-MM-DD.md` + `reports/remodels-12m.csv`.
 Search (newest first): `python -m src.index search "tenant finish out" --type remodel --subtype tenant_finish_out`. Remodels are never enriched.
+
+## Description scrub (personal names, phones, emails)
+Free-text fields are scrubbed **before storage**: permit `description`; site plan `description_of_work` and `case_name`; Plan Review `folder_description` and
+`project_name`. Personal names become `[NAME]`, phone numbers and emails `[CONTACT]`; business names and project wording are kept. Every record where something was
+removed carries `name_removed = 1` (candidate tables, search index, all CSVs; the raw payload has `_name_removed`). Code: `src/scrub_text.py`, `src/scrub_pipeline.py`.
+Setup: `pip install -r requirements.txt && python -m spacy download en_core_web_sm`.
+- Layers: contact patterns; explicit cues (`Contact:`, `Attn:`, `Owner:`, `Applicant:`, `c/o`, `per/with/by <Name>`); titles (`Mr.`, `Dr.`); `<Surname> Residence`;
+  initial + surname; and NER (spaCy) for free-standing first+last names. NER spans are kept as project wording or a business when they look like a place, brand, known
+  business name, or contain words that appear in lowercase elsewhere in the corpus (people's names do not).
+- **Limits (it is heuristic, not a guarantee):** an uncommon name with no cue and no name-list hit (e.g. "Yuki Tanaka" in running text) is not removed; a cue-less
+  unusual surname alone is not removed; a brand or place that looks like "First Last" may be removed.
+  Review `name_removed` rows and spot-check; tune `BRANDS`/`BASE_COMMON` in `src/scrub_text.py`.
+- One-off re-scrub of already-stored payloads (idempotent): `python -m src.scrub_pipeline rescrub`, then rebuild (`run_filter`, `phase2 build`, `phase2 link`).
+- Check every CSV/report: `python -m src.leak_check` (add `--fix` to scrub Markdown tables in place).

@@ -41,7 +41,7 @@ def main(source: str = "austin") -> None:
     today = date.today()
     win = (today - timedelta(days=cfg["ingest"]["phase1_window_days"])).isoformat()
     passed = q("SELECT c.* FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1 AND c.in_default=1 AND c.issued_date>=?", source, win)
-    remodel = q("SELECT c.size_band b FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1 AND c.in_default=0 "
+    remodel = q("SELECT c.size_band b, c.remodel_subtype st FROM candidates c JOIN filter_results f ON f.candidate_id=c.id WHERE c.source=? AND f.passed=1 AND c.in_default=0 "
                 "AND c.project_type='remodel' AND c.issued_date>=?", source, win)
     all_n = q("SELECT COUNT(*) n FROM candidates WHERE source=? AND issued_date>=?", source, win)[0]["n"]
     span = (today - date.fromisoformat(min(r["issued_date"] for r in passed))).days or 1
@@ -65,7 +65,8 @@ def main(source: str = "austin") -> None:
          f"1. **Qualifying projects (default set):** {len(passed)} passed of {all_n} projects ({span} days of data); "
          f"{len(passed) / span * 7:.1f}/week overall, {len(last28) / 4:.1f}/week over the last 28 days ({len(last28)} projects).",
          f"   Default set = new_build, shell, addition. Size bands (best available valuation; no valuation filter): {band_line}.",
-         f"   **Remodels, reported separately and not in the headline:** {len(remodel)} projects (size band: " + ", ".join(
+         f"   **Remodels, reported separately and not in the headline:** {sum(1 for r in remodel if r['st'] != 'repair_or_other')} in the default remodel list "
+         f"(tenant_finish_out + interior_remodel) and **{sum(1 for r in remodel if r['st'] == 'repair_or_other')} in the separate repair_or_other bucket** (size band, all remodels: " + ", ".join(
              f"{b} {sum(1 for r in remodel if (r['b'] or 'unknown') == b)}" for b in ("unknown", "under_250k", "250k_to_5m", "over_5m")) + ").",
          f"2. **Novel share:** " + (f"{novel / (novel + inb):.0%} = {novel} novel / ({novel} novel + {inb} in baseline), 95% CI {lo:.0%}-{hi:.0%}; "
                                     f"{review} in `review` shown separately. Label sources: {methods}." if novel + inb else "not measurable (no labels)."),

@@ -10,10 +10,12 @@ from datetime import datetime, timezone
 
 from src import config as cfgmod
 from src.discover import md_table
+from src.scrub_pipeline import scrub_cell
 from src.sources.socrata import SocrataClient
 
 PERSONAL = re.compile(r"(fullname|full_name|phone|_address$|^applicant_address|case_manager)", re.I)
 MAX_LIST = 60
+TEXT = {"description", "case_name", "project_name", "folder_description", "description_of_work"}   # free text: scrubbed before being written
 
 
 def main(source: str) -> None:
@@ -81,7 +83,7 @@ def main(source: str) -> None:
     if datef:
         sample = client.query(ds, order=f"{datef} DESC", limit=20)
         L += [f"## Sample: 20 most recent by `{datef}` (non-personal fields only)", "",
-              md_table(show, [[str(r.get(f, ""))[:45] for f in show] for r in sample]), ""]
+              md_table(show, [[(scrub_cell(str(r.get(f, "")))[:45] if f in TEXT else str(r.get(f, ""))[:45]) for f in show] for r in sample]), ""]
     out = cfgmod.ROOT / "reports" / f"{cfg['report_name']}-schema.md"
     out.write_text("\n".join(L))
     print("wrote", out, len(L), "blocks")

@@ -85,17 +85,17 @@ def build_site_plans(con, cfg: dict) -> dict[str, int]:
         passed, reason = evaluate_site_plan(c, fc)
         con.execute("INSERT INTO site_plan_candidates(folderrsn, case_number, case_name, address_norm, lat, lon, proposed_use, use_class, work,"
                     " status, submitted_date, approval_date, applicant_org, owner_entity, owner_is_individual, size_hint, multifamily_hint,"
-                    " first_seen_at, passed, exclude_reason, description, address_raw) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+                    " first_seen_at, passed, exclude_reason, description, address_raw, name_removed) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                     " ON CONFLICT(folderrsn) DO UPDATE SET case_number=excluded.case_number, case_name=excluded.case_name,"
                     " address_norm=excluded.address_norm, lat=excluded.lat, lon=excluded.lon, proposed_use=excluded.proposed_use,"
                     " use_class=excluded.use_class, work=excluded.work, status=excluded.status, submitted_date=excluded.submitted_date,"
                     " approval_date=excluded.approval_date, applicant_org=excluded.applicant_org, owner_entity=excluded.owner_entity,"
                     " owner_is_individual=excluded.owner_is_individual, size_hint=excluded.size_hint,"
                     " multifamily_hint=excluded.multifamily_hint, passed=excluded.passed, exclude_reason=excluded.exclude_reason,"
-                    " description=excluded.description, address_raw=excluded.address_raw",
+                    " description=excluded.description, address_raw=excluded.address_raw, name_removed=excluded.name_removed",
                     (r["folderrsn"], c["case_number"], c["case_name"], c["address_norm"], c["lat"], c["lon"], use, c["use_class"], c["work"],
                      c["status"], c["submitted_date"], c["approval_date"], c["applicant_org"], c["owner_entity"], c["owner_is_individual"],
-                     c["size_hint"], c["multifamily_hint"], now, int(passed), reason, c["description"], c["address_raw"]))
+                     c["size_hint"], c["multifamily_hint"], now, int(passed), reason, c["description"], c["address_raw"], int(bool(r.get("_name_removed")))))
         counts["passed" if passed else reason] += 1
     con.commit()
     return dict(counts)
@@ -115,17 +115,17 @@ def build_plan_reviews(con, cfg: dict) -> dict[str, int]:
         if passed and any(cand["status"].startswith(x) for x in pc["extra_exclude_statuses"]):
             passed, reason = False, "status_not_live"
         con.execute("INSERT INTO plan_review_candidates(permit_number, project_name, address_norm, lat, lon, valuation, work_class, use_class, status,"
-                    " applied_date, issued_date, owner_entity, owner_is_individual, applicant_org, units, passed, exclude_reason, description, address_raw)"
-                    " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(permit_number) DO UPDATE SET status=excluded.status,"
+                    " applied_date, issued_date, owner_entity, owner_is_individual, applicant_org, units, passed, exclude_reason, description, address_raw, name_removed)"
+                    " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(permit_number) DO UPDATE SET status=excluded.status,"
                     " valuation=excluded.valuation, issued_date=excluded.issued_date, passed=excluded.passed, exclude_reason=excluded.exclude_reason,"
                     " lat=excluded.lat, lon=excluded.lon, address_norm=excluded.address_norm, description=excluded.description, address_raw=excluded.address_raw,"
-                    " applied_date=excluded.applied_date, owner_entity=excluded.owner_entity, applicant_org=excluded.applicant_org",
+                    " applied_date=excluded.applied_date, owner_entity=excluded.owner_entity, applicant_org=excluded.applicant_org, name_removed=excluded.name_removed",
                     (r["permit_number"], r.get("project_name"), normalize_address(r.get("project_name")), _f(loc.get("latitude")),
                      _f(loc.get("longitude")), cand["valuation"], cand["work_class"], cand["use_class"], cand["status"],
                      (r.get("applied_date") or "")[:10] or None, (r.get("issued_date") or "")[:10] or None,
                      clean_org(r.get("owner_organization_name")), int(bool(r.get("_owner_is_individual"))), clean_org(r.get("applicant_organization_name")),
                      _f(r.get("number_of_units")), int(passed), reason,
-                     (r.get("folder_description") or "")[:500] or None, r.get("project_name")))
+                     (r.get("folder_description") or "")[:500] or None, r.get("project_name"), int(bool(r.get("_name_removed")))))
         counts["passed" if passed else reason] += 1
     con.commit()
     return dict(counts)
@@ -207,11 +207,11 @@ def make_sheets(con, cfg: dict) -> dict[str, int]:
     cases = [dict(r) for r in con.execute("SELECT * FROM site_plan_candidates")]
     passed = [c for c in cases if c["in_default"]]; excl = [c for c in cases if not c["passed"]]
     with open(out / "handcheck-site-plans.csv", "w", newline="") as fh:
-        w = csv.writer(fh); w.writerow(["set", "case_number", "case_name", "proposed_use", "use_class", "work", "status", "submitted", "exclude_reason", "agree (y/n)", "note"])
+        w = csv.writer(fh); w.writerow(["set", "case_number", "case_name", "proposed_use", "use_class", "work", "status", "submitted", "exclude_reason", "name_removed", "agree (y/n)", "note"])
         for name, pool in (("passed", passed), ("excluded", excl)):
             for c in rnd.sample(pool, min(20, len(pool))):
                 w.writerow([name, c["case_number"], c["case_name"], c["proposed_use"], c["use_class"], c["work"], c["status"],
-                            c["submitted_date"], c["exclude_reason"] or "", "", ""])
+                            c["submitted_date"], c["exclude_reason"] or "", c["name_removed"] or 0, "", ""])
     best = linked_best(con, cfg)
     linked_ids = set(best)
     pm = {r["source_id"]: dict(r) for r in con.execute("SELECT source_id, address_norm, valuation, issued_date, description FROM candidates WHERE source='austin'")}

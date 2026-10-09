@@ -52,12 +52,12 @@ CREATE TABLE IF NOT EXISTS runs(
 
 
 NEW_COLS = {"candidates": ["size_band TEXT", "size_usd REAL", "size_source TEXT", "project_type TEXT", "in_default INTEGER", "applicant_org TEXT", "address_raw TEXT",
-                           "applied_date TEXT", "last_issued_date TEXT", "remodel_subtype TEXT", "recency_date TEXT", "recency_days INTEGER"],
+                           "applied_date TEXT", "last_issued_date TEXT", "remodel_subtype TEXT", "recency_date TEXT", "recency_days INTEGER", "name_removed INTEGER"],
             "site_plan_candidates": ["size_band TEXT", "size_usd REAL", "size_source TEXT", "project_type TEXT", "type_source TEXT", "in_default INTEGER", "description TEXT",
-                                  "address_raw TEXT", "remodel_subtype TEXT", "recency_date TEXT", "recency_days INTEGER"],
+                                  "address_raw TEXT", "remodel_subtype TEXT", "recency_date TEXT", "recency_days INTEGER", "name_removed INTEGER"],
             "enrichments": ["stage TEXT"],
             "plan_review_candidates": ["size_band TEXT", "size_usd REAL", "size_source TEXT", "project_type TEXT", "in_default INTEGER", "description TEXT", "address_raw TEXT",
-                                  "remodel_subtype TEXT", "recency_date TEXT", "recency_days INTEGER"]}
+                                  "remodel_subtype TEXT", "recency_date TEXT", "recency_days INTEGER", "name_removed INTEGER"]}
 
 
 def _migrate(con: sqlite3.Connection) -> None:

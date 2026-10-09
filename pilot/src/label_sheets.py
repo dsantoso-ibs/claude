@@ -47,19 +47,19 @@ def make_sheets(con, cfg: dict) -> dict:
 
     with open(out / "manual-labels-austin.csv", "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["candidate_id", "stage", "size_band", "project_type", "address", "size_usd", "use_class", "work_class", "contractor", "issued", "description"] + ANSWER)
+        w.writerow(["candidate_id", "stage", "size_band", "project_type", "address", "size_usd", "use_class", "work_class", "contractor", "issued", "description", "name_removed"] + ANSWER)
         for r in chosen["permit_issued"]:
             w.writerow([r["id"], "permit_issued", r["size_band"] or "unknown", r["project_type"], r["address_norm"], f"{r['size_usd']:.0f}" if r["size_usd"] else "",
-                        r["use_class"][:60], r["work_class"], r["contractor_name"] or "", r["issued_date"], (r["description"] or "")[:140], "", "", ""])
+                        r["use_class"][:60], r["work_class"], r["contractor_name"] or "", r["issued_date"], (r["description"] or "")[:140], r["name_removed"] or 0, "", "", ""])
     with open(out / "manual-labels-site-plans.csv", "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["stage", "ref_id", "case_or_permit", "name", "address", "size_band", "size_usd", "project_type", "use", "owner_entity", "applicant_org", "status", "date"] + ANSWER)
+        w.writerow(["stage", "ref_id", "case_or_permit", "name", "address", "size_band", "size_usd", "project_type", "use", "owner_entity", "applicant_org", "status", "date", "name_removed"] + ANSWER)
         for r in chosen["site_plan_open"]:
             w.writerow(["site_plan_open", r["id"], r["case_number"] or "", r["case_name"] or "", r["address_norm"], r["size_band"] or "unknown",
                         f"{r['size_usd']:.0f}" if r["size_usd"] else "", r["project_type"], r["proposed_use"], r["owner_entity"] or "", r["applicant_org"] or "",
-                        r["status"], r["submitted_date"], "", "", ""])
+                        r["status"], r["submitted_date"], r["name_removed"] or 0, "", "", ""])
         for r in chosen["plan_review_open"]:
             w.writerow(["plan_review_open", r["id"], r["permit_number"], r["project_name"] or "", r["address_norm"], r["size_band"] or "unknown",
                         f"{r['size_usd']:.0f}" if r["size_usd"] else "", r["project_type"], r["use_class"][:40], r["owner_entity"] or "", r["applicant_org"] or "",
-                        r["status"], r["applied_date"], "", "", ""])
+                        r["status"], r["applied_date"], r["name_removed"] or 0, "", "", ""])
     return summary

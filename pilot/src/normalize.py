@@ -49,7 +49,7 @@ def build_candidates(con, source: str, scfg: dict) -> int:
         rep = rows[0]
         addr = rep.get(fm["address"]) or rep.get(fm["address_fallback"])
         cols = ("address_norm", "lat", "lon", "valuation", "permit_type", "work_class", "use_class", "issued_date", "description", "contractor_name",
-                "status", "permit_count", "permit_numbers", "applicant_org", "address_raw", "applied_date", "last_issued_date")
+                "status", "permit_count", "permit_numbers", "applicant_org", "address_raw", "applied_date", "last_issued_date", "name_removed")
         vals = (normalize_address(addr), _f(rep.get(fm["lat"])), _f(rep.get(fm["lon"])), max((_f(x.get(fm["valuation"])) or 0) for x in rows),
                 "|".join(sorted({x.get(fm["permit_type"]) or "" for x in rows})), "|".join(sorted({x.get(fm["work_class"]) or "" for x in rows})),
                 "|".join(sorted({x.get(fm["permit_class"]) or "" for x in rows})), min((x.get(fm["issued"]) or "")[:10] for x in rows),
@@ -58,7 +58,8 @@ def build_candidates(con, source: str, scfg: dict) -> int:
                 "|".join(sorted({x.get(fm["status"]) or "" for x in rows})), len(rows), "|".join(sorted(x[fm["permit_number"]] for x in rows)),
                 clean_org(next((x.get(fm["company_alt"]) for x in rows if clean_org(x.get(fm["company_alt"]))), None)), addr,
                 min(((x.get("applieddate") or "")[:10] or "9999") for x in rows).replace("9999", "") or None,
-                max((x.get(fm["issued"]) or "")[:10] for x in rows) or None)
+                max((x.get(fm["issued"]) or "")[:10] for x in rows) or None,
+                int(any(x.get("_name_removed") for x in rows)))
         con.execute(f"INSERT INTO candidates(source, source_id, first_seen_at, {', '.join(cols)}) VALUES(?,?,?,{','.join('?' * len(cols))}) "
                     f"ON CONFLICT(source, source_id) DO UPDATE SET {', '.join(f'{c}=excluded.{c}' for c in cols)}", (source, key, now) + vals)
     con.commit()

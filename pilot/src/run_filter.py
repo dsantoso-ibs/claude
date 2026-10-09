@@ -21,7 +21,7 @@ def main(source: str = "austin") -> None:
                        "WHERE c.source=? ORDER BY c.valuation DESC", (source,)).fetchall()
     out = cfgmod.ROOT / "reports"
     cols = ["source_id", "passed", "exclude_reason", "valuation", "permit_type", "work_class", "use_class", "status",
-            "address_norm", "contractor_name", "issued_date", "permit_count", "description"]
+            "address_norm", "contractor_name", "issued_date", "permit_count", "description", "name_removed"]
     with open(out / f"{source}-candidates.csv", "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(cols)
         for r in rows:
