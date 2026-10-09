@@ -36,6 +36,14 @@ sources:
       - contractor_address2
     # Only BP carries valuation; floor is lower than the filter so thresholds can be tuned without re-fetching.
     ingest_min_valuation_usd: 100000
+  site_plans:          # phase 2 (M7): Austin Site Plan Cases; field_map filled after M7.0 review
+    domain: data.austintexas.gov
+    dataset_id: mavg-96ck
+    report_name: site-plan
+  plan_review:         # phase 2: schema discovery only, no ingest
+    domain: data.austintexas.gov
+    dataset_id: n8ck-xkda
+    report_name: plan-review
   los_angeles:        # phase 2 (M6)
     domain: data.lacity.org
     dataset_id: pi9x-tg5x
