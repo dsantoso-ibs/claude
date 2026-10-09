@@ -1,15 +1,48 @@
 # Baucore own-sourcing pilot config. Every threshold lives here, not in code.
-# Field mappings are filled in AFTER M0 schema review (reports/austin-schema.md).
 
 sources:
   austin:
     domain: data.austintexas.gov
     dataset_id: 3syk-w9eu
-    # field_map: TODO after M0 review
-  los_angeles:
+    date_field: issue_date
+    # A permit is not a project: total_job_valuation is project-level and copied onto every
+    # permit sharing a masterpermitnum. Candidates are grouped by project_key.
+    project_key_fields: [masterpermitnum, permit_number]   # first non-empty wins
+    field_map:
+      permit_number: permit_number
+      permit_type: permittype
+      permit_class: permit_class          # carries occupancy/use, e.g. "C- 105 Five or More Family Bldgs"
+      work_class: work_class
+      valuation: total_job_valuation
+      address: permit_location
+      address_fallback: original_address1
+      city: original_city
+      lat: latitude
+      lon: longitude
+      issued: issue_date
+      description: description
+      status: status_current
+      company: contractor_company_name
+      company_alt: applicant_org
+    # Stripped BEFORE raw storage (no personal data about individuals).
+    drop_fields:
+      - applicant_full_name
+      - applicant_phone
+      - applicant_address1
+      - applicant_address2
+      - contractor_full_name
+      - contractor_phone
+      - contractor_address1
+      - contractor_address2
+    # Only BP carries valuation; floor is lower than the filter so thresholds can be tuned without re-fetching.
+    ingest_min_valuation_usd: 100000
+  los_angeles:        # phase 2 (M6)
     domain: data.lacity.org
     dataset_id: pi9x-tg5x
-    # phase 2 (M6)
+
+ingest:
+  backfill_days: 365
+  delta_overlap_days: 7       # re-fetch window on delta runs to catch status updates
 
 socrata:
   page_size: 1000
@@ -19,7 +52,17 @@ socrata:
 
 filters:
   min_valuation_usd: 250000
-  # permit type / work class / use rules added after M0 review
+  include_permit_types: [BP]                       # trade permits (EP/PP/MP/DS) are excluded
+  include_work_classes: [New, Shell, Addition, Addition and Remodel, Remodel]
+  remodel_work_classes: [Remodel, Addition, Addition and Remodel]   # these additionally need a commercial class
+  require_commercial_for_remodel: true
+  # permit_class prefix tests (case-insensitive, applied to the text after "C-"/"R-" code)
+  include_class_regex: '^(C-|R-\s*(104|105|106|213|214))'          # commercial, or R-coded multi-family
+  exclude_class_codes: ['101', '102', '103']       # single-family, secondary apt, duplex (C- or R-)
+  exclude_class_keywords: [Demolition, Driveway, Sidewalk, Sign, Relocation, Medical Gas, Boat Dock]
+  weak_class_codes: ['329']                        # structures other than buildings: only counts if the project has another class
+  exclude_description_regex: '(?i)\b(solar|photovoltaic|PV system|EV charg)'   # spec: solar is trade-only
+  exclude_statuses: [VOID, Withdrawn, Cancelled, Denied, Revoked, Rejected, Aborted]   # prefix match
 
 enrichment:
   daily_cost_cap_usd: 25.0
