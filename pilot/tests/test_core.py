@@ -80,3 +80,39 @@ def test_grouping_by_master_permit_and_idempotent():
     row = con.execute("SELECT permit_count, valuation FROM candidates").fetchone()
     assert (row["permit_count"], row["valuation"]) == (3, 79_500_000)
     assert con.execute("SELECT COUNT(*) FROM candidates").fetchone()[0] == 1
+
+
+def test_baseline_scoring():
+    from src.baseline import score_pair
+    c = dict(address_norm="512 SABINE ST", lat=30.2659, lon=-97.7363, description="Mixed use multi-family complex")
+    assert score_pair(c, dict(address_norm="512 SABINE ST", lat=None, lon=None, name="x"))[0] == 1.0
+    s, m = score_pair(c, dict(address_norm="9 OTHER RD", lat=30.2660, lon=-97.7363, name="Sabine multi-family complex"))
+    assert m == "geo_name" and 0.6 <= s <= 1.0
+    far = score_pair(c, dict(address_norm="9 OTHER RD", lat=30.40, lon=-97.70, name="Something"))
+    assert far[0] < 0.6
+    near_num = score_pair(c, dict(address_norm="512 SABINE STREET", lat=None, lon=None, name=""))
+    assert near_num[0] >= 0.85
+
+
+def test_verdict_rules():
+    from src.report import verdict
+    d = cfgmod.load()["decision"]
+    assert verdict(0, 0, None, d)[0] == "NOT MEASURABLE"
+    assert verdict(30, 10, None, d)[0].startswith("PROVISIONAL CONTINUE")
+    assert verdict(2, 38, None, d)[0].startswith("STOP")
+    assert verdict(10, 30, None, d)[0] == "INCONCLUSIVE"
+    assert verdict(20, 20, 0.6, d)[0] == "CONTINUE"
+    assert verdict(20, 20, 0.3, d)[0] == "STOP / RETHINK"
+
+
+def test_manual_label_roundtrip_and_report_counts(tmp_path):
+    from src.baseline import import_labels, match
+    con = connect(":memory:")
+    con.execute("INSERT INTO candidates(source,source_id,address_norm,valuation,permit_type,work_class,use_class,issued_date,status,permit_count,permit_numbers,first_seen_at)"
+                " VALUES('austin','1','1 A ST',1e6,'BP','New','C- 105','2026-01-01','Active',1,'x','t')")
+    con.execute("INSERT INTO filter_results VALUES(1,1,NULL)")
+    f = tmp_path / "l.csv"
+    f.write_text("candidate_id,address,in_baseline (y/n/unsure),found_in (ibau/barbour/mps/baucore),note\n1,1 A ST,n,,\n")
+    assert import_labels(con, str(f))["novel"] == 1
+    assert con.execute("SELECT label, method FROM candidate_labels").fetchone()[:] == ("novel", "manual")
+    assert "error" in match(con, "austin", cfgmod.load()["baseline"])   # no baseline loaded -> no silent overwrite

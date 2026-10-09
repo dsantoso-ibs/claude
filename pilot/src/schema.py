@@ -22,6 +22,9 @@ CREATE TABLE IF NOT EXISTS baseline_projects(
 CREATE TABLE IF NOT EXISTS matches(
   candidate_id INTEGER NOT NULL, baseline_id INTEGER NOT NULL, score REAL, method TEXT,
   PRIMARY KEY(candidate_id, baseline_id));
+CREATE TABLE IF NOT EXISTS candidate_labels(   -- in_baseline | novel | review; manual overrides auto
+  candidate_id INTEGER PRIMARY KEY REFERENCES candidates(id), label TEXT NOT NULL, method TEXT NOT NULL,
+  score REAL, note TEXT, labelled_at TEXT);
 CREATE TABLE IF NOT EXISTS enrichments(
   id INTEGER PRIMARY KEY AUTOINCREMENT, candidate_id INTEGER NOT NULL, provider TEXT NOT NULL,
   requested_at TEXT NOT NULL, cost_usd REAL, result_json TEXT, found_owner INTEGER, found_developer INTEGER,

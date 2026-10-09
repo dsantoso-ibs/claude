@@ -64,7 +64,19 @@ filters:
   exclude_description_regex: '(?i)\b(solar|photovoltaic|PV system|EV charg)'   # spec: solar is trade-only
   exclude_statuses: [VOID, Withdrawn, Cancelled, Denied, Revoked, Rejected, Aborted]   # prefix match
 
+baseline:
+  match_geo_radius_m: 100
+  in_baseline_score: 0.85
+  review_score: 0.60
+  manual_sample_size: 40
+  manual_sample_seed: 11
+
+region:   # billing region = metro/county (confirmed). Austin permit dataset covers City of Austin jurisdiction only.
+  name: Austin metro (TX)
+  counties: [Travis, Williamson, Hays]
+
 enrichment:
+  enabled: false              # deferred: no providers wired; contact yield is unmeasured until enabled
   daily_cost_cap_usd: 25.0
 
 decision:
