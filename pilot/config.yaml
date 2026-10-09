@@ -1,0 +1,193 @@
+# Baucore own-sourcing pilot config. Every threshold lives here, not in code.
+
+sources:
+  austin:
+    domain: data.austintexas.gov
+    dataset_id: 3syk-w9eu
+    date_field: issue_date
+    # A permit is not a project: total_job_valuation is project-level and copied onto every
+    # permit sharing a masterpermitnum. Candidates are grouped by project_key.
+    project_key_fields: [masterpermitnum, permit_number]   # first non-empty wins
+    field_map:
+      permit_number: permit_number
+      permit_type: permittype
+      permit_class: permit_class          # carries occupancy/use, e.g. "C- 105 Five or More Family Bldgs"
+      work_class: work_class
+      valuation: total_job_valuation
+      address: permit_location
+      address_fallback: original_address1
+      city: original_city
+      lat: latitude
+      lon: longitude
+      issued: issue_date
+      description: description
+      status: status_current
+      company: contractor_company_name
+      company_alt: applicant_org
+    # Stripped BEFORE raw storage (no personal data about individuals).
+    drop_fields:
+      - applicant_full_name
+      - applicant_phone
+      - applicant_address1
+      - applicant_address2
+      - contractor_full_name
+      - contractor_phone
+      - contractor_address1
+      - contractor_address2
+    # No valuation floor anywhere: fetch scope is by class only (same classes the filter accepts); every work class is
+    # fetched so exclusion reasons stay countable. Valuation only feeds the size_band field.
+    ingest_where: "permittype='BP' AND (permit_class like 'C-%' OR permit_class like 'R- 104%' OR permit_class like 'R- 105%' OR permit_class like 'R- 106%' OR permit_class like 'R- 213%' OR permit_class like 'R- 214%')"
+  site_plans:          # phase 2 (M7): Austin Site Plan Cases
+    domain: data.austintexas.gov
+    dataset_id: mavg-96ck
+    report_name: site-plan
+    date_field: application_start_date
+    id_field: folderrsn
+    # Site plans lead to permits 1-3 years later, so backfill further than 24 months (spec said "24 if available").
+    backfill_months: 60
+    delta_overlap_days: 14
+    drop_fields: [applicant_fullname, applicant_address, applicant_addrcity, applicant_phone1,
+                  owner_fullname, owner_address, owner_addrcity, owner_phone1, case_manager]
+  plan_review:         # phase 2: Austin Plan Review Cases (building-permit applications; has valuation)
+    domain: data.austintexas.gov
+    dataset_id: n8ck-xkda
+    report_name: plan-review
+    date_field: applied_date
+    id_field: permit_number
+    backfill_months: 60
+    ingest_where: "(sub_type like 'C-%' OR sub_type like 'R- 104%' OR sub_type like 'R- 105%' OR sub_type like 'R- 106%' OR sub_type like 'R- 213%' OR sub_type like 'R- 214%')"
+    delta_overlap_days: 14
+    drop_fields: [applicant_full_name, applicant_address, applicant_phone, owner_full_name, owner_address,
+                  owner_phone, other_full_name, other_address, other_phone, appraisal_id]
+  los_angeles:        # phase 2 (M6)
+    domain: data.lacity.org
+    dataset_id: pi9x-tg5x
+
+ingest:
+  backfill_days: 365
+  phase1_window_days: 365   # phase 1 metrics/sample use permits issued in this window even though phase 2 loads older permits
+  delta_overlap_days: 7       # re-fetch window on delta runs to catch status updates
+
+socrata:
+  page_size: 1000
+  max_retries: 5
+  backoff_base_seconds: 2.0
+  timeout_seconds: 30
+
+filters:
+  include_permit_types: [BP]                       # trade permits (EP/PP/MP/DS) are excluded
+  include_work_classes: [New, Shell, Addition, Addition and Remodel, Remodel]
+  remodel_work_classes: [Remodel, Addition, Addition and Remodel]   # these additionally need a commercial class
+  require_commercial_for_remodel: true
+  # permit_class prefix tests (case-insensitive, applied to the text after "C-"/"R-" code)
+  include_class_regex: '^(C-|R-\s*(104|105|106|213|214))'          # commercial, or R-coded multi-family
+  exclude_class_codes: ['101', '102', '103']       # single-family, secondary apt, duplex (C- or R-)
+  exclude_class_keywords: [Demolition, Driveway, Sidewalk, Sign, Relocation, Medical Gas, Boat Dock]
+  weak_class_codes: ['329']                        # structures other than buildings: only counts if the project has another class
+  exclude_description_regex: '(?i)\b(solar|photovoltaic|PV (system|module|panel|array)s?|EV charg)'   # spec: solar is trade-only
+  exclude_statuses: [VOID, Withdrawn, Cancelled, Denied, Revoked, Rejected, Aborted]   # prefix match
+  # Remodel projects (Remodel is the only construction work class). Only repair, signage and demolition-only are non-projects; building use is
+  # never used to rank or exclude (use class stays an attribute). Status and the solar/EV trade rule still apply; structures_only and the class
+  # keyword exclusions do NOT apply to remodels.
+  remodel:
+    work_classes: [Remodel]
+    # A description containing an override word is a real project even if it also mentions a repair/sign/demolition. Each rule has its own
+    # list: "tenant" rescues a repair or demolition but not a sign ("monument sign for tenant"); "interior" rescues a repair or sign but not
+    # a demolition ("interior demolition").
+    project_words_regex: '(?i)(remodel|re-?model|renovat|finish.?out|build.?out|interior|alteration|addition|new construction|conver|change of (use|occupancy)|expan|tenant|improvement|suite)'
+    signage_override_regex: '(?i)(remodel|re-?model|renovat|finish.?out|build.?out|interior|alteration|addition|conver|change of (use|occupancy)|expan|improvement|suite|partition|walls?\b|ceiling|restroom|create)'
+    demolition_override_regex: '(?i)(remodel|re-?model|renovat|finish.?out|build.?out|alteration|addition|conver|change of (use|occupancy)|improvement|tenant|new |construction|install|sub.?divid|combine|retail shell|and (build|construct|install))'
+    repair_regex: '(?i)(\brepair|re-?roof|\broof(ing)? replacement|storm damage|fire damage|hail damage|water damage|like.for.like|replac\w* (of )?(the )?(existing )?(roof|roofing|window|door|siding|hvac|rtu|water heater|boiler|chiller|fence)s?\b)'
+    signage_regex: '(?i)(\bsigns?\b|signage|monument|pylon|channel letters|awning sign|billboard)'
+    demolition_regex: '(?i)(\bdemo\b|demolition|demolish)'
+    class_signage_keywords: [Sign]
+    class_demolition_keywords: [Demolition]
+    subtype:
+      tenant_class_regex: '(?i)finish.?out'
+      tenant_desc_regex: '(?i)(tenant|finish.?out|build.?out|\bT\.?I\.?\b|lease(d)? space|change of (use|occupancy)|new (restaurant|retail|office|store|salon|clinic|gym))'
+      interior_desc_regex: '(?i)(interior|remodel|renovat|alteration|\balter\b|reconfigur|upgrade|improvement|restroom|kitchen|demising|partition|\bADA\b|accessib|classroom|office)'
+      # equipment-type work (towers, antennas, generators, rooftop units, solar/PV, certificates) is repair_or_other unless the text also says remodel/finish-out/interior
+      other_regex: '(?i)(\btower\b|antenna|\bcell\b|wireless|telecom|\bRRU\b|generator|\bequipment\b|\bRTU\b|rooftop unit|\bPV\b|certificate of occupancy)'
+      other_override_regex: '(?i)(remodel|renovat|finish.?out|build.?out|tenant|interior|alteration|reconfigur)'
+      # everything else (terse or unclassifiable descriptions, repair-like work that survived) -> repair_or_other
+    default_list_subtypes: [tenant_finish_out, interior_remodel]   # repair_or_other is hidden from the default remodel list and reported as a separate bucket
+
+baseline:
+  match_geo_radius_m: 100
+  in_baseline_score: 0.85
+  review_score: 0.60
+  manual_sample_size: 40
+  manual_sample_seed: 11
+
+region:   # billing region = metro/county (confirmed). Austin permit dataset covers City of Austin jurisdiction only.
+  name: Austin metro (TX)
+  counties: [Travis, Williamson, Hays]
+
+enrichment:
+  remodels: never           # remodels are NEVER enrichment targets (enforced in code and tested)
+  enabled: false              # a real (paid) run needs enabled: true AND a configured provider adapter; dry-run always works
+  daily_cost_cap_usd: 25.0    # HARD cap per UTC day, checked before every call. PROPOSED value, not confirmed by Donny.
+  stages: [site_plan_open, plan_review_open]    # default open pipeline only (new_build/shell/addition); never remodels
+  provider: none              # none | serpapi (adapter not implemented) | google_enrichment | selfi (interfaces not provided)
+  serpapi_usd_per_call: 0.01  # pricing.json (api-pricing skill), June 2026
+  est_queries_per_project: 3  # ASSUMPTION for the dry-run estimate only
+
+decision:
+  min_novel_share: 0.30
+  min_contact_yield: 0.50
+
+site_plan_filters:
+  # Ordered: first matching regex wins. Older records hold free text (372 distinct values), recent ones clean categories.
+  use_rules:
+    - ['(?i)boat dock|\bROW\b|right.of.way|utility line|streets? and drainage|horizontal infra|telecom|cell tower|^park$|\bRV park|^parking$|driveway|lift station|^trail|roadway|easement|^utility|local utility|airport|open space|^vacant|undeveloped|agricultur', excluded_infrastructure]
+    - ['(?i)sing\w*\s*family|duplex|two.?family|\bSFR\b|secondary apartment', single_family]
+    - ['(?i)multi.?\s?family|^MF$|apartment|condominium|condo\b|townhom|congregate', multifamily]
+    - ['(?i)^housing$|^residential$|residential\b.*(subdivision|development)', housing_unclear]
+    - ['(?i)industrial|^IND$|warehouse|manufactur|distribution|flex', industrial]
+    - ['(?i)public/civic|^public|school|institution|hospital|church|religi|civic|educational|governmental|university|fire station', public_civic]
+    - ['(?i)commercial|mixed.?-?use|service station|cocktail|lounge|auto repair|amenity|office|retail|restaurant|medical|hotel|motel|recreation|storage|bank|gas station|automotive|daycare|day care|club|theat|grocery|shopping|entertainment|car wash|fitness|bar\b|lodging|senior|assisted', commercial]
+  include_classes: [multifamily, housing_unclear, commercial, industrial, public_civic]
+  exclude_work: [Extension, Utility Line, ETJ Released, Telecommunications Tower, Alcoholic Beverage Waiver,
+                 Late Hours Permit, Boat Docks/Shoreline Modification, Street/Drainage, Major Drainage/Regional Detention,
+                 Drainage and Channel Improvements, Transportation, Retaining Wall, Deletion, Fill,
+                 Withdraw and Resubmit, Conditional Use Permit-No Site Work, Bed and Breakfast, Bed and Breakfast Waiver,
+                 Replacement(+ signs), Restrictive Covenant Amendment, Austin Clean Water Program]
+  exclude_statuses: [Expired, Withdrawn, Denied, VOID, Aborted, Cancelled, Inactive, Intake Rejected, CC Rejected]
+  # "Housing" cannot separate single-family from multi-family: keep all, flag likely multi-family by case name.
+  exclude_name_regex: '(?i)\bdemo(lition)?\b'     # demolition-only site plans (e.g. "Domain 4 Demo")
+  multifamily_name_regex: '(?i)(apartment|multi-?\s?family|multifamily|residences|lofts?|flats|townhome|condo|senior|affordable|living)'
+  open_statuses: [In Review, Pending, Intake, Awaiting Update, Waiting on, Scheduled for Hearing, CC Pending, CC Approved,
+                  Approved, Tolling, Formal Intake, Internet Pending, Application Incomplete, Suspended]
+  open_pipeline_max_age_months: 24
+
+plan_review_filters:
+  extra_exclude_statuses: [Expired, New Application Required]   # not live applications
+
+linking:
+  geo_radius_m: 100
+  link_score: 0.85
+  review_score: 0.60
+  supporting_name_bonus: 0.10     # owner/applicant vs contractor fuzzy match; only boosts a pair already >= review_score
+  supporting_name_ratio: 85
+  min_cases_for_non_provisional: 30
+  site_plan_permit_work_classes: [New, Shell, Addition, Addition and Remodel]   # interior-remodel-only permits are not what a site plan produces
+
+label_sample:    # both manual label sheets together: 30 projects, default set only, stratified by stage then size_band
+  seed: 21
+  per_stage: {site_plan_open: 10, plan_review_open: 10, permit_issued: 10}
+  band_quota: {unknown: 3, under_250k: 2, 250k_to_5m: 3, over_5m: 2}   # per stage; shortfalls are filled from the other bands, known sizes first
+
+size_band:   # descriptive field only; never used to include/exclude
+  unknown_max_usd: 1000        # a reported valuation <= this is a placeholder ($0/$1) and counts as unknown
+  band_250k: 250000
+  band_5m: 5000000
+  # best available valuation: own project valuation, else linked Plan Review application, else (site plans) the linked permit project
+
+project_type:
+  # permit/Plan Review work_class -> project_type. Project-level precedence when a project has several: new_build > shell > addition > remodel.
+  work_class_map: {New: new_build, Shell: shell, Addition: addition, "Addition and Remodel": addition, Remodel: remodel}
+  default_types: [new_build, shell, addition]     # the default set for pipeline, reports and open-pipeline CSVs
+  # Site plans have no building work class. Order: linked permit project -> linked Plan Review at same address -> name/work hints -> unknown.
+  site_plan_remodel_name_regex: '(?i)(remodel|renovation|tenant improvement|interior|finish.?out|change of use|conversion)'
+  site_plan_remodel_work: [Change of Use]
+  site_plan_unknown_in_default: true   # a site plan needs site work, so an unlinked case of unknown type stays in the default set (counted separately)

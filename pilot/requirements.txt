@@ -1,0 +1,7 @@
+httpx>=0.27
+pydantic>=2.6
+pyyaml>=6.0
+rapidfuzz>=3.6
+pytest>=8.0
+spacy>=3.7          # personal-name scrub (NER); also run once: python -m spacy download en_core_web_sm
+faker>=24.0         # US first-name / surname lists used by the scrub as supporting evidence
