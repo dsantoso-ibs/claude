@@ -519,7 +519,7 @@ def cmd_run(args):
     recs = read_records(args.input)
     if args.limit:
         recs = recs[:args.limit]
-    want_email = args.email or not args.phone
+    want_email = args.email
     eng = build_engine(args)
     if args.dry_run:
         ok = sum(1 for r in recs if can_match(normalize(r)))
@@ -568,8 +568,9 @@ def main(argv=None):
     sub.add_parser("check")
     r = sub.add_parser("run")
     common(r)
-    r.add_argument("--email", action="store_true", help="find emails (default if neither flag given)")
-    r.add_argument("--phone", action="store_true", help="find phone numbers")
+    mode = r.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--email", action="store_true", help="find emails (verified)")
+    mode.add_argument("--phone", action="store_true", help="find phone numbers (about 10x the cost of an email)")
     r.add_argument("--reverify", action="store_true", help="re-verify even provider-verified emails")
     r.add_argument("--limit", type=int, help="only the first N records (use for a test run)")
     r.add_argument("--dry-run", action="store_true")
